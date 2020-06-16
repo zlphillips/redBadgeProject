@@ -12,11 +12,11 @@ class App extends React.Component {
     <Router>
     <div className="App">
       <nav>
-        <Link to='/'>Home</Link>
+        <Link className="navLink" to='/'>Home</Link>
         <br/>
-        <Link to='/login'>Login</Link>
+        <Link className="navLink" to='/login'>Login</Link>
         <br/>
-        <Link to='/signup'>Sign Up</Link>
+        <Link className="navLink" to='/signup'>Sign Up</Link>
       </nav>
       <Switch>
         <Route exact path="/" component={Auth} />
