@@ -1,1 +1,32 @@
 import React from 'react'
+import User from '../assets/user.svg';
+import Add from '../assets/add.svg';
+import Home from '../assets/home.svg'
+import Dashboard from '../assets/data-analysis.svg';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+
+
+const NavBar = () => {
+
+    const imgStyles = {
+        height: '5vh',
+    }
+    const navStyles = {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    }
+
+    return (
+        <div>
+            <Navbar  expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
+                <Navbar.Brand href="#home"><Link to ='/'><img src={Home} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand href="#post"><Link to ='/CreatePost'><img src={Add} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand href="#search"><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand href="#profile"><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+            </Navbar>
+        </div>
+    )
+}
+
+export default NavBar
