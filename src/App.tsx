@@ -1,9 +1,13 @@
 import React from 'react';
+import NavBar from './home/Navbar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import './App.css';
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Auth from './auth/Auth'
-import Login from './auth/Login'
-import Signup from './auth/Signup'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 class App extends React.Component {
@@ -11,18 +15,14 @@ class App extends React.Component {
   return (
     <Router>
     <div className="App">
-      <nav>
-        <Link to='/'>Home</Link>
-        <br/>
-        <Link to='/login'>Login</Link>
-        <br/>
-        <Link to='/signup'>Sign Up</Link>
-      </nav>
-      <Switch>
-        <Route exact path="/" component={Auth} />
-        <Route path="/Login" component={Login}/>
-        <Route path="/Signup" component={Signup}/>
-      </Switch>
+      <Router>
+        <NavBar/>
+        <Switch>
+          <Route>
+            
+          </Route>
+        </Switch>
+      </Router>
     </div>
     </Router>
   );
