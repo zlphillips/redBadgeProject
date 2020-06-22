@@ -8,7 +8,7 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Auth from '../src/auth/Auth'
 
 
 
@@ -19,7 +19,10 @@ function App() {
       <Router>
         <NavBar/>
         <Switch>
-          <Route>
+          <Route path='/auth'>
+            <Auth/>
+          </Route>
+          <Route path="/">
             <Home/>
           </Route>
         </Switch>
