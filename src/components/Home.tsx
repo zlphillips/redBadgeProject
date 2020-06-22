@@ -1,6 +1,7 @@
 import React, { Component, useState} from 'react';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 import StockPic from '../assets/stockphoto1.jpg';
+import StockPic2 from '../assets/headshot2.jpg'
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 const Home = () => {
@@ -10,13 +11,14 @@ const Home = () => {
     }
 
     const singleToast = {
-        minWidth: '90vw'
+        minWidth: '90vw',
+        minHeight: '10vh'
     }
 
     const photoStyle = {
         borderStyle: 'solid',
-        width: '7vh',
-        height: '7vh',
+        width: '5vh',
+        height: '5vh',
         overflow: 'hidden',
         borderRadius: '50%',
         }
@@ -39,7 +41,7 @@ const Home = () => {
                 <Toast style={singleToast}>
                 <ToastHeader>
                     <div style={userStyles}>
-                        <img src={StockPic} style={photoStyle} />
+                        <img src={StockPic2} style={photoStyle} />
                         <h1 style={{fontSize: '3vh'}}>{user}</h1>
                         <div>
                        {/* <p>{`posted ${number} minutes ago`}</p> */}

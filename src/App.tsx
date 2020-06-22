@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import NavBar from './home/Navbar'
 import {
   BrowserRouter as Router,
@@ -6,13 +6,22 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/Home'
+import Auth from './auth/Auth'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
 
+
 function App() {
+
+const [isAuthenticated, setIsAuthenticated] = useState('')
+
+
+
+  if(isAuthenticated){
+
   return (
     <Router>
     <div className="App">
@@ -27,5 +36,8 @@ function App() {
     </div>
     </Router>
   );
+  } else {
+    return <Auth/>
+  }
 }
 export default App;

@@ -1,23 +1,18 @@
 import React, {useState} from 'react'
 import Signup from './Signup'
 import Login from './Login'
-// import '../App.css'
-
-{/* <link rel="stylesheet" type="text/css" href="AuthForm.css"> */}
+import "../css/signup.css"
 
 
-const Auth = () => {//2: pull in props that will be passed down
+
+const Auth = () => {
     const [isLoggingIn, setIsLoggingIn] = useState(true)
-    // const [isSigningUp, setIsSigningUp] = useState(true)
+    
     
 return(
     <div className="AuthDiv"
     style={{textAlign:"center", color:"#4D896F"}}>
-        {/* <h2>{Signup ? 'Signup' : 'Sign In'}</h2> */}
-        {/* {} shows JSX is in use */}
-        {/* {
-            isLoggingIn ? <p>Welcome Back, Troll Master</p> : <p>Are you troll enough?</p>
-        } */}
+       
         {
             isLoggingIn ? <Login/> : <Signup/>
         }
@@ -40,3 +35,4 @@ return(
 }
 
 export default Auth
+

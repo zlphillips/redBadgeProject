@@ -3,7 +3,7 @@ import User from '../assets/user.svg';
 import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
 import Dashboard from '../assets/data-analysis.svg';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 
