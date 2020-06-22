@@ -77,16 +77,4 @@ const Login = () => {
     }      
     export default Login
     
-    //     <input type="email" className="form-control" id="email" placeholder="Email"
-    //     onChange={(e) => { setEmail(e.target.value);
-    //     handleChange()
-    // }}/>
-
-        // <input type="password" className="form-control" id="pwd" placeholder="Password"
-        // onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
-
-    // <div className="checkbox">
-    //     <label
-    //     style={{fontSize:"20px"}}><input type="checkbox"></input>Remember me</label>
-    // </div>
-    // <input type="submit" disabled={!isFormValid}/>
+   

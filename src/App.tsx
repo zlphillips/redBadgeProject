@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
 import NavBar from './home/Navbar'
+import Auth from "./auth/Auth"
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import Home from './components/Home'
-import Auth from './auth/Auth'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
 
 
 function App() {
@@ -25,10 +22,13 @@ const [isAuthenticated, setIsAuthenticated] = useState('')
   return (
     <Router>
     <div className="App">
-      <Router>
+    <Router>
         <NavBar/>
         <Switch>
-          <Route>
+          <Route path='/auth'>
+            <Auth/>
+          </Route>
+          <Route path="/">
             <Home/>
           </Route>
         </Switch>
