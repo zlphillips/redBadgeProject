@@ -69,7 +69,7 @@ const Login = () => {
                      </span>
                 <span id='create_account'>
                     {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-                    <a href="#">Become a troll</a>
+                    <a href="http://localhost:3000/user/signup">Become a troll</a>
                 </span>
             </div>
         </div>
