@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from './home/Navbar'
+import Auth from "./auth/Auth"
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,15 +9,13 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Auth from '../src/auth/Auth'
-
 
 
 function App() {
   return (
     <Router>
     <div className="App">
-      <Router>
+    <Router>
         <NavBar/>
         <Switch>
           <Route path='/auth'>
