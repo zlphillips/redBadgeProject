@@ -1,32 +1,31 @@
 import React from 'react';
+import NavBar from './home/Navbar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Home from './components/Home'
 import './App.css';
-import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Auth from './auth/Auth'
-import Login from './auth/Login'
-import Signup from './auth/Signup'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-class App extends React.Component {
-  render(){
+
+
+function App() {
   return (
     <Router>
     <div className="App">
-      <nav>
-        <Link className="navLink" to='/'>Home</Link>
-        <br/>
-        <Link className="navLink" to='/login'>Login</Link>
-        <br/>
-        <Link className="navLink" to='/signup'>Sign Up</Link>
-      </nav>
-      <Switch>
-        <Route exact path="/" component={Auth} />
-        <Route path="/Login" component={Login}/>
-        <Route path="/Signup" component={Signup}/>
-      </Switch>
+      <Router>
+        <NavBar/>
+        <Switch>
+          <Route>
+            <Home/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
     </Router>
   );
 }
-}
-
 export default App;

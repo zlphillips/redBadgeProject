@@ -1,1 +1,12 @@
-@import "./index.css";
+.App {
+  text-align: center;
+  font-family: 'CustomFont', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face {
+  font-family: "CustomFont";
+  src: url("assets/FiraCode-Light.ttf");
+  
+  }
