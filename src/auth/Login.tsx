@@ -6,14 +6,14 @@ import "../css/login.css"
 
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
     // valid form - "isFormValid" = the state variable
     const [isFormValid, setIsFormValid] = useState(false)
     // changing false/true
     const handleChange = () => {
         console.log('err')
-        if (email.length > 0 && password.length > 0){
+        if (username.length > 0 && password.length > 0){
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -23,11 +23,11 @@ const Login = () => {
     // COMMENT OUT HANDLESUBMIT
     const handleSubmit = () => {
         // e.preventDefault();
-        const url=`/user/login`
+        const url='http://localhost:3002/user/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
-                email: email,
+                username: username,
                 password: password,
             }),
             headers: {
@@ -53,7 +53,7 @@ const Login = () => {
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
                     <input placeholder="Email" type="email" name="Email" id="field_email" className='input_field'
-                    onChange={(e) => { setEmail(e.target.value);
+                    onChange={(e) => { setUsername(e.target.value);
                     handleChange(); console.log(isFormValid)
                     }}/>
                 </div>
@@ -62,7 +62,7 @@ const Login = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <input type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled={!isFormValid}/>
+                <input type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}/>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password ?</a>
@@ -77,16 +77,4 @@ const Login = () => {
     }      
     export default Login
     
-    //     <input type="email" className="form-control" id="email" placeholder="Email"
-    //     onChange={(e) => { setEmail(e.target.value);
-    //     handleChange()
-    // }}/>
-
-        // <input type="password" className="form-control" id="pwd" placeholder="Password"
-        // onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
-
-    // <div className="checkbox">
-    //     <label
-    //     style={{fontSize:"20px"}}><input type="checkbox"></input>Remember me</label>
-    // </div>
-    // <input type="submit" disabled={!isFormValid}/>
+   

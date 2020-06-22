@@ -10,6 +10,7 @@ const Signup = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
     // valid form - "isFormValid" = the state variable
     const [isFormValid, setIsFormValid] = useState(false)
     // changing false/true
@@ -24,12 +25,13 @@ const Signup = () => {
     
     const handleSubmit = () => {
         // e.preventDefault();
-        const url=`/user/signup`
+        const url=`http://localhost:3002/redBadge/users/signup`
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
                 firstName: firstName,
                 lastName: lastName,
+                username: username,
                 email: email,
                 password: password,
             }),
@@ -37,12 +39,7 @@ const Signup = () => {
                 'Content-Type' : 'application/json'
             }
         })
-        .then(data => data.json()) 
-        // .then(userData => {   
-        //     props.updateToken(userData.sessionToken)
-        //     if(userData.sessionToken===localStorage.getItem("token"))
-        //     props.history.push("/profile")
-        // })
+        .then(data => data.json())
         .catch(err => console.log(err))
     }
 
@@ -69,6 +66,11 @@ const Signup = () => {
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Email" type="email" name="Password" id="field_password" className='input_field'
+                    onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
+                </div>
+                <div className="input_container">
+                    <i className="fas fa-lock"></i>
+                    <input  placeholder="Username" type="text" name="Username" id="field_password" className='input_field'
                     onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
                 <div className="input_container">
