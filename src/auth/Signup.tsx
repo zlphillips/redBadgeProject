@@ -5,17 +5,16 @@ import "../css/signup.css"
 // import APIURL to files that send network requests
 
 
-const Signup = () => {
+const Signup = (props: any) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
     // valid form - "isFormValid" = the state variable
-    const [isFormValid, setIsFormValid] = useState(false)
+    const [isFormValid, setIsFormValid] = useState(true)
     // changing false/true
     const handleChange = () => {
-        console.log('err')
         if (email.length > 0 && password.length > 0){
             setIsFormValid(true)
         } else {
@@ -23,8 +22,8 @@ const Signup = () => {
         }
     }
     
-    const handleSubmit = () => {
-        // e.preventDefault();
+    const handleSubmit = (e: Event) => {
+        e.preventDefault();
         const url=`http://localhost:3002/redBadge/user/signup`
         fetch(url, {
             method: 'POST',
@@ -35,11 +34,15 @@ const Signup = () => {
                 email: email,
                 password: password,
             }),
-            headers: {
+            headers: new Headers({
                 'Content-Type' : 'application/json'
-            }
-        })
-        .then(data => data.json())
+            })
+        }).then(
+            (response) => response.json()
+        )
+        .then((data => {
+            props.updateToken(data.sessionToken)
+        }))
         .catch(err => console.log(err))
     }
 
@@ -75,7 +78,7 @@ const Signup = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <input type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit()} className='input_field' disabled={!isFormValid}/>
+                <input type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit(props)} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
                     <a href="#">Login</a>
