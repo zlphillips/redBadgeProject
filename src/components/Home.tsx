@@ -4,7 +4,9 @@ import StockPic from '../assets/stockphoto1.jpg';
 import StockPic2 from '../assets/headshot2.jpg'
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
-const Home = () => {
+const Home = (props: any) => {
+    const [isAuthenticated, setIsAuthenticated] = useState()
+    const [token, setToken] = useState('')
 
     const toastStyles = {
         margin: '1%'
@@ -33,6 +35,14 @@ const Home = () => {
         const user = 'susansickomode'
         const number = '4'
         const postContent = 'I need a <br/>'
+
+
+  const islogin = (sessionToken: any) => {
+    setIsAuthenticated(true)
+    
+    setToken(sessionToken)
+    console.log(sessionToken)
+  }
 
 
     return(

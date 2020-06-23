@@ -5,13 +5,17 @@ import "../css/signup.css"
 
 
 
+
+
 const Auth = () => {
     const [isLoggingIn, setIsLoggingIn] = useState(true)
     
     
 return(
-    <div className="AuthDiv"
-    style={{textAlign:"center", color:"#4D896F"}}>
+    <div className="AuthDiv" 
+    // id="form_wrapper"
+    style={{textAlign:"center", color:"#4D896F", backgroundColor: 'var(--form_bg)',
+    borderRadius: '50px'}}>
        
         {
             isLoggingIn ? <Login/> : <Signup/>
@@ -19,12 +23,12 @@ return(
         {
             isLoggingIn ? (
                 <button 
-                style={{fontSize:"15px",color:"green"}}
+                style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}
                 onClick={e => setIsLoggingIn(!isLoggingIn)}>
                 Join Us!
                 </button>
             ) : (
-                <button onClick={e => setIsLoggingIn(!isLoggingIn)}>
+                <button onClick={e => setIsLoggingIn(!isLoggingIn)}  style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}>
                 Login
                 </button>
             )
