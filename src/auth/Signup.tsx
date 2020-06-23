@@ -81,6 +81,7 @@ const Signup = () => {
                 <input type="submit" value="Get started" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
+                    {/* router Link type (react router dom) import{Link}from 'react-router-dom' */}
                     <a href="#">Login</a>
                 </span>
             </div>
