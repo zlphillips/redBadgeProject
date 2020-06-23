@@ -3,12 +3,12 @@ import Signup from './Signup'
 import Login from './Login'
 import "../css/signup.css"
 
-interface AuthProps {
+export interface AuthProps {
     protectedViews: (sessionToken: string) => void;
 }
 
 
-const Auth = (props: any) => {
+const Auth = (props: AuthProps) => {
     const [isLoggingIn, setIsLoggingIn] = useState(true)
     
     
@@ -19,7 +19,7 @@ return(
     borderRadius: '50px',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
        
         {
-            isLoggingIn ? <Login/> : <Signup/>
+            isLoggingIn ? <Login protectedViews={props.protectedViews}/> : <Signup/>
         }
         {
             isLoggingIn ? (

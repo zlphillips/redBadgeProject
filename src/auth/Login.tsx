@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import Change from '../auth/Auth'
+import {AuthProps} from "./Auth"
 import "../css/login.css"
-// import {Row, Col, Card, CardTitle, CardText} from 'reactstrap'
-// import { URL } from 'url';
-// import APIURL to files that send network requests
 
-
-const Login = () => {
+const Login = (props: AuthProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
     const [isFormValid, setIsFormValid] = useState(false)
@@ -20,20 +17,25 @@ const Login = () => {
         }
     }
     
-    const handleSubmit = () => {
-        // e.preventDefault();
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
         const url='http://localhost:3002/user/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
+                user: {
                 username: username,
                 password: password,
-            }),
-            headers: {
+            }}),
+            headers: new Headers({
                 'Content-Type' : 'application/json'
-            }
-        })
-        .then(data => data.json())
+            })
+        }).then(
+            (response) => response.json()
+        )
+        .then((data => {
+            props.protectedViews(data.sessionToken)
+        }))
         .catch(err => console.log(err))
     }
 
@@ -56,7 +58,7 @@ const Login = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <button type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}>Submit</button>
+                <button type="button" value="Login" id='input_submit'onClick={(e) => handleSubmit(e)} className='input_field' disabled = {!isFormValid}>Login</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password ?</a>

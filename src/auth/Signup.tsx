@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, MouseEvent} from 'react'
 import "../css/signup.css"
 // import {Form, FormGroup, Input} from 'reactstrap'
 // import { render } from '@testing-library/react'
@@ -22,7 +22,7 @@ const Signup = (props: any) => {
         }
     }
     
-    const handleSubmit = (e: Event) => {
+    const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const url=`http://localhost:3002/redBadge/user/signup`
         fetch(url, {
@@ -55,33 +55,32 @@ const Signup = (props: any) => {
                     <i className="fas fa-envelope"></i>
                     <input placeholder="First Name" type="text" name="firstName" id="field_firstName" className='input_field'
                     onChange={(e) => { setFirstName(e.target.value);
-                    handleChange(); console.log(isFormValid)
+                    handleChange();
                     }}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Last Name" type="text" name="lastName" id="field_lastName" className='input_field'
-                    onChange={(e) => {setLastName(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setLastName(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Email" type="email" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setEmail(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Username" type="text" name="Username" id="field_password" className='input_field'
-                    onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setEmail(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
-                <input type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit(props)} className='input_field' disabled={!isFormValid}/>
+                <button type="button" value="Login" id='input_submit' onSubmit={() => handleSubmit(props)} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
-                    <a href="#">Login</a>
                 </span>
             </div>
         </div>
