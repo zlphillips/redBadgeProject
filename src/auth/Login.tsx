@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
+import {AuthProps} from './Auth'
 import Change from '../auth/Auth'
 import "../css/login.css"
-// import {Row, Col, Card, CardTitle, CardText} from 'reactstrap'
-// import { URL } from 'url';
-// import APIURL to files that send network requests
 
 
-const Login = () => {
+const Login = (props: AuthProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
     const [isFormValid, setIsFormValid] = useState(false)
 
     const handleChange = () => {
-        console.log('err')
         if (username.length > 0 && password.length > 0){
             setIsFormValid(true)
         } else {
@@ -22,18 +19,21 @@ const Login = () => {
     
     const handleSubmit = () => {
         // e.preventDefault();
-        const url='http://localhost:3002/user/login'
+        const url='http://localhost:3002/redBadge/user/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
+                user: {
                 username: username,
                 password: password,
+                }
             }),
             headers: {
                 'Content-Type' : 'application/json'
             }
         })
         .then(data => data.json())
+        // .then(data => ))
         .catch(err => console.log(err))
     }
 
@@ -56,7 +56,7 @@ const Login = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <button type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}>Submit</button>
+                <button type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}>Submit</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password ?</a>
