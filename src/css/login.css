@@ -25,8 +25,6 @@ body {
     /* make the body full height*/
     height: 100vh;
     /* set our custom font */
-    font-family: 'Roboto',
-    sans-serif;
     /* create a linear gradient*/
     background-image: linear-gradient(to right, var(--body_gradient_left), var(--body_gradient_right));
     display:flex;

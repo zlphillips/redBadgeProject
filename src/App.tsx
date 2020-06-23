@@ -11,9 +11,23 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const App: React.FC = () => {
+<<<<<<< HEAD
 
-const [isAuthenticated, setIsAuthenticated] = useState('')
+function App() {
+=======
+const App: React.FC = () => {
+>>>>>>> e76524b6dc4c9d2f059b93c5d577d2a1d582c01a
+
+const [isAuthenticated, setIsAuthenticated] = useState(false)
+const [token, setToken] = useState('')
+
+
+const ProtectedViews = (sessionToken: string) => {
+  setIsAuthenticated(true)
+  
+  setToken(sessionToken)
+  console.log(sessionToken)
+}
 
 
 
@@ -23,7 +37,7 @@ const [isAuthenticated, setIsAuthenticated] = useState('')
     <Router>
     <div className="App">
     <Router>
-        <NavBar/>
+        <NavBar />
         <Switch>
           <Route path='/auth'>
             <Auth/>
@@ -37,7 +51,7 @@ const [isAuthenticated, setIsAuthenticated] = useState('')
     </Router>
   );
   } else {
-    return <Auth/>
+    return <Auth protectedViews={ProtectedViews}/>
   }
 }
 export default App;
