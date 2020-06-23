@@ -3,11 +3,12 @@ import Signup from './Signup'
 import Login from './Login'
 import "../css/signup.css"
 
+interface AuthProps {
+    protectedViews: (sessionToken: string) => void;
+}
 
 
-
-
-const Auth = () => {
+const Auth = (props: any) => {
     const [isLoggingIn, setIsLoggingIn] = useState(true)
     
     
@@ -15,7 +16,7 @@ return(
     <div className="AuthDiv" 
     // id="form_wrapper"
     style={{textAlign:"center", color:"#4D896F", backgroundColor: 'var(--form_bg)',
-    borderRadius: '50px'}}>
+    borderRadius: '50px',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
        
         {
             isLoggingIn ? <Login/> : <Signup/>
