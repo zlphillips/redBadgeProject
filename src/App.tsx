@@ -11,12 +11,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-<<<<<<< HEAD
 
 function App() {
-=======
-const App: React.FC = () => {
->>>>>>> e76524b6dc4c9d2f059b93c5d577d2a1d582c01a
 
 const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
