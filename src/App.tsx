@@ -11,13 +11,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const App: React.FC = () => {
+
+function App() {
 
 const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 
-const ProtectedViews = (sessionToken: string) => {
+const protectedViews = (sessionToken: string) => {
   setIsAuthenticated(true)
   
   setToken(sessionToken)
@@ -41,7 +42,7 @@ const ProtectedViews = (sessionToken: string) => {
     </div>
   );
   } else {
-    return <Auth protectedViews={ProtectedViews}/>
+    return <Auth protectedViews={protectedViews}/>
   }
 }
 export default App;

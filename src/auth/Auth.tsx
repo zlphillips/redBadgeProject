@@ -19,7 +19,7 @@ return(
     borderRadius: '50px',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
        
         {
-            isLoggingIn ? <Login protectedViews={props.protectedViews}/> : <Signup/>
+            isLoggingIn ? <Login protectedViews={props.protectedViews} /> : <Signup protectedViews={props.protectedViews}/>
         }
         {
             isLoggingIn ? (

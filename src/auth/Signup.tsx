@@ -23,17 +23,17 @@ const Signup = (props: any) => {
     }
     
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
         const url=`http://localhost:3002/redBadge/user/signup`
         fetch(url, {
             method: 'POST',
-            body: JSON.stringify({
+            body: JSON.stringify(
+                {user:{
                 firstName: firstName,
                 lastName: lastName,
                 username: username,
                 email: email,
                 password: password,
-            }),
+                }}),
             headers: new Headers({
                 'Content-Type' : 'application/json'
             })
@@ -41,7 +41,7 @@ const Signup = (props: any) => {
             (response) => response.json()
         )
         .then((data => {
-            props.updateToken(data.sessionToken)
+            props.protectedViews(data.sessionToken)
         }))
         .catch(err => console.log(err))
     }
@@ -78,7 +78,7 @@ const Signup = (props: any) => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
-                <button type="button" value="Login" id='input_submit' onSubmit={() => handleSubmit(props)} className='input_field' disabled={!isFormValid}/>
+                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
                 </span>
