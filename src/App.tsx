@@ -11,7 +11,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function App() {
+const App: React.FC = () => {
 
 const [isAuthenticated, setIsAuthenticated] = useState('')
 
