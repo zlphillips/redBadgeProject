@@ -78,7 +78,7 @@ const Signup = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <input type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled={!isFormValid}/>
+                <input type="submit" value="Get started" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
                     <a href="#">Login</a>

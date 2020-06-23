@@ -52,7 +52,7 @@ const Login = () => {
                 <h2>Welcome Back Troll Master</h2>
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
-                    <input placeholder="Email" type="email" name="Email" id="field_email" className='input_field'
+                    <input placeholder="Username" type="text" name="Username" id="field_username" className='input_field'
                     onChange={(e) => { setUsername(e.target.value);
                     handleChange(); console.log(isFormValid)
                     }}/>
@@ -63,9 +63,9 @@ const Login = () => {
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
                 <input type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}/>
-                <span>Forgot
+                <span className="forgot">Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
-                     <a href="#"> Email / Password ?</a>
+                     <a href="#"> Email / Password</a>
                      </span>
                 <span id='create_account'>
                     {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}

@@ -165,3 +165,7 @@ i {
             display: none;
         }
     }
+
+.forgot:hover {
+    color: var(--submit_hover);
+}
