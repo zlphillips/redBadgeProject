@@ -25,7 +25,11 @@ const Signup = () => {
     
     const handleSubmit = () => {
         // e.preventDefault();
+<<<<<<< HEAD
         const url='http://localhost:3002/redBadge/users/signup'
+=======
+        const url=`http://localhost:3002/redBadge/user/signup`
+>>>>>>> e76524b6dc4c9d2f059b93c5d577d2a1d582c01a
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
