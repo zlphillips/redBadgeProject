@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
+import {AuthProps} from './Auth'
+import Change from '../auth/Auth'
 import "../css/login.css"
-// import {Row, Col, Card, CardTitle, CardText} from 'reactstrap'
-// import { URL } from 'url';
-// import APIURL to files that send network requests
 
 
-const Login = () => {
+const Login = (props: AuthProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
-    // valid form - "isFormValid" = the state variable
     const [isFormValid, setIsFormValid] = useState(false)
-    // changing false/true
+
     const handleChange = () => {
-        console.log('err')
         if (username.length > 0 && password.length > 0){
             setIsFormValid(true)
         } else {
@@ -20,34 +17,31 @@ const Login = () => {
         }
     }
     
-    // COMMENT OUT HANDLESUBMIT
     const handleSubmit = () => {
         // e.preventDefault();
-        const url='http://localhost:3002/user/login'
+        const url='http://localhost:3002/redBadge/user/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
+                user: {
                 username: username,
                 password: password,
+                }
             }),
             headers: {
                 'Content-Type' : 'application/json'
             }
         })
-        .then(data => data.json()) //parse use data.json()
-        // .then(userData => {   
-        //     props.updateToken(userData.sessionToken)
-        // if( userData.sessionToken===localStorage.getItem("token"))
-        //     props.history.push("/profile")
-        // })
+        .then(data => data.json())
+        // .then(data => ))
         .catch(err => console.log(err))
     }
 
     return (
-        <div id="form_wrapper">
-            <div id="form_left">
-                <img src="icon.png" alt="LOGO WILL GO HERE"/>
-            </div>
+        <div >
+           {/* <div id="form_left">
+                 <img src="icon.png" alt="LOGO WILL GO HERE"/>
+                </div> */}
             <div id="form_right">
                 <h2>Welcome Back Troll Master</h2>
                 <div className="input_container">
@@ -62,14 +56,14 @@ const Login = () => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <input type="submit" value="Login" id='input_submit'onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}/>
-                <span className="forgot">Forgot
+                <button type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}>Submit</button>
+                <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password</a>
                      </span>
                 <span id='create_account'>
                     {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-                    <a href="http://localhost:3000/user/signup">Become a troll</a>
+                   
                 </span>
             </div>
         </div>

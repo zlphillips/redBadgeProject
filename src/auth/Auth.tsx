@@ -3,28 +3,33 @@ import Signup from './Signup'
 import Login from './Login'
 import "../css/signup.css"
 
+export interface AuthProps {
+    protectedViews: (sessionToken: string) => void;
+}
 
 
-const Auth = () => {
+const Auth = (props: AuthProps) => {
     const [isLoggingIn, setIsLoggingIn] = useState(true)
     
     
 return(
-    <div className="AuthDiv"
-    style={{textAlign:"center", color:"#4D896F"}}>
+    <div className="AuthDiv" 
+    // id="form_wrapper"
+    style={{textAlign:"center", color:"#4D896F", backgroundColor: 'var(--form_bg)',
+    borderRadius: '50px',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
        
         {
-            isLoggingIn ? <Login/> : <Signup/>
+            isLoggingIn ? <Login protectedViews={props.protectedViews} /> : <Signup protectedViews={props.protectedViews}/>
         }
         {
             isLoggingIn ? (
                 <button 
-                style={{fontSize:"15px",color:"green"}}
+                style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}
                 onClick={e => setIsLoggingIn(!isLoggingIn)}>
-                Join Us!
+                Become a Troll
                 </button>
             ) : (
-                <button onClick={e => setIsLoggingIn(!isLoggingIn)}>
+                <button onClick={e => setIsLoggingIn(!isLoggingIn)}  style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}>
                 Login
                 </button>
             )
