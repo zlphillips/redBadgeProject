@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, MouseEvent} from 'react';
 import {AuthProps} from './Auth'
 import Change from '../auth/Auth'
 import "../css/login.css"
@@ -17,8 +17,8 @@ const Login = (props: AuthProps) => {
         }
     }
     
-    const handleSubmit = () => {
-        // e.preventDefault();
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
         const url='http://localhost:3002/redBadge/user/login'
         fetch(url, {
             method: 'POST',
@@ -33,7 +33,7 @@ const Login = (props: AuthProps) => {
             }
         })
         .then(data => data.json())
-        // .then(data => ))
+        .then(data => props.protectedViews(data.sessionToken))
         .catch(err => console.log(err))
     }
 
@@ -56,7 +56,7 @@ const Login = (props: AuthProps) => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
                 </div>
-                <button type="submit" value="Login" id='input_submit' onSubmit={() => handleSubmit()} className='input_field' disabled = {!isFormValid}>Submit</button>
+                <button type="submit" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled = {!isFormValid}>Submit</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password ?</a>
