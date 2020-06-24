@@ -1,4 +1,4 @@
-import React, {useState, FormEvent} from 'react'
+import React, {useState, MouseEvent} from 'react'
 import "../css/signup.css"
 // import {Form, FormGroup, Input} from 'reactstrap'
 // import { render } from '@testing-library/react'
@@ -22,21 +22,18 @@ const Signup = (props: any) => {
         }
     }
     
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log('come on dude')
-        e.preventDefault();
+    const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
         const url=`http://localhost:3002/redBadge/user/signup`
         fetch(url, {
             method: 'POST',
-            body: JSON.stringify({
-            user: {
+            body: JSON.stringify(
+                {user:{
                 firstName: firstName,
                 lastName: lastName,
                 username: username,
                 email: email,
                 password: password,
-                }
-            }),
+                }}),
             headers: new Headers({
                 'Content-Type' : 'application/json'
             })
@@ -51,41 +48,44 @@ const Signup = (props: any) => {
 
     // render() {
     return (
-        <div>
+        <div >
             <div id="form_right">
                 <h1>Join the fun!</h1>
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
                     <input placeholder="First Name" type="text" name="firstName" id="field_firstName" className='input_field'
                     onChange={(e) => { setFirstName(e.target.value);
-                    handleChange(); 
+                    handleChange();
                     }}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Last Name" type="text" name="lastName" id="field_lastName" className='input_field'
-                    onChange={(e) => {setLastName(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setLastName(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Email" type="email" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setEmail(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Username" type="text" name="Username" id="field_password" className='input_field'
-                    onChange={(e) => {setEmail(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setEmail(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
-                <button type="button" value="Login" id='input_submit' onClick ={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
+                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
+<<<<<<< HEAD
                     {/* router Link type (react router dom) import{Link}from 'react-router-dom' */}
                     <a href="#">Login</a>
+=======
+>>>>>>> d8e0b1896f3c2eca7dab0eeb3951590a10d1100d
                 </span>
             </div>
         </div>
