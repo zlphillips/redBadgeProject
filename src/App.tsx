@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import NavBar from './home/Navbar'
 import Auth from "./auth/Auth"
 import {
@@ -12,22 +12,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+
+const [isAuthenticated, setIsAuthenticated] = useState(false)
+const [token, setToken] = useState('')
+
+
+const protectedViews = (sessionToken: string) => {
+  setIsAuthenticated(true)
+  
+  setToken(sessionToken)
+  console.log(sessionToken)
+}
+
+
+
+  if(isAuthenticated){
+
   return (
-    <Router>
     <div className="App">
     <Router>
-        <NavBar/>
+        <NavBar />
         <Switch>
-          <Route path='/auth'>
-            <Auth/>
-          </Route>
           <Route path="/">
             <Home/>
           </Route>
         </Switch>
       </Router>
     </div>
-    </Router>
   );
+  } else {
+    return <Auth protectedViews={protectedViews}/>
+  }
 }
 export default App;
