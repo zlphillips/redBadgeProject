@@ -47,7 +47,7 @@ const Login = (props: AuthProps) => {
                 <h2>Welcome Back Troll Master</h2>
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
-                    <input placeholder="Email" type="email" name="Email" id="field_email" className='input_field'
+                    <input placeholder="Username" type="text" name="Username" id="field_username" className='input_field'
                     onChange={(e) => { setUsername(e.target.value);
                     handleChange(); console.log(isFormValid)
                     }}/>
@@ -60,15 +60,11 @@ const Login = (props: AuthProps) => {
                 <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled = {!isFormValid}>Submit</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
-                     <a href="#"> Email / Password ?</a>
+                     <a href="#"> Email / Password</a>
                      </span>
                 <span id='create_account'>
                     {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-<<<<<<< HEAD
                     <a href="http://localhost:3000/user/signup">Become a troll</a>
-=======
-                   
->>>>>>> d8e0b1896f3c2eca7dab0eeb3951590a10d1100d
                 </span>
             </div>
         </div>
