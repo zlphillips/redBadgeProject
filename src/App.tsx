@@ -25,7 +25,10 @@ const protectedViews = (sessionToken: string) => {
   console.log(sessionToken)
   setIsAuthenticated(true)
   setToken(sessionToken)
+<<<<<<< HEAD
  
+=======
+>>>>>>> 340e4be81c294cfc3b225535f27684fa5e373987
 }
 
 
