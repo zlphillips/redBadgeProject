@@ -20,9 +20,7 @@ const [token, setToken] = useState('')
 
 const protectedViews = (sessionToken: string) => {
   setIsAuthenticated(true)
-  
   setToken(sessionToken)
-  console.log(sessionToken)
 }
 
 

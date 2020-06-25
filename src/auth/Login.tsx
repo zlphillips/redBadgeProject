@@ -49,13 +49,13 @@ const Login = (props: AuthProps) => {
                     <i className="fas fa-envelope"></i>
                     <input placeholder="Email" type="email" name="Email" id="field_email" className='input_field'
                     onChange={(e) => { setUsername(e.target.value);
-                    handleChange(); console.log(isFormValid)
+                    handleChange();
                     }}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setPassword(e.target.value); handleChange();console.log(isFormValid)}}/>
+                    onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
                 <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled = {!isFormValid}>Submit</button>
                 <span>Forgot
