@@ -26,7 +26,7 @@ return(
                 <button 
                 style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}
                 onClick={e => setIsLoggingIn(!isLoggingIn)}>
-                Join Us!
+                Become a Troll
                 </button>
             ) : (
                 <button onClick={e => setIsLoggingIn(!isLoggingIn)}  style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}>
