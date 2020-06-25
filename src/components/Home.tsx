@@ -16,7 +16,7 @@ import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 
 const Home = (props: any) => {
-    const [isAuthenticated, setIsAuthenticated] = useState()
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [token, setToken] = useState('')
     const [posts, setPosts] = useState([])
 
