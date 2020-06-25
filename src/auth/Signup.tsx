@@ -81,11 +81,9 @@ const Signup = (props: any) => {
                 <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}/>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
-<<<<<<< HEAD
                     {/* router Link type (react router dom) import{Link}from 'react-router-dom' */}
                     <a href="#">Login</a>
-=======
->>>>>>> d8e0b1896f3c2eca7dab0eeb3951590a10d1100d
+
                 </span>
             </div>
         </div>
