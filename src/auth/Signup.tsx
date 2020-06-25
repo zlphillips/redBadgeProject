@@ -42,7 +42,6 @@ const Signup = (props: any) => {
         )
         .then((data => {
             props.protectedViews(data.sessionToken)
-            console.log(data.sessionToken)
         }))
         .catch(err => console.log(err))
     }

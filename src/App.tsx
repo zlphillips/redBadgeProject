@@ -17,7 +17,7 @@ function App() {
 
   //SET IS AUTHENTICATED IS SET TO TRUE SO I CAN
   //EDIT HOME PAGE
-const [isAuthenticated, setIsAuthenticated] = useState(false)
+const [isAuthenticated, setIsAuthenticated] = useState(true)
 const [token, setToken] = useState('')
 
 
@@ -25,10 +25,6 @@ const protectedViews = (sessionToken: string) => {
   console.log(sessionToken)
   setIsAuthenticated(true)
   setToken(sessionToken)
-<<<<<<< HEAD
- 
-=======
->>>>>>> 340e4be81c294cfc3b225535f27684fa5e373987
 }
 
 

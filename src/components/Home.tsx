@@ -7,11 +7,11 @@ import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 
 
-   export interface ISignUpData {
+   export interface Posts {
         media: Blob,
-        description: String,
-        likes: Number,
-        owner: Number
+        description: string,
+        likes: number,
+        owner: number
       }
 
 
@@ -87,7 +87,7 @@ const Home = (props: any) => {
         <div>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 <Toast style={singleToast}>
-                    {posts.map((post, index) => (
+                    {posts.map((post: Posts , index: number) => (
                         <div>
                             <ToastHeader>
                                 <div style={userStyles}>
@@ -99,7 +99,9 @@ const Home = (props: any) => {
                                 </div>
                             </ToastHeader>
                             <ToastBody>
-                                <h3 style={{fontSize: '3vh'}}>{}</h3>
+                                <h3 style={{fontSize: '3vh'}}>{post.description}</h3>
+                                     <h3>{post.likes}</h3>
+                                         <h3>{post.owner}</h3>
                             </ToastBody>
                         </div>
                     ))}
