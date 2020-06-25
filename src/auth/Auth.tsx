@@ -16,7 +16,7 @@ return(
     <div className="AuthDiv" 
     // id="form_wrapper"
     style={{textAlign:"center", color:"#4D896F", backgroundColor: 'var(--form_bg)',
-    borderRadius: '50px',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+    borderRadius: '50px', padding: '15%' }}>
        
         {
             isLoggingIn ? <Login protectedViews={props.protectedViews} /> : <Signup protectedViews={props.protectedViews}/>
@@ -24,7 +24,7 @@ return(
         {
             isLoggingIn ? (
                 <button 
-                style={{fontSize:"15px",color:"white", backgroundColor: "#81B29A", padding: '2%', }}
+                style={{fontSize:"110%",color:"white", backgroundColor: "#81B29A", padding: '3%', borderColor: '#81B29A', borderStyle: 'solid', borderRadius: '50px'}}
                 onClick={e => setIsLoggingIn(!isLoggingIn)}>
                 Join Us!
                 </button>

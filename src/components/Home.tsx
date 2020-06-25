@@ -1,19 +1,33 @@
-import React, { Component, useState} from 'react';
+import React, { Component, useState, useEffect} from 'react';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 import StockPic from '../assets/stockphoto1.jpg';
 import StockPic2 from '../assets/headshot2.jpg'
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
+
+
+
+   export interface ISignUpData {
+        media: Blob,
+        description: String,
+        likes: Number,
+        owner: Number
+      }
+
+
 const Home = (props: any) => {
     const [isAuthenticated, setIsAuthenticated] = useState()
     const [token, setToken] = useState('')
+    const [posts, setPosts] = useState([])
 
     const toastStyles = {
-        margin: '1%'
+        marginRight: 'auto',
+        marginLeft: 'auto'
+        
     }
 
     const singleToast = {
-        minWidth: '90vw',
+        minWidth: '95vw',
         minHeight: '10vh'
     }
 
@@ -28,7 +42,8 @@ const Home = (props: any) => {
     const userStyles = {
         display: 'flex',
     }
-
+ 
+    
 
     // fetch('localhost:3002/')
 
@@ -44,23 +59,50 @@ const Home = (props: any) => {
     console.log(sessionToken)
   }
 
+        const fetchAll  = () => {
+            fetch( 'http://localhost:3002/redBadge/post/all-posts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json',
+                    'Authorization' : props.token ,
+                }
+            })
+            .then(data => data.json())
+            .then(data => {
+                console.log(data)
+                setPosts(data)})
+            .catch(err => console.warn(err))
+        
+        }
+
+
+
+        useEffect(() => fetchAll(), [])
+
+
+
+
 
     return(
         <div>
-            <div className="p-3 bg-dark my-2 rounded" style={toastStyles}>
+            <div className="p-3 my-2 rounded" style={toastStyles}>
                 <Toast style={singleToast}>
-                <ToastHeader>
-                    <div style={userStyles}>
-                        <img src={StockPic2} style={photoStyle} />
-                        <h1 style={{fontSize: '3vh'}}>{user}</h1>
+                    {posts.map((post, index) => (
                         <div>
-                       {/* <p>{`posted ${number} minutes ago`}</p> */}
-                       </div>
-                    </div>
-                </ToastHeader>
-                <ToastBody>
-                    <h3 style={{fontSize: '3vh'}}>{postContent}</h3>
-                </ToastBody>
+                            <ToastHeader>
+                                <div style={userStyles}>
+                                    <img src={StockPic2} style={photoStyle} />
+                                    <h1 style={{fontSize: '3vh'}}>{user}</h1>
+                                    <div>
+                                {/* <p>{`posted ${number} minutes ago`}</p> */}
+                                </div>
+                                </div>
+                            </ToastHeader>
+                            <ToastBody>
+                                <h3 style={{fontSize: '3vh'}}>{}</h3>
+                            </ToastBody>
+                        </div>
+                    ))}
                 </Toast>
             </div>
         </div>

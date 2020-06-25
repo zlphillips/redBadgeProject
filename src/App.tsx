@@ -14,15 +14,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
+
+  //SET IS AUTHENTICATED IS SET TO TRUE SO I CAN
+  //EDIT HOME PAGE
 const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 
 const protectedViews = (sessionToken: string) => {
-  setIsAuthenticated(true)
-  
-  setToken(sessionToken)
   console.log(sessionToken)
+  setIsAuthenticated(true)
+  setToken(sessionToken)
+ 
 }
 
 
@@ -32,7 +35,7 @@ const protectedViews = (sessionToken: string) => {
   return (
     <div className="App">
     <Router>
-        <NavBar />
+        <NavBar/>
         <Switch>
           <Route path="/">
             <Home/>
