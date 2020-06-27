@@ -20,10 +20,10 @@ const NavBar = () => {
     return (
         <div>
             <Navbar  expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
-                <Navbar.Brand href="#home"><Link to ='/'><img src={Home} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand href="#post"><Link to ='/CreatePost'><img src={Add} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand href="#search"><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand href="#profile"><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand ><Link to ='/'><img src={Home} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand ><Link to ='/CreatePost'><img src={Add} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
             </Navbar>
         </div>
     )
