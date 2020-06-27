@@ -99,9 +99,10 @@ const Home = (props: any) => {
                                 </div>
                             </ToastHeader>
                             <ToastBody>
+                                {console.log(post)}
                                 <h3 style={{fontSize: '3vh'}}>{post.description}</h3>
-                                     <h3>{post.likes}</h3>
-                                         <h3>{post.owner}</h3>
+                                <h3>{post.likes}</h3>
+                                <h3>{}</h3>
                             </ToastBody>
                         </div>
                     ))}

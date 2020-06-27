@@ -17,7 +17,7 @@ function App() {
 
   //SET IS AUTHENTICATED IS SET TO TRUE SO I CAN
   //EDIT HOME PAGE
-const [isAuthenticated, setIsAuthenticated] = useState(true)
+const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 

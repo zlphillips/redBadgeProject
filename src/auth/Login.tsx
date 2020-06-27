@@ -1,6 +1,6 @@
 import React, {useState, MouseEvent} from 'react';
 import {AuthProps} from './Auth'
-import Change from '../auth/Auth'
+// import Change from '../auth/Auth'
 import "../css/login.css"
 
 const Login = (props: AuthProps) => {
@@ -42,11 +42,11 @@ const Login = (props: AuthProps) => {
 
 
     return (
-        <div  >
+        <div id="form_wrapper" >
            {/* <div id="form_left">
                  <img src="icon.png" alt="LOGO WILL GO HERE"/>
                 </div> */}
-            <div id="form_right">
+            <div id="main_form">
                 <h2>Welcome Back Troll Master</h2>
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
@@ -64,11 +64,11 @@ const Login = (props: AuthProps) => {
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password</a>
-                     </span>
-                <span id='create_account'>
-                    {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-                    <a href="http://localhost:3000/user/signup">Become a troll</a>
                 </span>
+                {/* <span id='create_account'> */}
+                    {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
+                    {/* <a href="http://localhost:3000/user/signup">Become a troll</a> */}
+                {/* </span> */}
             </div>
         </div>
         )        
