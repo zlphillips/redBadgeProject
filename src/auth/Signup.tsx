@@ -48,8 +48,8 @@ const Signup = (props: any) => {
 
     // render() {
     return (
-        <div >
-            <div id="form_right">
+        <div className="form_wrapper">
+            <div id="main_form">
                 <h1>Join the fun!</h1>
                 <div className="input_container">
                     <i className="fas fa-envelope"></i>
@@ -78,7 +78,7 @@ const Signup = (props: any) => {
                     <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                     onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
-                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}/>
+                <button type="button" value="Submit" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
                 <span id='create_account'>
                     {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
                 </span>
