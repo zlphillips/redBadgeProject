@@ -1,1 +1,5 @@
 @import "./css/navbar.css";
+
+#root {
+    width: 100%;
+}
