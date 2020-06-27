@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import NavBar from './home/Navbar'
 import Auth from "./auth/Auth"
+import NewPost from './components/CreatePost'
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,14 +18,16 @@ function App() {
 
   //SET IS AUTHENTICATED IS SET TO TRUE SO I CAN
   //EDIT HOME PAGE
-const [isAuthenticated, setIsAuthenticated] = useState(true)
+const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 
 const protectedViews = (sessionToken: string) => {
   console.log(sessionToken)
-  setIsAuthenticated(true)
+  
   setToken(sessionToken)
+  setIsAuthenticated(true)
+  localStorage.setItem('token', sessionToken)
 }
 
 
@@ -37,7 +40,10 @@ const protectedViews = (sessionToken: string) => {
         <NavBar/>
         <Switch>
           <Route path="/">
-            <Home/>
+            <Home token={token}/>
+          </Route>
+          <Route path="/CreatePost">
+            <NewPost token={token}/>
           </Route>
         </Switch>
       </Router>
