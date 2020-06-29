@@ -51,17 +51,6 @@ body {
     padding:5%;
 }
 
-/* #form_left {
-    center the image
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#form_left img {
-    width: 350px;
-    height: 350px;
-} */
 
 #main_form {
     display: grid;

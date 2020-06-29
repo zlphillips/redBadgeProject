@@ -1,6 +1,5 @@
 import React, {useState, MouseEvent} from 'react';
 import {AuthProps} from './Auth'
-// import Change from '../auth/Auth'
 import "../css/login.css"
 
 const Login = (props: AuthProps) => {
@@ -65,10 +64,6 @@ const Login = (props: AuthProps) => {
                     {/* FIGURE OUT WHAT HREF TO USE */}
                      <a href="#"> Email / Password</a>
                 </span>
-                {/* <span id='create_account'> */}
-                    {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-                    {/* <a href="http://localhost:3000/user/signup">Become a troll</a> */}
-                {/* </span> */}
             </div>
         </div>
         )        

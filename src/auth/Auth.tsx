@@ -14,7 +14,7 @@ const Auth = (props: AuthProps) => {
     
 return(
     <div className="AuthDiv"
-    style={{alignSelf:"center", padding: '1%', backgroundColor:'#F4F1DE', borderRadius:'50px',  width:"50%",fontSize:"140%"}}
+    style={{alignSelf:"center", padding: '1%', backgroundColor:'#F4F1DE', borderRadius:'3em',  width:"50%",fontSize:"1.20em", margin: '3%'}}
     // style={{textAlign:"center", color:"#4D896F", backgroundColor: 'orange',
     // borderRadius: '50px', padding: '1%', width: '40%'}}
     >
@@ -25,12 +25,12 @@ return(
         {
             isLoggingIn ? (
                 <button 
-                style={{color:"white", backgroundColor: "#81B29A", padding: '2%', borderColor: '#81B29A', borderStyle: 'solid', borderRadius: '50px', width: '88%'}}
+                style={{color:"white", backgroundColor: "#81B29A", padding: '2%', borderColor: '#81B29A', borderStyle: 'solid', borderRadius: '2em', width: '88%'}}
                 onClick={e => setIsLoggingIn(!isLoggingIn)}>
                 Become a Troll
                 </button>
             ) : (
-                <button onClick={e => setIsLoggingIn(!isLoggingIn)}  style={{color:"white", backgroundColor: "#81B29A",margin:"5%", padding: '3%',borderColor:"#81B29A", borderRadius: '50px', width:'88%' }}>
+                <button onClick={e => setIsLoggingIn(!isLoggingIn)}  style={{color:"white", backgroundColor: "#81B29A",margin:"5%", padding: '2%',borderColor:"#81B29A", borderRadius: '2em', width:'88%' }}>
                 Login
                 </button>
             )
