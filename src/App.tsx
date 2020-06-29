@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import NavBar from './home/Navbar'
 import Auth from "./auth/Auth"
-import CreatePost from './components/CreatePost'
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,7 +40,7 @@ const protectedViews = (sessionToken: string) => {
           <Route path="/">
             <Home/>
           </Route>
-          <Route path="/createPost">
+          <Route path="/NewPost">
             <NewPost/>
           </Route>
         </Switch>

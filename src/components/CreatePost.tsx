@@ -31,9 +31,6 @@ const NewPost = (props: any) => {
             <h3>Post Something!</h3>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                    <div className="toast">
-  <p>Your message</p>
-</div>
                         <Label htmlFor="media">Media:</Label>
                         <Input name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup>
