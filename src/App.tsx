@@ -22,10 +22,12 @@ const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 
+// session token can only stay here
 const protectedViews = (sessionToken: string) => {
-  console.log(sessionToken)
-  setIsAuthenticated(true)
   setToken(sessionToken)
+  localStorage.setItem("token",sessionToken)
+  setIsAuthenticated(true)
+  console.log("lookn' cool bruhh")
 }
 
 
@@ -38,7 +40,7 @@ const protectedViews = (sessionToken: string) => {
         <NavBar/>
         <Switch>
           <Route path="/">
-            <Home/>
+            <Home token={token}/>
           </Route>
           <Route path="/NewPost">
             <NewPost/>

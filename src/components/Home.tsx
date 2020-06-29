@@ -58,13 +58,15 @@ const Home = (props: any) => {
     setToken(sessionToken)
     console.log(sessionToken)
   }
+//   use <string> to give useState a string type
+    const [tempToken, setTempToken] = useState<string>("")
 
         const fetchAll  = () => {
             fetch( 'http://localhost:3002/redBadge/post/all-posts', {
                 method: 'GET',
                 headers: {
                     'Content-Type' : 'application/json',
-                    'Authorization' : props.token ,
+                    'Authorization' : props.token,
                 }
             })
             .then(data => data.json())
@@ -77,7 +79,7 @@ const Home = (props: any) => {
 
 
 
-        useEffect(() => fetchAll(), [])
+        useEffect(() => {console.log(props.token);fetchAll()}, [])
 
 
 
