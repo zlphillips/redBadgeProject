@@ -56,11 +56,6 @@ const Home = (props: any) => {
 
 
 
-    const user = 'susansickomode'
-    const number = '4'
-    const postContent = 'I need a <br/>'
-
-
     const fetchAll = () => {
         fetch('http://localhost:3002/redBadge/post/all-posts', {
             method: 'GET',
@@ -102,7 +97,6 @@ const Home = (props: any) => {
     }
 
 
-
     useEffect(() => fetchUsers(), [])
 
 
@@ -129,7 +123,7 @@ const Home = (props: any) => {
                         {posts.map((post: Posts, index: number) => (
                             <ToastBody>
                                 <h3 style={{ fontSize: '3vh' }}>{post.description}</h3>
-                                <h3>{`${post.likes}`}</h3>
+                                <h3>{post.likes}</h3>
                                 <h3>{}</h3>
                             </ToastBody>
                         ))}

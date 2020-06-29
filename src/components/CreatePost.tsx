@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-
+import React, {useState}from 'react';
+import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import '../css/CreatePost.css'
 const NewPost = (props: any) => {
     const [media, setMedia] = useState('');
     const [description, setDescription] = useState('');
@@ -29,17 +29,20 @@ const NewPost = (props: any) => {
     return (
         <div className="newPost">
             <h3>Post Something!</h3>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label htmlFor="media">Media:</Label>
-                    <Input name='media' value={media} onChange={(e) => setMedia(e.target.value)} />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='description'>Description:</Label>
-                    <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)} />
-                </FormGroup>
-                <Button type="submit">Post</Button>
-            </Form>
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup>
+                    <div className="toast">
+  <p>Your message</p>
+</div>
+                        <Label htmlFor="media">Media:</Label>
+                        <Input name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor='description'>Description:</Label>
+                        <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    </FormGroup>
+                    <Button type="submit">Post</Button>
+                </Form>
         </div>
     )
 }

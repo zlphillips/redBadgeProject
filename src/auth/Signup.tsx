@@ -82,9 +82,6 @@ const Signup = (props: any) => {
                         onChange={(e) => { setPassword(e.target.value); handleChange(); }} />
                 </div>
                 <button type="button" value="Submit" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
-                <span id='create_account'>
-                    {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
-                </span>
             </div>
         </div>
     )

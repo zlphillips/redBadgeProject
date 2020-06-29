@@ -9,7 +9,7 @@ const Login = (props: AuthProps) => {
     const [isFormValid, setIsFormValid] = useState(false)
 
     const handleChange = () => {
-        if (username.length > 0 && password.length > 0) {
+        if (username.length > 5 && password.length > 6 ) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -66,10 +66,6 @@ const Login = (props: AuthProps) => {
                     {/* FIGURE OUT WHAT HREF TO USE */}
                     <a href="#"> Email / Password</a>
                 </span>
-                {/* <span id='create_account'> */}
-                {/* AUTH SIGN UP SHOULD BE HERE INSTEAD... o.O */}
-                {/* <a href="http://localhost:3000/user/signup">Become a troll</a> */}
-                {/* </span> */}
             </div>
         </div>
     )
