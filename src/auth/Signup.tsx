@@ -71,7 +71,7 @@ const Signup = (props: any) => {
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
                     <input  placeholder="Username" type="text" name="Username" id="field_password" className='input_field'
-                    onChange={(e) => {setEmail(e.target.value); handleChange();}}/>
+                    onChange={(e) => {setUsername(e.target.value); handleChange();}}/>
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
@@ -79,9 +79,6 @@ const Signup = (props: any) => {
                     onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
                 </div>
                 <button type="button" value="Submit" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
-                <span id='create_account'>
-                    {/* AUTH LOGIN SHOULD BE HERE INSTEAD... o.O */}
-                </span>
             </div>
         </div>
     )}
