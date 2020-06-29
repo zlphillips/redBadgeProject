@@ -42,6 +42,9 @@ const protectedViews = (sessionToken: string) => {
           <Route path="/">
             <Home token={token}/>
           </Route>
+          <Route path="/CreatePost">
+            <NewPost token={token}/>
+          </Route>
           <Route path="/NewPost">
             <NewPost/>
           </Route>
