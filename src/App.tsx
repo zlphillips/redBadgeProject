@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import NavBar from './home/Navbar'
 import Auth from "./auth/Auth"
+import CreatePost from './components/CreatePost'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,8 +10,7 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CreatePost from "./components/CreatePost";
-
+import NewPost from './components/CreatePost';
 
 
 
@@ -25,8 +25,10 @@ const [token, setToken] = useState('')
 
 const protectedViews = (sessionToken: string) => {
   console.log(sessionToken)
-  setIsAuthenticated(true)
+  
   setToken(sessionToken)
+  setIsAuthenticated(true)
+  localStorage.setItem('token', sessionToken)
 }
 
 

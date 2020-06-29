@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
-
+import '../css/CreatePost.css'
 const NewPost = (props: any) => {
     const[media, setMedia] = useState('');
     const[description, setDescription] = useState('');
@@ -31,6 +31,9 @@ const NewPost = (props: any) => {
             <h3>Post Something!</h3>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
+                    <div className="toast">
+  <p>Your message</p>
+</div>
                         <Label htmlFor="media">Media:</Label>
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup>
