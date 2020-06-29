@@ -9,6 +9,8 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CreatePost from "./components/CreatePost";
+
 
 
 
@@ -37,7 +39,10 @@ const protectedViews = (sessionToken: string) => {
         <NavBar/>
         <Switch>
           <Route path="/">
-            <Home/>
+            <Home token={token}/>
+          </Route>
+          <Route path="/CreatePost">
+            <CreatePost token={token}/>
           </Route>
         </Switch>
       </Router>

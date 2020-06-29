@@ -24,7 +24,7 @@ const UpdatePost = (props: any) => {
             <Form onSubmit={postUpdate}>
                 <FormGroup>
                     <Label htmlFor="media">Update Media</Label>
-                    <Input name="media" value={editMedia} onChange={(e) => setEditMedia(e.target.value)}/>
+                    <Input type="file" name="media" value={editMedia} onChange={(e) => setEditMedia(e.target.value)}/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="description">Update Description</Label>
