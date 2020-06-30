@@ -4,8 +4,6 @@ import StockPic2 from '../assets/headshot2.jpg'
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 
-
-
    export interface Posts {
         media: Blob,
         description: string,
@@ -40,7 +38,6 @@ const Home = (props: any) => {
         display: 'flex',
     }
  
-    
 
         const user = 'susansickomode'
         const number = '4'
@@ -66,18 +63,13 @@ const Home = (props: any) => {
         
         }
 
-
-
         useEffect(() => {console.log(props.token);fetchAll()}, [])
-
-
-
-
 
     return(
         <div>
             <div className="p-3 my-2 rounded" style={toastStyles}>
-                <Toast style={singleToast}>
+                <p>Hello There</p>
+                {/* <Toast style={singleToast}>
                     {posts.map((post: Posts , index: number) => (
                         <div>
                             <ToastHeader>
@@ -85,7 +77,7 @@ const Home = (props: any) => {
                                     <img src={StockPic2} style={photoStyle} />
                                     <h1 style={{fontSize: '3vh'}}>{}</h1>
                                     <div>
-                                {/* <p>{`posted ${number} minutes ago`}</p> */}
+                                <p>{`posted ${number} minutes ago`}</p>
                                 </div>
                                 </div>
                             </ToastHeader>
@@ -96,7 +88,7 @@ const Home = (props: any) => {
                             </ToastBody>
                         </div>
                     ))}
-                </Toast>
+                </Toast> */}
             </div>
         </div>
     )

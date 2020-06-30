@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import NavBar from './home/Navbar'
 import Auth from "./auth/Auth"
 import {
@@ -22,6 +22,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(false)
 const [token, setToken] = useState('')
 
 
+// updates token var if chrome saved a token in localStorage
+useEffect(() => {
+  if (localStorage.getItem('token')){
+    let temp = localStorage.getItem('token')
+    if (temp) {setToken(temp); setIsAuthenticated(true)}
+      else {setToken('')}}
+}, [])
+
 // session token can only stay here
 const protectedViews = (sessionToken: string) => {
   setToken(sessionToken)
@@ -30,6 +38,13 @@ const protectedViews = (sessionToken: string) => {
   console.log("lookn' cool bruhh")
 }
 
+// LOG OUT = cleartoken
+const clearToken = () => {
+  localStorage.clear();
+  setToken('')
+  setIsAuthenticated(false)
+  console.log("duces")
+}
 
 
   if(isAuthenticated){
@@ -37,7 +52,7 @@ const protectedViews = (sessionToken: string) => {
   return (
     <div className="App">
     <Router>
-        <NavBar/>
+        <NavBar clearToken={clearToken}/>
         <Switch>
           <Route path="/">
             <Home token={token}/>

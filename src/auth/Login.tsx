@@ -52,7 +52,7 @@ const Login = (props: AuthProps) => {
                     <input placeholder="Username" type="text" name="Username" id="field_username" className='input_field'
                     onChange={(e) => { setUsername(e.target.value);
                     handleChange();
-                    }}/>
+                    }}/> 
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
