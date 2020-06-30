@@ -4,13 +4,15 @@ import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
 import Dashboard from '../assets/data-analysis.svg';
 import { Navbar } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
-const NavBar = () => {
+const NavBar = (props:any) => {
 
     const imgStyles = {
         height: '5vh',
+        color: 'white',
+        fill: 'white'
     }
     const navStyles = {
         display: 'flex',
@@ -24,6 +26,7 @@ const NavBar = () => {
                 <Navbar.Brand ><Link to ='/CreatePost'><img src={Add} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+                <button onClick={props.clearToken}>Logout</button>
             </Navbar>
         </div>
     )
