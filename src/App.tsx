@@ -9,18 +9,22 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NewPost from './components/CreatePost';
+
 
 
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [token, setToken] = useState('')
 
 
-  //SET IS AUTHENTICATED IS SET TO TRUE SO I CAN
-  //EDIT HOME PAGE
-const [isAuthenticated, setIsAuthenticated] = useState(false)
-const [token, setToken] = useState('')
+  // const protectedViews = (sessionToken: string) => {
+  //   console.log(sessionToken)
 
+  //   setToken(sessionToken)
+  //   setIsAuthenticated(true)
+  //   localStorage.setItem('token', sessionToken)
+  // }
 
 // updates token var if chrome saved a token in localStorage
 useEffect(() => {
@@ -46,6 +50,7 @@ const clearToken = () => {
   console.log("duces")
 }
 
+  if (isAuthenticated) {
 
   if(isAuthenticated){
 
@@ -57,18 +62,18 @@ const clearToken = () => {
           <Route path="/">
             <Home token={token}/>
           </Route>
-          <Route path="/CreatePost">
+          {/* <Route path="/CreatePost">
             <NewPost token={token}/>
           </Route>
           <Route path="/NewPost">
             <NewPost/>
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
     </div>
-  );
+    );
   } else {
-    return <Auth protectedViews={protectedViews}/>
+    return <Auth protectedViews={protectedViews} />
   }
-}
-export default App;
+}}
+export default App

@@ -1,5 +1,6 @@
-import React, {useState, MouseEvent} from 'react';
-import {AuthProps} from './Auth'
+import React, { useState, MouseEvent } from 'react';
+import { AuthProps } from './Auth'
+// import Change from '../auth/Auth'
 import "../css/login.css"
 
 const Login = (props: AuthProps) => {
@@ -8,7 +9,7 @@ const Login = (props: AuthProps) => {
     const [isFormValid, setIsFormValid] = useState(false)
 
     const handleChange = () => {
-        if (username.length > 0 && password.length > 0){
+        if (username.length > 5 && password.length > 6 ) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -16,33 +17,33 @@ const Login = (props: AuthProps) => {
     }
 
 
-    
+
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
-        const url='http://localhost:3002/redBadge/user/login'
+        const url = 'http://localhost:3002/redBadge/user/login'
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({
                 user: {
-                username: username,
-                password: password,
+                    username: username,
+                    password: password,
                 }
             }),
             headers: new Headers({
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             })
         }).then(
             (response) => response.json()
         )
-        .then((data => {
-            props.protectedViews(data.sessionToken)
-        }))
-        .catch(err => console.log(err))
+            .then((data => {
+                props.protectedViews(data.sessionToken)
+            }))
+            .catch(err => console.log(err))
     }
 
 
     return (
         <div id="form_wrapper" >
-           {/* <div id="form_left">
+            {/* <div id="form_left">
                  <img src="icon.png" alt="LOGO WILL GO HERE"/>
                 </div> */}
             <div id="main_form">
@@ -56,18 +57,17 @@ const Login = (props: AuthProps) => {
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
-                    <input  placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
-                    onChange={(e) => {setPassword(e.target.value); handleChange();}}/>
+                    <input placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
+                        onChange={(e) => { setPassword(e.target.value); handleChange(); }} />
                 </div>
-                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled = {!isFormValid}>Submit</button>
+                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
-                     <a href="#"> Email / Password</a>
+                    <a href="#"> Email / Password</a>
                 </span>
             </div>
         </div>
-        )        
-    }      
-    export default Login
-    
-   
+    )
+}
+export default Login
+

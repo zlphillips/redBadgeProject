@@ -4,13 +4,15 @@ import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
 import Dashboard from '../assets/data-analysis.svg';
 import { Navbar } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const NavBar = (props:any) => {
 
     const imgStyles = {
         height: '5vh',
+        color: 'white',
+        fill: 'white'
     }
     const navStyles = {
         display: 'flex',
