@@ -25,7 +25,6 @@ const [token, setToken] = useState('')
 
 const protectedViews = (sessionToken: string) => {
   console.log(sessionToken)
-  
   setToken(sessionToken)
   setIsAuthenticated(true)
   localStorage.setItem('token', sessionToken)
