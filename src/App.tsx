@@ -50,8 +50,6 @@ const clearToken = () => {
   console.log("duces")
 }
 
-  if (isAuthenticated) {
-
   if(isAuthenticated){
 
   return (
@@ -75,5 +73,5 @@ const clearToken = () => {
   } else {
     return <Auth protectedViews={protectedViews} />
   }
-}}
+}
 export default App
