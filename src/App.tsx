@@ -9,7 +9,7 @@ import {
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Profile from './components/Profile'
 
 
 
@@ -59,6 +59,9 @@ const clearToken = () => {
         <Switch>
           <Route path="/">
             <Home token={token}/>
+          </Route>
+          <Route path="/profile">
+            <Profile/>
           </Route>
           {/* <Route path="/CreatePost">
             <NewPost token={token}/>
