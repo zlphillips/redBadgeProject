@@ -1,31 +1,34 @@
-import React, { useState } from 'react'
-import { Nav, Navbar } from 'react-bootstrap';
+import React from 'react'
+import User from '../assets/user.svg';
+import Add from '../assets/add.svg';
+import Home from '../assets/home.svg'
+import Dashboard from '../assets/data-analysis.svg';
+import { Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-const MenuBar = () => {
 
+const NavBar = () => {
 
+    const imgStyles = {
+        height: '5vh',
+        color: 'white',
+        fill: 'white'
+    }
+    const navStyles = {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+    }
 
     return (
         <div>
-                <Nav  variant="tabs" defaultActiveKey="/home" >
-                    <Nav.Item>
-                        <Nav.Link href="/home">Active</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="link-2">Link</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="disabled" >
-                            Disabled
-                        </Nav.Link>
-                    </Nav.Item>
-                </Nav>
-        
+            <Navbar expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
+                <Navbar.Brand ><Link to='/'><img src={Home} style={imgStyles} /></Link></Navbar.Brand>
+                <Navbar.Brand ><Link to='/CreatePost'><img src={Add} style={imgStyles} /></Link></Navbar.Brand>
+                <Navbar.Brand><Link to='/Search'><img src={Dashboard} style={imgStyles} /></Link></Navbar.Brand>
+                <Navbar.Brand><Link to='/Profile'><img src={User} style={imgStyles} /></Link></Navbar.Brand>
+            </Navbar>
         </div>
     )
 }
 
-export default MenuBar;
+export default NavBar
