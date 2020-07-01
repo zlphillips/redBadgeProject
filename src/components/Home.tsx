@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import Profile from '../components/Profile'
-// import { Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 // import StockPic2 from '../assets/headshot2.jpg'
 // import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
@@ -107,15 +107,15 @@ const Home = (props: any) => {
         <div>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 <p>Hello There</p>
-                {/* <Toast style={singleToast}>
+                <Toast style={singleToast}>
                     {posts.map((post: Posts , index: number) => (
                         <div>
                             <ToastHeader>
                                 <div style={userStyles}>
-                                    <img src={StockPic2} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}>{user.username}</h1>
+                                    <img src={} style={photoStyle} />
+                                    <h1 style={{ fontSize: '3vh' }}>{}</h1>
                                     <div>
-                                <p>{`posted ${number} minutes ago`}</p>
+                                <p>{`posted ${} minutes ago`}</p>
                                 </div>
                                 </div>
                             </ToastHeader>
@@ -130,7 +130,7 @@ const Home = (props: any) => {
                             </ToastBody>
                         </div>
                     ))}
-                </Toast> */}
+                </Toast> 
             </div>
         </div>
     )
