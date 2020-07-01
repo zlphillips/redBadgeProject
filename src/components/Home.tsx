@@ -1,8 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
 import Profile from '../components/Profile'
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-// import StockPic2 from '../assets/headshot2.jpg'
-// import { SSL_OP_SINGLE_DH_USE } from 'constants';
+import StockPic2 from '../assets/headshot2.jpg'
+import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 
 
@@ -81,21 +81,18 @@ const Home = (props: any) => {
 
 
 
-    const fetchUsers = () => {
-        fetch(`http://localhost:3002/redBadge/user/username`, {
+     const fetchUsers = async (id: number) => {
+        const results = await fetch(`http://localhost:3002/redBadge/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': props.token,
             }
         })
-            .then(data => data.json())
-            .then(data => {
-                console.log(data)
-                setUsers(data)
-            })
-            .catch(err => console.warn(err))
-
+            const jsonResults = await results.json()
+            return(
+                jsonResults.username
+            )
     }
 
 
@@ -105,33 +102,29 @@ const Home = (props: any) => {
 
     return (
         <div>
-            {/* <div className="p-3 my-2 rounded" style={toastStyles}>
+            <div className="p-3 my-2 rounded" style={toastStyles}>
                 <p>Hello There</p>
+                {posts.map((post: Posts , index: number) => (
                 <Toast style={singleToast}>
-                    {posts.map((post: Posts , index: number) => (
                         <div>
                             <ToastHeader>
                                 <div style={userStyles}>
-                                    <img src={} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}>{}</h1>
+                                    <img src={StockPic2} style={photoStyle} />
+                                    <h1 style={{ fontSize: '3vh' }}>{fetchUsers(post.owner)}</h1>
                                     <div>
-                                <p>{`posted minutes ago`}</p>
+                                <p>{`posted ${0} minutes ago`}</p>
                                 </div>
                                 </div>
                             </ToastHeader>
-                        ))}
-
-
-                        {posts.map((post: Posts, index: number) => (
                             <ToastBody>
                                 <h3 style={{ fontSize: '3vh' }}>{post.description}</h3>
                                 <h3>{post.likes}</h3>
                                 <h3>{}</h3>
                             </ToastBody>
                         </div>
-                    ))
-                </Toast> 
-            </div> */}
+                        </Toast>
+                    ))}
+            </div>
         </div>
     )
 }
