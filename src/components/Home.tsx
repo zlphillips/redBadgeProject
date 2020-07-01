@@ -105,7 +105,7 @@ const Home = (props: any) => {
 
     return (
         <div>
-            <div className="p-3 my-2 rounded" style={toastStyles}>
+            {/* <div className="p-3 my-2 rounded" style={toastStyles}>
                 <p>Hello There</p>
                 <Toast style={singleToast}>
                     {posts.map((post: Posts , index: number) => (
@@ -115,7 +115,7 @@ const Home = (props: any) => {
                                     <img src={} style={photoStyle} />
                                     <h1 style={{ fontSize: '3vh' }}>{}</h1>
                                     <div>
-                                <p>{`posted ${} minutes ago`}</p>
+                                <p>{`posted minutes ago`}</p>
                                 </div>
                                 </div>
                             </ToastHeader>
@@ -129,9 +129,9 @@ const Home = (props: any) => {
                                 <h3>{}</h3>
                             </ToastBody>
                         </div>
-                    ))}
+                    ))
                 </Toast> 
-            </div>
+            </div> */}
         </div>
     )
 }
