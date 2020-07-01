@@ -82,7 +82,7 @@ const Home = (props: any) => {
 
 
     const fetchUsers = () => {
-        fetch('http://localhost:3002/redBadge/user/username', {
+        fetch(`http://localhost:3002/redBadge/user/username`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const Home = (props: any) => {
     }
 
 
-    useEffect(() => fetchUsers(), [])
+   // useEffect(() => fetchUsers(), [])
 
 
 
@@ -107,7 +107,6 @@ const Home = (props: any) => {
         <div>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 <p>Hello There</p>
-                <Profile/>
                 {/* <Toast style={singleToast}>
                     {posts.map((post: Posts , index: number) => (
                         <div>
