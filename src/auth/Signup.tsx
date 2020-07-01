@@ -68,13 +68,13 @@ const Signup = (props: any) => {
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
-                    <input placeholder="Email" type="email" name="Password" id="field_password" className='input_field'
+                    <input placeholder="Email" type="email" name="Password" id="field_email" className='input_field'
                         onChange={(e) => { setEmail(e.target.value); handleChange(); }} />
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
-                    <input placeholder="Username" type="text" name="Username" id="field_password" className='input_field'
-                        onChange={(e) => { setEmail(e.target.value); handleChange(); }} />
+                    <input placeholder="Username" type="text" name="Username" id="field_username" className='input_field'
+                        onChange={(e) => { setUsername(e.target.value); handleChange(); }} />
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
