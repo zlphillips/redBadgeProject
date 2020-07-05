@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import CreatePost from './components/CreatePost'
+import NewPost from './components/CreatePost'
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -55,17 +55,17 @@ const clearToken = () => {
 
   return (
     <div className="App">
-    <Router>
-        <NavBar clearToken={clearToken}/>
+      <Router>
+      <NavBar clearToken={clearToken}/>
         <Switch>
-          <Route path="/">
-            <Home token={token}/>
+          <Route path='/'>
+            <Home token={token} exact component={Home}/>
           </Route>
-          <Route path="/profile">
-            <Profile/>
+          <Route path='/CreatePost' exact component={NewPost}>
+            <NewPost token={token}/>
           </Route>
-          <Route path="/CreatePost">
-            <CreatePost token={token}/>
+          <Route path='/Profile' exact component={Profile}>
+            <Profile />
           </Route>
         </Switch>
       </Router>

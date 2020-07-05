@@ -102,7 +102,7 @@ const Home = (props: any) => {
 
     return (
         <div>
-            <div className="p-3 my-2 rounded" style={toastStyles}>
+            {/* <div className="p-3 my-2 rounded" style={toastStyles}>
                 <p>Hello There</p>
                 {posts.map((post: Posts , index: number) => (
                 <Toast style={singleToast}>
@@ -124,7 +124,7 @@ const Home = (props: any) => {
                         </div>
                         </Toast>
                     ))}
-            </div>
+            </div> */}
         </div>
     )
 }
