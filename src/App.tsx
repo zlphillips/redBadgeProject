@@ -58,9 +58,6 @@ const clearToken = () => {
     <Router>
         <NavBar clearToken={clearToken}/>
         <Switch>
-          <Route path="/">
-            <Home token={token}/>
-          </Route>
           <Route path="/profile">
             <Profile/>
           </Route>
@@ -68,6 +65,9 @@ const clearToken = () => {
             <CreatePost token={token}/>
           </Route>
         </Switch>
+        <Route path="/">
+            <Home token={token}/>
+          </Route>
       </Router>
     </div>
     );
