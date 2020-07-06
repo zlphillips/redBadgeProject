@@ -11,7 +11,7 @@ export interface Posts {
     media: Blob,
     description: string,
     likes: number,
-    owner: number
+    userId: number
 }
 
 
@@ -69,6 +69,7 @@ const Home = (props: any) => {
             .then(data => data.json())
             .then(data => {
                 console.log(data)
+                console.log("Owner:",(data[0].userId))
                 setPosts(data)
             })
             .catch(err => console.warn(err))
@@ -81,18 +82,21 @@ const Home = (props: any) => {
 
 
 
-     const fetchUsers = async (id: number) => {
-        const results = await fetch(`http://localhost:3002/redBadge/user/${id}`, {
+    let [str, setStr] = useState("")
+     const fetchUsers = (id: number) : string => {
+        fetch(`http://localhost:3002/redBadge/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': props.token,
             }
-        })
-            const jsonResults = await results.json()
-            return(
-                jsonResults.username
-            )
+        }).then
+            (results => results.json())
+            .then (
+                results => {setStr(results.username)
+                console.log(results.username)
+                })
+            return str
     }
 
 
@@ -110,7 +114,7 @@ const Home = (props: any) => {
                             <ToastHeader>
                                 <div style={userStyles}>
                                     <img src={StockPic2} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}>{fetchUsers(post.owner)}</h1>
+                                    <h1 style={{ fontSize: '3vh' }}>{fetchUsers(post.userId)}</h1>
                                     <div>
                                 <p>{`posted ${0} minutes ago`}</p>
                                 </div>
