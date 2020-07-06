@@ -110,14 +110,14 @@ const Home = (props: any) => {
                             <ToastHeader>
                                 <div style={userStyles}>
                                     <img src={StockPic2} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}>{fetchUsers(post.owner)}</h1>
+                                    <h1 style={{ fontSize: '3vh' }}>{}</h1>
                                     <div>
                                 <p>{`posted ${0} minutes ago`}</p>
                                 </div>
                                 </div>
                             </ToastHeader>
                             <ToastBody>
-                                <h3 style={{ fontSize: '3vh' }}>{post.description}</h3>
+                                <h3 style={{ fontSize: '3vh' }}>{}</h3>
                                 <h3>{post.likes}</h3>
                                 <h3>{}</h3>
                             </ToastBody>
