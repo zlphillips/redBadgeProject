@@ -14,7 +14,7 @@ const Auth = (props: AuthProps) => {
 
     return (
         <div className="AuthDiv"
-            style={{ alignSelf: "center", padding: '1%',margin:"5%", backgroundColor: '#F4F1DE', borderRadius: '50px', width: "50%", fontSize: "140%" }}
+            style={{ alignSelf: "center",display:"inline-block", padding: '1%',margin:"5%", backgroundColor: '#F4F1DE', borderRadius: '50px', width: "50%", fontSize: "140%" }}
         // style={{textAlign:"center", color:"#4D896F", backgroundColor: 'orange',
         // borderRadius: '50px', padding: '1%', width: '40%'}}
         >
@@ -25,7 +25,7 @@ const Auth = (props: AuthProps) => {
             {
                 isLoggingIn ? (
                     <button
-                        style={{ color: "white", backgroundColor: "#81B29A", padding: '2%', borderColor: '#81B29A', borderStyle: 'solid', borderRadius: '50px', width: '88%' }}
+                        style={{ color: "white", backgroundColor: "#81B29A", padding: '2%', borderColor: '#81B29A', borderStyle: 'solid', borderRadius: '50px', width: '90%' }}
                         onClick={e => setIsLoggingIn(!isLoggingIn)}>
                         Become a Troll
                 </button>

@@ -105,32 +105,10 @@ const Home = (props: any) => {
 
     return (
         <div>
-            <div className="p-3 my-2 rounded" style={toastStyles}>
-                <p>Hello There</p>
-                {/* <Toast style={singleToast}>
-                    {posts.map((post: Posts , index: number) => (
-                        <div>
-                            <ToastHeader>
-                                <div style={userStyles}>
-                                    <img src={StockPic2} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}>{user.username}</h1>
-                                    <div>
-                                <p>{`posted ${number} minutes ago`}</p>
-                                </div>
-                                </div>
-                            </ToastHeader>
-                        ))}
-
-
-                        {posts.map((post: Posts, index: number) => (
-                            <ToastBody>
-                                <h3 style={{ fontSize: '3vh' }}>{post.description}</h3>
-                                <h3>{post.likes}</h3>
-                                <h3>{}</h3>
-                            </ToastBody>
-                        </div>
-                    ))}
-                </Toast> */}
+            <div>
+                {/* <p>Hello There</p> */}
+                
+                <Profile/>
             </div>
         </div>
     )
