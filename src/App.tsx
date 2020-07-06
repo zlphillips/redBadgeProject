@@ -6,6 +6,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import CreatePost from './components/CreatePost'
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -63,12 +64,9 @@ const clearToken = () => {
           <Route path="/profile">
             <Profile/>
           </Route>
-          {/* <Route path="/CreatePost">
-            <NewPost token={token}/>
+          <Route path="/CreatePost">
+            <CreatePost token={token}/>
           </Route>
-          <Route path="/NewPost">
-            <NewPost/>
-          </Route> */}
         </Switch>
       </Router>
     </div>

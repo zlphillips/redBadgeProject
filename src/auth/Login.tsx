@@ -9,7 +9,7 @@ const Login = (props: AuthProps) => {
     const [isFormValid, setIsFormValid] = useState(false)
 
     const handleChange = () => {
-        if (username.length > 5 && password.length > 6 ) {
+        if (username.length > 0 && password.length > 0 ) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -60,7 +60,7 @@ const Login = (props: AuthProps) => {
                     <input placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                         onChange={(e) => { setPassword(e.target.value); handleChange(); }} />
                 </div>
-                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
+                <button type="button" value="Login" id='input_submit' onClick={(e) => {console.log(username, password); handleSubmit(e)}} className='input_field' disabled={!isFormValid} >Submit</button>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                     <a href="#"> Email / Password</a>

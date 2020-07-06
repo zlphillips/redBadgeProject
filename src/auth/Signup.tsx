@@ -15,7 +15,7 @@ const Signup = (props: any) => {
     const [isFormValid, setIsFormValid] = useState(true)
     // changing false/true
     const handleChange = () => {
-        if (email.length > 0 && password.length > 0) {
+        if (email.length > 5 && password.length > 6) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -68,7 +68,7 @@ const Signup = (props: any) => {
                 </div>
                 <div className="input_container">
                     <i className="fas fa-lock"></i>
-                    <input placeholder="Email" type="email" name="Password" id="field_email" className='input_field'
+                    <input placeholder="Email" type="email" name="email" id="field_email" className='input_field'
                         onChange={(e) => { setEmail(e.target.value); handleChange(); }} />
                 </div>
                 <div className="input_container">

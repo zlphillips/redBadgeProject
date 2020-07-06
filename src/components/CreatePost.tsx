@@ -32,7 +32,7 @@ const NewPost = (props: any) => {
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label htmlFor="media">Media:</Label>
-                        <Input name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
+                        <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='description'>Description:</Label>
