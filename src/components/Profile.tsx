@@ -16,10 +16,10 @@ window.onscroll = function() {Function()};
 // useEffect(() => {
     // Get the header
 // as HTMLElement tells ts to change the type to an html element
-var header = document.getElementsByClassName("header-cont")[0] as HTMLElement;
+// var header = document.getElementsByClassName("header-cont")[0] as HTMLElement;
 
 // Get the offset position of the navbars
-var sticky = header.offsetTop;
+// var sticky = header.offsetTop;
 
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 // function myFunction() {
