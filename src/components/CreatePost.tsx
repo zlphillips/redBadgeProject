@@ -22,7 +22,7 @@ const NewPost = (props: any) => {
                 setDescription('');
                 setLikes(undefined);
                 setOwner('');
-                props.fetchPosts();
+                props.fetchAll();
             })
     }
 
