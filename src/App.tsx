@@ -67,7 +67,7 @@ const clearToken = () => {
           <Route path='/'>
             <Home token={token} component={Home}/>
           </Route>
-        </Switch>
+        </Switch>s
       </Router>
     </div>
     );
