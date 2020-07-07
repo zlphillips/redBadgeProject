@@ -62,13 +62,13 @@ const clearToken = () => {
             <NewPost token={token}/>
           </Route>
           <Route path='/Profile' component={Profile}>
-            <Profile />
+           <Profile/>
           </Route>
           <Route path='/'>
             <Home token={token} component={Home}/>
           </Route>
-        </Switch>s
-      </Router>
+        </Switch>
+        </Router>
     </div>
     );
   } else {
