@@ -35,7 +35,7 @@ body {
     width: 100%;
     height: 50%;
     /* this will help us center it*/
-    /* margin:auto; */
+    margin:auto;
     background-color: var(--form_bg);
     border-radius: 50px;
     /* make it a grid container*/
