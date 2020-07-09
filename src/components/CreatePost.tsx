@@ -11,7 +11,7 @@ const NewPost = (props: any) => {
         e.preventDefault();
         fetch(`http://localhost:3002/redBadge/post/new-post`, {
             method: 'POST',
-            body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner } }),
+            body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner }}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token
@@ -22,7 +22,7 @@ const NewPost = (props: any) => {
                 setDescription('');
                 setLikes(undefined);
                 setOwner('');
-                props.fetchPosts();
+                props.fetchAll();
             })
     }
 

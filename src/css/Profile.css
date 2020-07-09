@@ -1,16 +1,12 @@
-
 body{
     margin:0px;
     /* text-align: center; */
     /* width: 20%; */
-
     margin: auto;
     width: 100%;
     border: 1% solid #73AD21;
     padding: 2%;
 }
-
-
 
 .header-cont {
     width:100%;

@@ -109,7 +109,7 @@ const Home = (props: any) => {
             <div>
                 {/* <p>Hello There</p> */}
                 
-                <Profile/>
+                {/* <Profile/> */}
             </div>
         </div>
     )
