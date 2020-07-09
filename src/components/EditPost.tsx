@@ -15,7 +15,7 @@ const UpdatePost = (props: any) => {
                 'Authorization': props.token
             })
         }).then((res) => {
-            props.fetchPosts();
+            props.fetchAll();
         })
     }
 
