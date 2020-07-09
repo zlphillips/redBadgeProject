@@ -11,7 +11,8 @@ export interface Posts {
     media: Blob,
     description: string,
     likes: number,
-    userId: number
+    userId: number,
+    username?: string
 }
 
 
