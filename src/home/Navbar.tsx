@@ -27,20 +27,44 @@ const NavBar = (props:any) => {
     return (
         <div>
             <Navbar  expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
-                <Navbar.Brand ><Link to ='/'><img src={Home} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand ><Button onClick ={toggle}><img src={Add} style={imgStyles}/></Button></Navbar.Brand>
-                <Modal isOpen={modal} toggle={toggle} className="header">
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                <ModalBody>
-                <NewPost/>
-                </ModalBody>
-                <ModalFooter>
-                <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-                <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
-                </Modal>
-                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand >
+                    <Link to ='/'>
+                        <img src={Home} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Brand >
+                    <Button onClick ={toggle}
+                    style={{backgroundColor:"transparent", border:"none", outline:"none"}}>
+                        <img src={Add} style={imgStyles}/>
+                    </Button>
+                </Navbar.Brand>
+                {/* CREATE POST MODAL */}
+                    <Modal isOpen={modal} toggle={toggle} className="header">
+                        <ModalHeader toggle={toggle}>
+                            Post, Man..
+                        </ModalHeader>
+                        <ModalBody>
+                            <NewPost/>
+                        </ModalBody>
+                        {/* <ModalFooter>
+                            <Button color="primary" onClick={toggle}>
+                                Do Something
+                            </Button>{' '}
+                            <Button color="secondary" onClick={toggle}>
+                                Cancel
+                            </Button>
+                        </ModalFooter> */}
+                    </Modal>
+                <Navbar.Brand>
+                    <Link to ='/Search'>
+                        <img src={Dashboard} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Brand>
+                    <Link to ='/Profile'>
+                        <img src={User} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
                 <button onClick={props.clearToken}>Logout</button>
             </Navbar>
         </div>

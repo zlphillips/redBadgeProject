@@ -1,5 +1,7 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
+// import AddImg from '../assets/addImg.jpg'
+// to add an img, import it then call it as: <img src={IMG NAME HERE}>
 import '../css/CreatePost.css'
 const NewPost = (props: any) => {
     const [media, setMedia] = useState('');
@@ -28,10 +30,10 @@ const NewPost = (props: any) => {
 
     return (
         <div className="newPost">
-            <h3>Post Something!</h3>
+            {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor="media">Media:</Label>
+                        {/* <Label htmlFor="media">Media:</Label> */}
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
