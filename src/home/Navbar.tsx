@@ -31,7 +31,7 @@ const NavBar = (props:any) => {
                 <Modal isOpen={modal} toggle={toggle} className="header">
                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                 <ModalBody>
-                <NewPost/>
+                <NewPost token={props.token}/>
                 </ModalBody>
                 <ModalFooter>
                 <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

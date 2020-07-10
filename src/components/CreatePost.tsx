@@ -2,13 +2,14 @@ import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 import '../css/CreatePost.css'
 const NewPost = (props: any) => {
-    const [media, setMedia] = useState('');
-    const [description, setDescription] = useState('');
-    const [likes, setLikes] = useState(undefined);
+    const [media, setMedia] = useState<any>('');
+    const [description, setDescription] = useState<string>('');
+    const [likes, setLikes] = useState<number>();
     const [owner, setOwner] = useState('');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        console.log(props.token)
         fetch(`http://localhost:3002/redBadge/post/new-post`, {
             method: 'POST',
             body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner } }),

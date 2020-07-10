@@ -56,7 +56,7 @@ const clearToken = () => {
   return (
     <div className="App">
     <Router>
-        <NavBar clearToken={clearToken}/>
+        <NavBar clearToken={clearToken} token={token}/>
         <Switch>
           <Route path="/profile">
             <Profile/>
