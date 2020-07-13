@@ -51,6 +51,9 @@ const clearToken = () => {
   console.log("duces")
 }
 
+
+
+
   if(isAuthenticated){
 
   return (
@@ -62,7 +65,7 @@ const clearToken = () => {
             <NewPost token={token}/>
           </Route>
           <Route path='/Profile' component={Profile}>
-           <Profile/>
+           <Profile token={token}/>
           </Route>
           <Route path='/'>
             <Home token={token} component={Home}/>

@@ -2,7 +2,7 @@ import React from 'react'
 import User from '../assets/user.svg';
 import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
-import Peace from '../assets/peace.svg'
+import Peace from '../assets/peace.png'
 import Dashboard from '../assets/data-analysis.svg';
 import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
