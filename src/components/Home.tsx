@@ -1,8 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
-import Profile from '../components/Profile'
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 import StockPic2 from '../assets/headshot2.jpg'
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
+import FetchHome from './FetchHome'
+
 
 
 
@@ -12,13 +13,6 @@ export interface Posts {
     description: string,
     likes: number,
     userId: number,
-    username?: string
-}
-
-
-
-
-export interface Users {
     firstName: string,
     lastName: string,
     email: string,
@@ -28,9 +22,11 @@ export interface Users {
 
 
 
+
+
+
 const Home = (props: any) => {
-    const [posts, setPosts] = useState([])
-    const [users, setUsers] = useState([])
+    const [posts, setPosts] = useState([] as any)
 
 
     const toastStyles = {
@@ -55,63 +51,43 @@ const Home = (props: any) => {
     const userStyles = {
         display: 'flex',
     }
- 
+
+    
 
 
-
-    const fetchAll = () => {
-        console.log("it's me")
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': props.token,
-            }
-        })
-            .then(data => data.json())
-            .then(data => {
-                console.log(data)
-                console.log("Owner:",(data[0].userId))
-                setPosts(data)
-            })
-            .catch(err => console.warn(err))
-    }
-
-
-
-    useEffect(() => fetchAll(), [])
-
-
-
-    let [str, setStr] = useState("")
-     const fetchUsers = (id: number) : string => {
-        fetch(`http://localhost:3002/redBadge/user/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': props.token,
-            }
-        }).then
-            (results => results.json())
-            .then (
-                results => {setStr(results.username)
-                console.log(results.username)
-                })
-            return str
-    }
-
-
-   // useEffect(() => fetchUsers(), [])
 
 
 
     return (
         <div>
-            <div>
-                {/* <p>Hello There</p> */}
-                
-                <Profile/>
-            </div>
+            <FetchHome token={props.token}/>
+            {/* <div className="p-3 my-2 rounded" style={toastStyles}>
+                <h1>Hello There . .</h1>
+                {posts.map((post: Posts, index: number) => (
+                    <Toast style={singleToast}>
+                        <div>
+                            <ToastHeader>
+                                <div style={userStyles}>
+                                    <img src={StockPic2} style={photoStyle} />
+                                    <h1 style={{ fontSize: '3vh' }}></h1>
+                                    <div>
+                                        <p>{`posted ${0} minutes ago`}</p>
+                                    </div>
+                                </div>
+                            </ToastHeader>
+                            <ToastBody>
+
+                                <h3>{post.description}</h3>
+                                 <form action="/upload/photo" enctype="multipart/form-data" method="POST"> 
+                                <input type="file" name="myImage" accept="image/*" />
+                                <input type="submit" value="Upload Photo"/>
+                                </form> 
+                                <h3>{post.likes}</h3>
+                            </ToastBody>
+                        </div>
+                    </Toast>
+                ))}
+            </div> */}
         </div>
     )
 }

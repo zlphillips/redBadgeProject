@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import CreatePost from './components/CreatePost'
+import NewPost from './components/CreatePost'
 import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -51,6 +51,9 @@ const clearToken = () => {
   console.log("duces")
 }
 
+
+
+
   if(isAuthenticated){
 
   return (
@@ -58,17 +61,17 @@ const clearToken = () => {
     <Router>
         <NavBar clearToken={clearToken} token={token}/>
         <Switch>
-          <Route path="/profile">
-            <Profile/>
+          <Route path='/CreatePost' component={NewPost}>
+            <NewPost token={token}/>
           </Route>
-          <Route path="/CreatePost">
-            <CreatePost token={token}/>
+          <Route path='/Profile' component={Profile}>
+           <Profile token={token}/>
+          </Route>
+          <Route path='/'>
+            <Home token={token} component={Home}/>
           </Route>
         </Switch>
-        <Route path="/">
-            <Home token={token}/>
-          </Route>
-      </Router>
+        </Router>
     </div>
     );
   } else {
@@ -76,3 +79,4 @@ const clearToken = () => {
   }
 }
 export default App
+6
