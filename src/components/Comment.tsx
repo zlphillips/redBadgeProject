@@ -3,8 +3,8 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 
 const Comment = (props: any) => {
     const[media, setMedia] = useState('');
-    const[description, setDescription] = useState('');
-    const[likes, setLikes] = useState(undefined);
+    const[description, setDescription] = useState<string>('');
+    const[likes, setLikes] = useState<number>();
     const[owner, setOwner] = useState('');
 
     const handleSubmit = (e: any) => {
@@ -22,7 +22,7 @@ const Comment = (props: any) => {
             setDescription('');
             setLikes(undefined);
             setOwner('');
-            props.fetchPosts();
+            props.fetchAll();
         })
     }
 

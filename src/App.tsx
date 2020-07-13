@@ -58,8 +58,8 @@ const clearToken = () => {
 
   return (
     <div className="App">
-      <Router>
-      <NavBar clearToken={clearToken}/>
+    <Router>
+        <NavBar clearToken={clearToken} token={token}/>
         <Switch>
           <Route path='/CreatePost' component={NewPost}>
             <NewPost token={token}/>
@@ -79,3 +79,4 @@ const clearToken = () => {
   }
 }
 export default App
+6
