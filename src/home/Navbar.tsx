@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import User from '../assets/user.svg';
 import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
+import Peace from '../assets/peace.png'
 import Dashboard from '../assets/data-analysis.svg';
 import NewPost from '../components/CreatePost'
 import { Navbar } from 'react-bootstrap'
@@ -47,17 +48,9 @@ const NavBar = (props:any) => {
                 <NewPost token={props.token}/>
                 </ModalBody>
                 </Modal>
-                <Navbar.Brand>
-                    <Link to ='/Search'>
-                        <img src={Dashboard} style={imgStyles}/>
-                    </Link>
-                </Navbar.Brand>
-                <Navbar.Brand>
-                    <Link to ='/Profile'>
-                        <img src={User} style={imgStyles}/>
-                    </Link>
-                </Navbar.Brand>
-                <button onClick={props.clearToken}>Logout</button>
+                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+                <button onClick={props.clearToken}><img src={Peace} style={imgStyles}/></button>
             </Navbar>
         </div>
     )
