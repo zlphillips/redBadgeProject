@@ -33,10 +33,6 @@ const NavBar = (props:any) => {
                 <ModalBody>
                 <NewPost token={props.token}/>
                 </ModalBody>
-                <ModalFooter>
-                <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-                <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
                 </Modal>
                 <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
