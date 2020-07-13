@@ -1,0 +1,28 @@
+body{
+    width: 100%;
+}
+
+.newPost{
+    margin: auto;
+}
+
+.script{
+    margin: 2%;
+    /* font-size: 2rem; */
+    /* font-weight: 500; */
+}
+
+
+.img-upld>input{
+    display: none;
+}
+
+.img-upld img{
+    width: 55%;
+    cursor: pointer;
+}
+
+
+.postbtn{
+    outline: none;
+}

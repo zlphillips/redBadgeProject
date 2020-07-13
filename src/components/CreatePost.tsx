@@ -1,6 +1,7 @@
 import React, {useState}from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
-// import AddImg from '../assets/addImg.jpg'
+import {Button, Form, FormGroup,Input} from 'reactstrap'
+import Add from '../assets/fileimg.png'
+
 // to add an img, import it then call it as: <img src={IMG NAME HERE}>
 import '../css/CreatePost.css'
 const NewPost = (props: any) => {
@@ -25,7 +26,7 @@ const NewPost = (props: any) => {
                 setDescription('');
                 setLikes(undefined);
                 setOwner('');
-                props.fetchAll();
+                props.fetchAll('');
             })
     }
 
@@ -33,15 +34,22 @@ const NewPost = (props: any) => {
         <div className="newPost">
             {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        {/* <Label htmlFor="media">Media:</Label> */}
+                    <FormGroup className="script">
+                        <Input className='description' value={description} placeholder="Post..Man" type="textarea" contentEditable="true" onChange={(e) => setDescription(e.target.value)}
+                        style={{outline: "none", userSelect:"text", whiteSpace:"pre-wrap", overflowWrap:"break-word", flexGrow: 1, fontWeight:"bold" }}/>
+                    </FormGroup>
+                    {/* <FormGroup className="files">
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
+                    </FormGroup> */}
+                    <FormGroup className="upld">
+                        <div className="img-upld">
+                            <label htmlFor="file-input">
+                            <img src={Add}/>
+                            </label>
+                            <input id="file-input" type="file" name="media" value={media} onChange={(e) => setMedia(e.target.value)}/>
+                    <Button type="submit" className="postbtn" style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>
+                        </div>
                     </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor='description'>Description:</Label>
-                        <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
-                    </FormGroup>
-                    <Button type="submit">Post</Button>
                 </Form>
         </div>
     )

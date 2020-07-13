@@ -14,7 +14,9 @@ const NavBar = (props:any) => {
     const imgStyles = {
         height: '5vh',
         color: 'white',
-        fill: 'white'
+        fill: 'white',
+        outline: 'none',
+        border: 'none'
     }
     const navStyles = {
         display: 'flex',
@@ -27,20 +29,38 @@ const NavBar = (props:any) => {
     return (
         <div>
             <Navbar  expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
-                <Navbar.Brand ><Link to ='/'><img src={Home} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand ><Button onClick ={toggle}><img src={Add} style={imgStyles}/></Button></Navbar.Brand>
+                <Navbar.Brand >
+                    <Link to ='/'>
+                        <img src={Home} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Brand >
+                    <Button onClick ={toggle} style={{outline:"none", backgroundColor:"transparent", border:"none"}}>
+                        <img src={Add} style={imgStyles}/>
+                    </Button>
+                </Navbar.Brand>
                 <Modal isOpen={modal} toggle={toggle} className="header">
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}>
+                    New Post
+                </ModalHeader>
                 <ModalBody>
                 <NewPost token={props.token}/>
                 </ModalBody>
-                <ModalFooter>
+                {/* <ModalFooter>
                 <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
                 <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
+                </ModalFooter> */}
                 </Modal>
-                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
-                <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand>
+                    <Link to ='/Search'>
+                        <img src={Dashboard} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Brand>
+                    <Link to ='/Profile'>
+                        <img src={User} style={imgStyles}/>
+                    </Link>
+                </Navbar.Brand>
                 <button onClick={props.clearToken}>Logout</button>
             </Navbar>
         </div>
