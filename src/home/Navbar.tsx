@@ -12,7 +12,7 @@ import {Modal, ModalBody, Button, ModalHeader, ModalFooter} from 'reactstrap'
 const NavBar = (props:any) => {
 
     const imgStyles = {
-        height: '5vh',
+        height: '4vh',
         color: 'white',
         fill: 'white',
         outline: 'none',

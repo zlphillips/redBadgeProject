@@ -35,7 +35,7 @@ const NewPost = (props: any) => {
             {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup className="script">
-                        <Input className='description' value={description} placeholder="Post..Man" type="textarea" contentEditable="true" onChange={(e) => setDescription(e.target.value)}
+                        <Input className='description' value={description} placeholder="Post..Man" type="textarea" onChange={(e) => setDescription(e.target.value)}
                         style={{outline: "none", userSelect:"text", whiteSpace:"pre-wrap", overflowWrap:"break-word", flexGrow: 1, fontWeight:"bold" }}/>
                     </FormGroup>
                     {/* <FormGroup className="files">
