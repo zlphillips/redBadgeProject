@@ -60,6 +60,7 @@ const Home = (props: any) => {
 
 
     const fetchAll = () => {
+        console.log("it's me")
         fetch('http://localhost:3002/redBadge/post/all-posts', {
             method: 'GET',
             headers: {
@@ -74,7 +75,6 @@ const Home = (props: any) => {
                 setPosts(data)
             })
             .catch(err => console.warn(err))
-
     }
 
 

@@ -1,6 +1,8 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 import '../css/CreatePost.css'
+
+
 const NewPost = (props: any) => {
     const [media, setMedia] = useState<any>('');
     const [description, setDescription] = useState<string>('');
