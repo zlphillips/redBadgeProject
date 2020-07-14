@@ -1,8 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-import StockPic2 from '../assets/headshot2.jpg'
+
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 import FetchHome from './FetchHome'
+import Post from './Post'
 
 
 
@@ -35,61 +36,41 @@ const Home = (props: any) => {
 
     }
 
-    const singleToast = {
-        minWidth: '95vw',
-        minHeight: '10vh'
-    }
-
-    const photoStyle = {
-        borderStyle: 'solid',
-        width: '5vh',
-        height: '5vh',
-        overflow: 'hidden',
-        borderRadius: '50%',
-    }
-
-    const userStyles = {
-        display: 'flex',
-    }
-
+   
     
 
+    const fetchAll = () => {
+        fetch('http://localhost:3002/redBadge/post/all-posts', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': props.token,
+            }
+        })
+            .then(data => data.json())
+            .then(data => {
+                console.log("Owner:", (data[0].userId))
+                setPosts(data)
+    })
+            .catch(err => console.warn(err))
+
+    }
 
 
+    useEffect(() => fetchAll(), [])
 
 
     return (
         <div>
-            <FetchHome token={props.token}/>
-            {/* <div className="p-3 my-2 rounded" style={toastStyles}>
+            {/* <FetchHome token={props.token}/> */}
+            <div className="p-3 my-2 rounded" style={toastStyles}>
                 <h1>Hello There . .</h1>
                 {posts.map((post: Posts, index: number) => (
-                    <Toast style={singleToast}>
-                        <div>
-                            <ToastHeader>
-                                <div style={userStyles}>
-                                    <img src={StockPic2} style={photoStyle} />
-                                    <h1 style={{ fontSize: '3vh' }}></h1>
-                                    <div>
-                                        <p>{`posted ${0} minutes ago`}</p>
-                                    </div>
-                                </div>
-                            </ToastHeader>
-                            <ToastBody>
-
-                                <h3>{post.description}</h3>
-                                 <form action="/upload/photo" enctype="multipart/form-data" method="POST"> 
-                                <input type="file" name="myImage" accept="image/*" />
-                                <input type="submit" value="Upload Photo"/>
-                                </form> 
-                                <h3>{post.likes}</h3>
-                            </ToastBody>
-                        </div>
-                    </Toast>
+                    <Post post={post} index={index} token={props.token}/>
                 ))}
-            </div> */}
+            </div>
         </div>
     )
 }
 
-export default Home
+export default Home;
