@@ -78,4 +78,3 @@ const clearToken = () => {
   }
 }
 export default App
-6

@@ -4,6 +4,8 @@ import Add from '../assets/fileimg.png'
 
 // to add an img, import it then call it as: <img src={IMG NAME HERE}>
 import '../css/CreatePost.css'
+
+
 const NewPost = (props: any) => {
     const [media, setMedia] = useState<any>('');
     const [description, setDescription] = useState<string>('');

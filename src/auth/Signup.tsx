@@ -48,6 +48,8 @@ const Signup = (props: any) => {
             .catch(err => console.log(err))
     }
 
+     
+
     // render() {
     return (
         <div className="form_wrapper">
