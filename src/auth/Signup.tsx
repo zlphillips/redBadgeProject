@@ -6,7 +6,6 @@ import "../css/signup.css"
 
 
 
-
 const Signup = (props: any) => {
     const [firstName, setFirstName] = useState<string>('')
     const [lastName, setLastName] = useState<string>('')
