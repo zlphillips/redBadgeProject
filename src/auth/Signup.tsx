@@ -5,6 +5,8 @@ import "../css/signup.css"
 // import APIURL to files that send network requests
 
 
+
+
 const Signup = (props: any) => {
     const [firstName, setFirstName] = useState<string>('')
     const [lastName, setLastName] = useState<string>('')
@@ -47,8 +49,6 @@ const Signup = (props: any) => {
             }))
             .catch(err => console.log(err))
     }
-
-     
 
     // render() {
     return (
