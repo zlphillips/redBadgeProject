@@ -2,10 +2,10 @@ import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 
 const Comment = (props: any) => {
-    const[media, setMedia] = useState('');
+    const[media, setMedia] = useState<any>('');
     const[description, setDescription] = useState<string>('');
     const[likes, setLikes] = useState<number>();
-    const[owner, setOwner] = useState('');
+    const[owner, setOwner] = useState<number>();
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -21,7 +21,7 @@ const Comment = (props: any) => {
             setMedia('');
             setDescription('');
             setLikes(undefined);
-            setOwner('');
+            setOwner(props.user.id);
             props.fetchAll();
         })
     }

@@ -3,7 +3,7 @@ import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 import StockPic2 from '../assets/headshot2.jpg'
 
 const Post = (props: any) => {
-const [user, setUser] = useState('')
+const [user, setUser] = useState<string>('')
 
 function fetchUser (id: '')  {
          fetch(`http://localhost:3002/redBadge/user/${id}`, {
