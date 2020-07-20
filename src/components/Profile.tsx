@@ -10,7 +10,7 @@ interface Profile {
 }
 
 function Profile(props: any) {
-  const [profile, setProfile] = useState([])
+  const [profile, setProfile] = useState<any>([])
   window.onscroll = function () { Function() };
 
   const fetchProfile = () => {

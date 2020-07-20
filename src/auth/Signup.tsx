@@ -6,11 +6,11 @@ import "../css/signup.css"
 
 
 const Signup = (props: any) => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
+    const [firstName, setFirstName] = useState<string>('')
+    const [lastName, setLastName] = useState<string>('')
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('')
+    const [username, setUsername] = useState<string>('')
     // valid form - "isFormValid" = the state variable
     const [isFormValid, setIsFormValid] = useState(true)
     // changing false/true
