@@ -71,7 +71,7 @@ function fetchUser (id: '')  {
                         <Button onClick ={toggle}>Clapback</Button>
                         <Modal isOpen={modal} toggle={toggle} className="header">
                         <ModalHeader toggle={toggle}>
-                            Got something to say punk?
+                            Go get 'em you keyboard warrior!
                         </ModalHeader>
                         <ModalBody>
                         <Comment token={props.token}/>
