@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-import StockPic2 from '../assets/headshot2.jpg'
+import { Base64 } from 'js-base64';
 
 const Post = (props: any) => {
 const [user, setUser] = useState('')
+const [image, setImage] = useState('')
 
 function fetchUser (id: '')  {
          fetch(`http://localhost:3002/redBadge/user/${id}`, {
@@ -41,23 +42,35 @@ function fetchUser (id: '')  {
         display: 'flex',
     }
 
+    function newBlob(photo: any) {
+        const ascii = Base64.btoa(photo)
+    
+        // var arrayBufferView = new Int8Array( ascii )
+        // var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+        // var urlCreator = window.URL || window.webkitURL;
+        // var imageUrl = urlCreator.createObjectURL( blob );
+        // console.log(imageUrl)
+        // return imageUrl 
+        return ascii
+    }
+       
 
     return(
         <Toast style={singleToast}>
                         <div>
                             <ToastHeader>
                                 <div style={userStyles}>
-                                    <img src={props.post.media} style={photoStyle} />
+                                <img/>
                                         <h1>{user}</h1>
-                                        <h1 style={{ fontSize: '3vh' }}>{}</h1>
                                     <div>
                                         <p>{`posted ${0} minutes ago`}</p>
                                     </div>
                                 </div>
                             </ToastHeader>
                             <ToastBody>
-
+                            <img src={`data:image/jpeg:base64,${newBlob(props.post.media.data)}`} style={{ fontSize: '3vh' }}/>
                                 <h3>{props.post.description}</h3>
+                               
                                  {/* <form action="/upload/photo" enctype="multipart/form-data" method="POST"> 
                                 <input type="file" name="myImage" accept="image/*" />
                                 <input type="submit" value="Upload Photo"/>
