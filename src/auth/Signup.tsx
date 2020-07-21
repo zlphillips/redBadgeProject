@@ -154,7 +154,7 @@ const Signup = (props: any) => {
                     <i className="fas fa-lock"></i>
                     <input placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                         onChange={(e) => { setPassword(e.target.value); handleChange(); }} />
-                    <UncontrolledPopover trigger="focus" placement="right" target="field_password">
+                    <UncontrolledPopover id="popover" trigger="focus" placement="right" target="field_password">
                         <PopoverHeader>Password must contain:</PopoverHeader>
                         <PopoverBody>
                             6 characters
