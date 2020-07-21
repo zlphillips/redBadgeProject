@@ -35,9 +35,16 @@ const Login = (props: AuthProps) => {
             (response) => response.json()
         )
             .then((data => {
-                props.protectedViews(data.sessionToken)
-            // if (data.sessionToken===localStorage.getItem("token"))
-            //     props.data.push("/home")
+                if (data.sessionToken !== undefined){
+                props.protectedViews(data.sessionToken)}
+                else {
+                    // add the display of login pw fail here
+                }
+                // add IF ELSE if the password doesn't match from the server (add notification alert too)
+                // if data.sessionToken = undefined then display failed login, else run the prop.protected
+                
+                // if (data.sessionToken===localStorage.getItem("token"))
+                //     props.data.push("/home")
             }))
             .catch(err => console.log(err))
     }

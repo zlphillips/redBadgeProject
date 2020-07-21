@@ -1,12 +1,14 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
 
+import { userInfo } from 'os';
 
 
 
 interface Profile {
   profilePic: Blob,
   bio: string
+  username: string
 }
 
 function Profile(props: any) {
@@ -33,8 +35,11 @@ function Profile(props: any) {
       <div className="header-cont" id="myHeader"
         style={{ width: "100%", height: "10%", textAlign: "center", position: "sticky" }}>
          {profile.map((profile: Profile , index: number) => (
-            <h1>{profile.bio}</h1>
-            ))}
+           <h1>{profile.bio}
+           </h1>
+           ))}
+           {/* {profile.username} */}
+         
       </div>
     </div>
   )
