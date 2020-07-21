@@ -28,6 +28,7 @@ function Profile(props: any) {
   useEffect(() => fetchProfile(), [])
 
   return (
+    
     <div className="mainDiv"
      style={{ margin: "auto", border: "1px solid red", padding: "0 5% 0 5%", display: "inline-block" }}>
       <div className="header-cont" id="myHeader"
