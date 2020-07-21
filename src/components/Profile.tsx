@@ -12,11 +12,11 @@ interface Profile {
 }
 
 function Profile(props: any) {
-  const [profile, setProfile] = useState([])
+  const [profile, setProfile] = useState<any>([])
   window.onscroll = function () { Function() };
 
   const fetchProfile = () => {
-    fetch('http://localhost:3002/redBadge/profile/my-profile', {
+    fetch('http://localhost:3002/redBadge/profile/my-profile',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,6 +30,7 @@ function Profile(props: any) {
   useEffect(() => fetchProfile(), [])
 
   return (
+    
     <div className="mainDiv"
      style={{ margin: "auto", border: "1px solid red", padding: "0 5% 0 5%", display: "inline-block" }}>
       <div className="header-cont" id="myHeader"

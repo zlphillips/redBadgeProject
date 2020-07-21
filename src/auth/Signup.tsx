@@ -113,11 +113,11 @@ const Signup = (props: any) => {
     else{
         // put the trigger to make notification visable here-----
         // Should say: Password must be at least 6 characters, 1 uppercase, 1 lowercase, 1 special character , 1 number
-        // return(
-        //     <div className="passwordCheck">
-        //         <h1>Password does not meet criteria</h1>
-        //     </div>
-        // )
+        return(
+            <div className="passwordCheck">
+                <h1>Password does not meet criteria</h1>
+            </div>
+        )
         console.log("password doesn't match")
         
     }};
