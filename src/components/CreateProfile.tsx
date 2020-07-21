@@ -3,10 +3,10 @@ import {Button, Form, FormGroup,Input} from 'reactstrap'
 import Add from '../assets/fileimg.png'
 
 // to add an img, import it then call it as: <img src={IMG NAME HERE}>
-import '../css/CreatePost.css'
+import '../css/CreateProfile.css'
 
 
-const NewPost = (props: any) => {
+const NewProfile = (props: any) => {
     const [media, setMedia] = useState<any>('');
     const [description, setDescription] = useState<string>('');
     const [likes, setLikes] = useState<number>();
@@ -15,7 +15,7 @@ const NewPost = (props: any) => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(props.token)
-        fetch(`http://localhost:3002/redBadge/post/new-post`, {
+        fetch(`http://localhost:3002/redBadge/profile/new-profile`, {
             method: 'POST',
             body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner }}),
             headers: new Headers({
@@ -33,7 +33,7 @@ const NewPost = (props: any) => {
     }
 
     return (
-        <div className="newPost">
+        <div className="newProfile">
             {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup className="script">
@@ -57,4 +57,4 @@ const NewPost = (props: any) => {
     )
 }
 
-export default NewPost;
+export default NewProfile;
