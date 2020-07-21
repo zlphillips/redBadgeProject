@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-
+import { Toast, ToastBody, ToastHeader} from 'reactstrap';
+import Comment from './Comment';
 import { SSL_OP_SINGLE_DH_USE } from 'constants';
 import FetchHome from './FetchHome'
 import Post from './Post'

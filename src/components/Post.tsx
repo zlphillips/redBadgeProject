@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import Comment from './Comment';
 import StockPic2 from '../assets/headshot2.jpg'
 
 const Post = (props: any) => {
 const [user, setUser] = useState<string>('')
+const [modal, setModal] = useState<any>(false);
+const toggle = () => setModal(!modal);
 
 function fetchUser (id: '')  {
          fetch(`http://localhost:3002/redBadge/user/${id}`, {
@@ -42,6 +45,7 @@ function fetchUser (id: '')  {
     }
 
 
+
     return(
         <Toast style={singleToast}>
                         <div>
@@ -56,7 +60,6 @@ function fetchUser (id: '')  {
                                 </div>
                             </ToastHeader>
                             <ToastBody>
-
                                 <h3>{props.post.description}</h3>
                                  {/* <form action="/upload/photo" enctype="multipart/form-data" method="POST"> 
                                 <input type="file" name="myImage" accept="image/*" />
@@ -65,6 +68,15 @@ function fetchUser (id: '')  {
                                 <h3>{props.post.likes}</h3>
                             </ToastBody>
                         </div>
+                        <Button onClick ={toggle}>Clapback</Button>
+                        <Modal isOpen={modal} toggle={toggle} className="header">
+                        <ModalHeader toggle={toggle}>
+                            Got something to say punk?
+                        </ModalHeader>
+                        <ModalBody>
+                        <Comment token={props.token}/>
+                        </ModalBody>
+                        </Modal>
                     </Toast>
     )
 }

@@ -28,7 +28,6 @@ const Comment = (props: any) => {
 
     return(
         <div className="newPost">
-            <h3>You have something to say?</h3>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label htmlFor="media">Media:</Label>
