@@ -74,12 +74,17 @@ body {
 }
 
 .input_container,
-#input_submit {
+#input_signup_submit {
     height: 60px;
     /* make the borders more round */
     border-radius: 30px;
     width: 100%;
+
 }
+
+/* #input_signup_submit:disabled{
+    background-color: lightblue;
+} */
 
 .input_field {
     /* customize the input tag with lighter font and some padding*/

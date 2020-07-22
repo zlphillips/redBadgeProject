@@ -1,5 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 import { AuthProps } from './Auth'
+import {Tooltip} from 'reactstrap'
 // import Change from '../auth/Auth'
 import "../css/login.css"
 
@@ -7,9 +8,9 @@ const Login = (props: AuthProps) => {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('')
     const [isFormValid, setIsFormValid] = useState(false)
-
+    const [passwordFail, setPasswordFail] = useState(false)
     const handleChange = () => {
-        if (username.length > 5 && password.length > 6 ) {
+        if (username.length > 5) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -39,6 +40,9 @@ const Login = (props: AuthProps) => {
                 props.protectedViews(data.sessionToken)}
                 else {
                     // add the display of login pw fail here
+                    setPasswordFail(true)
+                    console.log('failed password')
+                    setTimeout(()=> setPasswordFail(false), 2000)
                 }
                 // add IF ELSE if the password doesn't match from the server (add notification alert too)
                 // if data.sessionToken = undefined then display failed login, else run the prop.protected
@@ -69,7 +73,12 @@ const Login = (props: AuthProps) => {
                     <input placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                         onChange={(e) => {setPassword(e.target.value); handleChange(); }} />
                 </div>
+                <div>
                 <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
+                <Tooltip target="input_submit" isOpen={passwordFail} placement="right">
+                    My Mama says you're wrong...
+                </Tooltip>
+                </div>
                 <span>Forgot
                     {/* FIGURE OUT WHAT HREF TO USE */}
                     <a href="#"> Email / Password</a>
