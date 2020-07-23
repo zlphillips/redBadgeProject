@@ -2,6 +2,7 @@ import React, { useState, MouseEvent} from 'react'
 // import {Button, UncontrolledPopover, PopoverHeader, PopoverBody} from 'reactstrap'
 import {UncontrolledTooltip, Tooltip} from 'reactstrap'
 import "../css/signup.css"
+import yoda from '../assets/yoda.jpg'
 // import {Form, FormGroup, Input} from 'reactstrap'
 // import { render } from '@testing-library/react'
 // import APIURL to files that send network requests
@@ -37,11 +38,14 @@ export class PasswordCheckService {
     public checkPasswordStrength(password:string) {
         // Build up the strenth of our password
         let numberOfElements = 0;
-        numberOfElements = /.*[a-z].*/.test(password) ? ++numberOfElements : numberOfElements;      // Lowercase letters
-        numberOfElements = /.*[A-Z].*/.test(password) ? ++numberOfElements : numberOfElements;      // Uppercase letters
-        numberOfElements = /.*[0-9].*/.test(password) ? ++numberOfElements : numberOfElements;      // Numbers
-        numberOfElements = /[^a-zA-Z0-9]/.test(password) ? ++numberOfElements : numberOfElements;   
+        // Lowercase letters
+        numberOfElements = /.*[a-z].*/.test(password) ? ++numberOfElements : numberOfElements;
+        // Uppercase letters
+        numberOfElements = /.*[A-Z].*/.test(password) ? ++numberOfElements : numberOfElements;
+        // Numbers
+        numberOfElements = /.*[0-9].*/.test(password) ? ++numberOfElements : numberOfElements; 
         // Special characters (inc. space)
+        numberOfElements = /[^a-zA-Z0-9]/.test(password) ? ++numberOfElements : numberOfElements;   
 
         // assume password is poor
         let currentPasswordStrength = PasswordCheckStrength.Short
@@ -170,9 +174,12 @@ const Signup = (props: any) => {
                     </UncontrolledTooltip>
                 </div>
                 <div>
-                    <button type="button" value="Submit" id='input_signup_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
-                    <Tooltip target="input_signup_submit" isOpen={weakPassword} placement="right">
-                    Your password is weak bro
+                    <button type="button" value="Submit" id='input_signup_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit
+                    <Tooltip target="input_signup_submit" isOpen={weakPassword} placement="right"
+                    style={{backgroundColor:"transparent"}}>
+                    <img src={yoda}
+                    style={{width:"130%", height:"130%"}}/>
+                    {/* Your password is weak bro
                         <br/>
                         6 characters
                         <br/>
@@ -182,8 +189,9 @@ const Signup = (props: any) => {
                         <br/>
                         1 Number
                         <br/>
-                        1 Special Character
+                        1 Special Character */}
                     </Tooltip>
+                    </button>
                 </div>
             </div>
         </div>

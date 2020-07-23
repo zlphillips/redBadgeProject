@@ -103,7 +103,7 @@ body {
     outline: none;
 }
 
-#input_submit {
+#input_signup_submit {
     /* submit button has a different color and different padding */
     background-color: var(--submit_bg);
     padding-left: 0;
@@ -112,7 +112,7 @@ body {
     text-transform: uppercase;
 }
 
-#input_submit:hover {
+#input_signup_submit:hover {
     background-color: var(--submit_hover);
     /* simple color transition on hover */
     transition: background-color,

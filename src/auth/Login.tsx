@@ -1,6 +1,7 @@
 import React, { useState, MouseEvent } from 'react';
 import { AuthProps } from './Auth'
 import {Tooltip} from 'reactstrap'
+import bobby from '../assets/bobby.jpg'
 // import Change from '../auth/Auth'
 import "../css/login.css"
 
@@ -74,9 +75,12 @@ const Login = (props: AuthProps) => {
                         onChange={(e) => {setPassword(e.target.value); handleChange(); }} />
                 </div>
                 <div>
-                <button type="button" value="Login" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
-                <Tooltip target="input_submit" isOpen={passwordFail} placement="right">
-                    My Mama says you're wrong...
+                <button type="button" value="Login" id='input_login_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
+                <Tooltip target="input_login_submit" isOpen={passwordFail} placement="right"
+                style={{backgroundColor: "transparent"}}>
+                    {/* My Mama says you're wrong... */}
+                    <img src={bobby}
+                    style={{width:"130%", height:"130%"}}/>
                 </Tooltip>
                 </div>
                 <span>Forgot
