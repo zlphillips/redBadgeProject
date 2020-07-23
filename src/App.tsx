@@ -58,13 +58,13 @@ const clearToken = () => {
   return (
     <div className="App">
     <Router>
-        <NavBar clearToken={clearToken} token={token}/>
+        <NavBar token={token}/>
         <Switch>
           <Route path='/CreatePost' component={NewPost}>
             <NewPost token={token}/>
           </Route>
           <Route path='/Profile' component={Profile}>
-           <Profile token={token}/>
+           <Profile token={token} clearToken={clearToken}/>
           </Route>
           <Route path='/'>
             <Home token={token} component={Home}/>

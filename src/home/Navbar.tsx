@@ -28,8 +28,8 @@ const NavBar = (props:any) => {
     const toggle = () => setModal(!modal);
 
     return (
-        <div>
-            <Navbar  expand="lg" bg="dark" variant="dark" fixed='bottom' style={navStyles}>
+        <div style={{backgroundColor: 'rgba(242, 204, 143, 0.79)'}}>
+            <Navbar  expand="lg" bg="transparent" variant="light" fixed='bottom' style={navStyles}>
                 <Navbar.Brand >
                     <Link to ='/'>
                         <img src={Home} style={imgStyles}/>
@@ -48,9 +48,8 @@ const NavBar = (props:any) => {
                 <NewPost token={props.token}/>
                 </ModalBody>
                 </Modal>
-                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
-                <button onClick={props.clearToken}><img src={Peace} style={imgStyles}/></button>
+                <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
             </Navbar>
         </div>
     )
