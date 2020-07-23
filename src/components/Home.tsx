@@ -1,8 +1,4 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Toast, ToastBody, ToastHeader } from 'reactstrap';
-
-import { SSL_OP_SINGLE_DH_USE } from 'constants';
-import FetchHome from './FetchHome'
 import Post from './Post'
 
 
@@ -28,7 +24,8 @@ export interface Posts {
 
 const Home = (props: any) => {
     const [posts, setPosts] = useState([] as any)
-
+    // const [images, setImages] = useState([] as any)
+  
 
     const toastStyles = {
         marginRight: 'auto',
@@ -36,9 +33,8 @@ const Home = (props: any) => {
 
     }
 
-   
-    
 
+//fetch all posts
     const fetchAll = () => {
         fetch('http://localhost:3002/redBadge/post/all-posts', {
             method: 'GET',
@@ -49,25 +45,37 @@ const Home = (props: any) => {
         })
             .then(data => data.json())
             .then(data => {
-                console.log("Owner:", (data[0].userId))
+                // console.log("Owner:", (data[0].userId))
+                console.log("look here:", data)
                 setPosts(data)
+                
     })
             .catch(err => console.warn(err))
 
     }
 
+//timeout to load posts
+    useEffect(() => {
+        const timer = setTimeout(() => {
+         fetchAll()
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, []);
 
-    useEffect(() => fetchAll(), [])
 
+
+    
 
     return (
         <div>
-            {/* <FetchHome token={props.token}/> */}
+            <h1>Hello there . . .</h1>
             <div className="p-3 my-2 rounded" style={toastStyles}>
-                <h1>Hello There . .</h1>
                 {posts.map((post: Posts, index: number) => (
-                    <Post post={post} index={index} token={props.token}/>
+                    <Post post={post} index={index} token={props.token} 
+                    // images={images} setImages={setImages}
+                    />
                 ))}
+                
             </div>
         </div>
     )

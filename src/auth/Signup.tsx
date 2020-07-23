@@ -1,6 +1,8 @@
 import React, { useState, MouseEvent} from 'react'
-import {Button, UncontrolledPopover, PopoverHeader, PopoverBody} from 'reactstrap'
+// import {Button, UncontrolledPopover, PopoverHeader, PopoverBody} from 'reactstrap'
+import {UncontrolledTooltip, Tooltip} from 'reactstrap'
 import "../css/signup.css"
+import yoda from '../assets/yoda.jpg'
 // import {Form, FormGroup, Input} from 'reactstrap'
 // import { render } from '@testing-library/react'
 // import APIURL to files that send network requests
@@ -36,11 +38,14 @@ export class PasswordCheckService {
     public checkPasswordStrength(password:string) {
         // Build up the strenth of our password
         let numberOfElements = 0;
-        numberOfElements = /.*[a-z].*/.test(password) ? ++numberOfElements : numberOfElements;      // Lowercase letters
-        numberOfElements = /.*[A-Z].*/.test(password) ? ++numberOfElements : numberOfElements;      // Uppercase letters
-        numberOfElements = /.*[0-9].*/.test(password) ? ++numberOfElements : numberOfElements;      // Numbers
-        numberOfElements = /[^a-zA-Z0-9]/.test(password) ? ++numberOfElements : numberOfElements;   
+        // Lowercase letters
+        numberOfElements = /.*[a-z].*/.test(password) ? ++numberOfElements : numberOfElements;
+        // Uppercase letters
+        numberOfElements = /.*[A-Z].*/.test(password) ? ++numberOfElements : numberOfElements;
+        // Numbers
+        numberOfElements = /.*[0-9].*/.test(password) ? ++numberOfElements : numberOfElements; 
         // Special characters (inc. space)
+        numberOfElements = /[^a-zA-Z0-9]/.test(password) ? ++numberOfElements : numberOfElements;   
 
         // assume password is poor
         let currentPasswordStrength = PasswordCheckStrength.Short
@@ -74,9 +79,12 @@ const Signup = (props: any) => {
     const [username, setUsername] = useState('')
     // valid form - "isFormValid" = the state variable
     const [isFormValid, setIsFormValid] = useState(true)
+    const [weakPassword, setWeakPassword] = useState(false)
+
+
     // changing false/true
     const handleChange = () => {
-        if (email.length > 5 && password.length > 6) {
+        if (username.length > 5) {
             setIsFormValid(true)
         } else {
             setIsFormValid(false)
@@ -84,8 +92,10 @@ const Signup = (props: any) => {
     }
     let checker = new PasswordCheckService()
     const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+        console.log('handling submit')
+        console.log(checker.checkPasswordStrength(password))
         // to check password:
-    if (checker.checkPasswordStrength(password)){
+    if (checker.checkPasswordStrength(password) === PasswordCheckStrength.Strong){
         const url = `http://localhost:3002/redBadge/user/signup`
         fetch(url, {
             method: 'POST',
@@ -112,14 +122,9 @@ const Signup = (props: any) => {
     }
     else{
         // put the trigger to make notification visable here-----
-        // Should say: Password must be at least 6 characters, 1 uppercase, 1 lowercase, 1 special character , 1 number
-        // return(
-        //     <div className="passwordCheck">
-        //         <h1>Password does not meet criteria</h1>
-        //     </div>
-        // )
-        console.log("password doesn't match")
-        
+        setWeakPassword(true)
+        console.log('setting weak password')
+        setTimeout(()=> setWeakPassword(false), 2000)
     }};
 
     // render() {
@@ -154,23 +159,40 @@ const Signup = (props: any) => {
                     <i className="fas fa-lock"></i>
                     <input placeholder="Password" type="password" name="Password" id="field_password" className='input_field'
                         onChange={(e) => { setPassword(e.target.value); handleChange(); }} />
-                    <UncontrolledPopover trigger="focus" placement="right" target="field_password">
-                        <PopoverHeader>Password must contain:</PopoverHeader>
-                        <PopoverBody>
-                            6 characters
-                            <br/>
-                            1 Uppercase
-                            <br/>
-                            1 Lowercase
-                            <br/>
-                            1 Number
-                            <br/>
-                            1 Special Character
-                        </PopoverBody>
-                    </UncontrolledPopover>
+                    <UncontrolledTooltip placement="right" id="toolTip" target="field_password">
+                        Passwords must contain:
+                        <br/>
+                        6 characters
+                        <br/>
+                        1 Uppercase
+                        <br/>
+                        1 Lowercase
+                        <br/>
+                        1 Number
+                        <br/>
+                        1 Special Character
+                    </UncontrolledTooltip>
                 </div>
-                <button type="button" value="Submit" id='input_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit</button>
-                
+                <div>
+                    <button type="button" value="Submit" id='input_signup_submit' onClick={(e) => handleSubmit(e)} className='input_field' disabled={!isFormValid}>Submit
+                    <Tooltip target="input_signup_submit" isOpen={weakPassword} placement="right"
+                    style={{backgroundColor:"transparent"}}>
+                    <img src={yoda}
+                    style={{width:"130%", height:"130%"}}/>
+                    {/* Your password is weak bro
+                        <br/>
+                        6 characters
+                        <br/>
+                        1 Uppercase
+                        <br/>
+                        1 Lowercase
+                        <br/>
+                        1 Number
+                        <br/>
+                        1 Special Character */}
+                    </Tooltip>
+                    </button>
+                </div>
             </div>
         </div>
     )

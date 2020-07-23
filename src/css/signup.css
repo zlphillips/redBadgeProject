@@ -74,12 +74,17 @@ body {
 }
 
 .input_container,
-#input_submit {
+#input_signup_submit {
     height: 60px;
     /* make the borders more round */
     border-radius: 30px;
     width: 100%;
+
 }
+
+/* #input_signup_submit:disabled{
+    background-color: lightblue;
+} */
 
 .input_field {
     /* customize the input tag with lighter font and some padding*/
@@ -98,7 +103,7 @@ body {
     outline: none;
 }
 
-#input_submit {
+#input_signup_submit {
     /* submit button has a different color and different padding */
     background-color: var(--submit_bg);
     padding-left: 0;
@@ -107,7 +112,7 @@ body {
     text-transform: uppercase;
 }
 
-#input_submit:hover {
+#input_signup_submit:hover {
     background-color: var(--submit_hover);
     /* simple color transition on hover */
     transition: background-color,
