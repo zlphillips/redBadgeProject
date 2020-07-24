@@ -13,31 +13,39 @@ interface CorynneElement extends HTMLElement {
 
 
 const NewPost = (props: any) => {
-    const [media, setMedia] = useState<any>('');
+    const [media, setMedia] = useState<string | ArrayBuffer | null>('');
     const [description, setDescription] = useState<string>('');
     const [likes, setLikes] = useState<number>();
     const [owner, setOwner] = useState<number>();
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(e.target)
+      
         const Gerald = document.getElementById("gerald") as CorynneElement
-        // console.log(Gerald.files)
         const file = Gerald.files[0]
-        console.log(file)
+       
 
         let reader = new FileReader();
         reader.onload = async function () {
-            console.log(reader.result )
-            // const url = reader.result as URL
-            // setMedia(url)
-
+            console.log(reader.result)
+            const url = reader.result 
+            setMedia(url)
+            // console.log(JSON.stringify({media}))
+            
+            
 
 
         // console.log(reader.readAsBinaryString(media))
         fetch(`http://localhost:3002/redBadge/post/new-post`, {
             method: 'POST',
-            body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner }}),
+            body: JSON.stringify({ 
+                post: { 
+                    media: reader.result, 
+                    description: description, 
+                    likes: likes, 
+                    owner: owner 
+                } 
+        }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token
@@ -45,10 +53,9 @@ const NewPost = (props: any) => {
         }).then((res) => res.json())
             .then((logData) => {
                 
-                // setMedia();
                 setDescription('');
                 setLikes(undefined);
-                // setOwner(number);
+                // setOwner();
                 // props.fetchAll();
             })
           .catch(err => console.log(err))
@@ -62,17 +69,15 @@ const NewPost = (props: any) => {
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label htmlFor="media">Media:</Label>
-                        <Input type="file" id="gerald" accepts="image/jpeg" name='media' onChange={(e) => { console.log(e.target); setMedia(e.target.files ? e.target.files[0] : null)}}/>
+                        <Input type="file" id="gerald" accepts="image/jpeg" name='media'/>
                     </FormGroup>
                     {/* <FormGroup className="files">
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup> */}
+
+                    <input  type="text"  onChange={(e) => setDescription(e.target.value)}/>
                     <FormGroup className="upld">
                         <div className="img-upld">
-                            <label htmlFor="file-input">
-                            <img src={Add}/>
-                            </label>
-                            <input id="file-input" type="file" name="media" value={media} onChange={(e) => setMedia(e.target.value)}/>
                     <Button type="submit" className="postbtn" style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>
                         </div>
                     </FormGroup>

@@ -1,19 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import Comment from './Comment';
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
+import UpdatePost from './EditPost'
 import { Base64 } from 'js-base64';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import './Post.css';
+import Typed from 'typed.js';
+
 
 
 const Post = (props: any) => {
 
 const [user, setUser] = useState('')
 const [image, setImage] = useState('')
-
-
-
-
 const [modal, setModal] = useState<any>(false);
-
 const toggle = () => setModal(!modal);
 
 
@@ -37,39 +39,64 @@ function fetchUser (id: '')  {
 
 
     const singleToast = {
-        minWidth: '95vw',
-        minHeight: '10vh'
+        minWidth: '90vw',
+        minHeight: '10vh',
+        // margin: '2%'
+     
     }
 
     const photoStyle = {
-        borderStyle: 'solid',
-        width: '5vh',
-        height: '5vh',
+        height: '30vh',
         overflow: 'hidden',
-        borderRadius: '50%',
     }
 
     const userStyles = {
         display: 'flex',
+        
+    }
+    const textStyle = {
+        fontSize:'3vh'
     }
 
+    const editStyles = {
+        fload: 'right'
+    }
+
+
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#F4F1DE',
+        main: '#E07A5F',
+        dark: '#3D405B',
+        contrastText: '#F2CC8F',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  });
+  
+
     function newBlob(photo: any) {
-        const ascii = Base64.btoa(photo)
-    
-        // var arrayBufferView = new Int8Array( ascii )
-        // var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
-        // var urlCreator = window.URL || window.webkitURL;
-        // var imageUrl = urlCreator.createObjectURL( blob );
-        // console.log(imageUrl)
-        // return imageUrl 
-        return ascii
+        const photoURL = String.fromCharCode.apply( null, new Uint8Array(photo) as any)
+        return photoURL
     }
        
 
 
     return(
-        <Toast style={singleToast}>
+        <div className='wholeToast'>
+            <div>
+                <div style={userStyles}>
+                    <img/>
+                        <h1 style={textStyle}>{user}</h1>
                         <div>
+<<<<<<< HEAD
                             <ToastHeader>
                                 <div style={userStyles}>
                                 <img/>
@@ -90,8 +117,20 @@ function fetchUser (id: '')  {
                                 <h3>{props.post.likes}</h3>
                             </ToastBody>
                             <Button></Button>
+=======
+                            {/* <p>{`posted ${0} minutes ago`}</p> */}
+>>>>>>> 434526b02ac0527f97ffeee8e934989ba155cf3d
                         </div>
-                        <Button onClick ={toggle}>Clapback</Button>
+                </div>
+                      <div className='toastBody'> 
+                        <img src={`${newBlob(props.post.media.data)}`} style={photoStyle}/>
+                        <h3>{props.post.description}</h3>
+                        <h3>{props.post.likes}</h3>
+                     </div>
+            </div>
+                    <div>
+                        <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>
+                         
                         <Modal isOpen={modal} toggle={toggle} className="header">
                         <ModalHeader toggle={toggle}>
                             Go get 'em you keyboard warrior!
@@ -100,7 +139,8 @@ function fetchUser (id: '')  {
                         <Comment token={props.token}/>
                         </ModalBody>
                         </Modal>
-                    </Toast>
+                    </div>    
+        </div>
     )
 }
 

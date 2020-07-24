@@ -1,12 +1,13 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
-
+import Peace from '../assets/peace.png'
 
 
 
 interface Profile {
   profilePic: Blob,
   bio: string
+  username: string
 }
 
 function Profile(props: any) {
@@ -26,7 +27,13 @@ function Profile(props: any) {
   }
 
   useEffect(() => fetchProfile(), [])
-
+  const imgStyles = {
+    height: '4vh',
+    color: 'white',
+    fill: 'white',
+    outline: 'none',
+    border: 'none'
+}
   return (
     
     <div className="mainDiv"
@@ -36,6 +43,7 @@ function Profile(props: any) {
          {profile.map((profile: Profile , index: number) => (
             <h1>{profile.bio}</h1>
             ))}
+            <button onClick={props.clearToken}><img src={Peace} style={imgStyles}/></button>
       </div>
     </div>
   )
