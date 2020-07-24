@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from './Post'
-
-
+import Typed from 'react-typed';
 
 
 
@@ -44,12 +43,7 @@ const Home = (props: any) => {
             }
         })
             .then(data => data.json())
-            .then(data => {
-                // console.log("Owner:", (data[0].userId))
-                console.log("look here:", data)
-                setPosts(data)
-                
-    })
+            .then(data => { setPosts(data)})
             .catch(err => console.warn(err))
 
     }
@@ -63,12 +57,21 @@ const Home = (props: any) => {
       }, []);
 
 
+ const helloStyles = {
+     fontSize: '5vh'
+ }
 
     
 
     return (
         <div>
-            <h1>Hello there . . .</h1>
+            <h1 className='element' ></h1>
+            <Typed
+                    style={helloStyles}
+                    strings={['Hello there ...', 'Welcome, to 404']}
+                    typeSpeed={100}
+                />
+                <br/>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 {posts.map((post: Posts, index: number) => (
                     <Post post={post} index={index} token={props.token} 
