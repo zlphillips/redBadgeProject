@@ -5,6 +5,7 @@ import { Base64 } from 'js-base64';
 
 
 const Post = (props: any) => {
+
 const [user, setUser] = useState('')
 const [image, setImage] = useState('')
 
@@ -88,6 +89,7 @@ function fetchUser (id: '')  {
                                 </form>  */}
                                 <h3>{props.post.likes}</h3>
                             </ToastBody>
+                            <Button></Button>
                         </div>
                         <Button onClick ={toggle}>Clapback</Button>
                         <Modal isOpen={modal} toggle={toggle} className="header">
@@ -95,7 +97,7 @@ function fetchUser (id: '')  {
                             Go get 'em you keyboard warrior!
                         </ModalHeader>
                         <ModalBody>
-                        <Comment token={props.token}/>
+                        <Comment token={props.token} postId={props.post.id}/>
                         </ModalBody>
                         </Modal>
                     </Toast>
