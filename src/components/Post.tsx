@@ -97,7 +97,7 @@ function fetchUser (id: '')  {
                             Go get 'em you keyboard warrior!
                         </ModalHeader>
                         <ModalBody>
-                        <Comment token={props.token} postId={props.post.id}/>
+                        <Comment token={props.token}/>
                         </ModalBody>
                         </Modal>
                     </Toast>
