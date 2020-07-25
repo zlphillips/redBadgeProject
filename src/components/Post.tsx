@@ -96,30 +96,7 @@ const theme = createMuiTheme({
                     <img/>
                         <h1 style={textStyle}>{user}</h1>
                         <div>
-<<<<<<< HEAD
-                            <ToastHeader>
-                                <div style={userStyles}>
-                                <img/>
-                                        <h1>{user}</h1>
-                                    <div>
-                                        <p>{`posted ${0} minutes ago`}</p>
-                                    </div>
-                                </div>
-                            </ToastHeader>
-                            <ToastBody>
-                            <img src={`data:image/jpeg:base64,${newBlob(props.post.media.data)}`} style={{ fontSize: '3vh' }}/>
-                                <h3>{props.post.description}</h3>
-                               
-                                 {/* <form action="/upload/photo" enctype="multipart/form-data" method="POST"> 
-                                <input type="file" name="myImage" accept="image/*" />
-                                <input type="submit" value="Upload Photo"/>
-                                </form>  */}
-                                <h3>{props.post.likes}</h3>
-                            </ToastBody>
-                            <Button></Button>
-=======
                             {/* <p>{`posted ${0} minutes ago`}</p> */}
->>>>>>> 434526b02ac0527f97ffeee8e934989ba155cf3d
                         </div>
                 </div>
                       <div className='toastBody'> 
