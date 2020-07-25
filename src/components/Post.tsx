@@ -64,7 +64,7 @@ function fetchUser (id: '')  {
         handleClick(id: any) {
             let like = props.post.likes
             console.log(id)
-            setLikes(0)
+            
             fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
               method: 'PUT',
               body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
