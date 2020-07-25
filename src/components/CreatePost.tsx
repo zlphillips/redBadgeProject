@@ -1,5 +1,8 @@
 import React, {useState}from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Button, Form, FormGroup,Input, Label} from 'reactstrap'
+import Add from '../assets/fileimg.png'
+
+// to add an img, import it then call it as: <img src={IMG NAME HERE}>
 import '../css/CreatePost.css'
 import { Base64 } from 'js-base64';
 
@@ -10,25 +13,26 @@ interface CorynneElement extends HTMLElement {
 
 
 const NewPost = (props: any) => {
-    const [media, setMedia] = useState<any>('');
+    const [media, setMedia] = useState<string | ArrayBuffer | null>('');
     const [description, setDescription] = useState<string>('');
     const [likes, setLikes] = useState<number>();
-    const [owner, setOwner] = useState('');
+    const [owner, setOwner] = useState<number>();
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(e.target)
+      
         const Gerald = document.getElementById("gerald") as CorynneElement
-        // console.log(Gerald.files)
         const file = Gerald.files[0]
-        console.log(file)
+       
 
         let reader = new FileReader();
         reader.onload = async function () {
-            console.log(reader.result )
-            // const url = reader.result as URL
-            // setMedia(url)
-
+            console.log(reader.result)
+            const url = reader.result
+            setMedia(url)
+            // console.log(JSON.stringify({media}))
+            
+            
 
 
         // console.log(reader.readAsBinaryString(media))
@@ -36,7 +40,7 @@ const NewPost = (props: any) => {
             method: 'POST',
             body: JSON.stringify({ 
                 post: { 
-                    media: media, 
+                    media: reader.result, 
                     description: description, 
                     likes: likes, 
                     owner: owner 
@@ -48,31 +52,37 @@ const NewPost = (props: any) => {
             })
         }).then((res) => res.json())
             .then((logData) => {
-                
-                // setMedia();
                 setDescription('');
                 setLikes(undefined);
-                setOwner('');
-                // props.fetchAll();
+                alert('Thank you for posting!')
             })
           .catch(err => console.log(err))
     }
     reader.readAsDataURL(file)
 }
 
+ 
+
     return (
         <div className="newPost">
-            <h3>Post Something!</h3>
+            {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label htmlFor="media">Media:</Label>
-                        <Input type="file" id="gerald" accepts="image/jpeg" name='media' onChange={(e) => { console.log(e.target); setMedia(e.target.files ? e.target.files[0] : null)}}/>
+                        <Input type="file" id="gerald" accepts="image/jpeg" name='media'/>
                     </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor='description'>Description:</Label>
-                        <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    {/* <FormGroup className="files">
+                        <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
+                    </FormGroup> */}
+
+                    <input  type="text"  onChange={(e) => setDescription(e.target.value)}/>
+                    <FormGroup className="upld">
+                        <div className="img-upld">
+                    <Button type="submit" className="postbtn" 
+                    // onClick={} 
+                    style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>
+                        </div>
                     </FormGroup>
-                    <Button type="submit">Post</Button>
                 </Form>
         </div>
     )

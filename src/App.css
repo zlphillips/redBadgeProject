@@ -3,10 +3,11 @@
   font-family: 'CustomFont', Arial, sans-serif;
   font-weight:normal;
   font-style:normal;
+  margin-bottom: 15%;
 }
 
 @font-face {
   font-family: "CustomFont";
   src: url("assets/FiraCode-Light.ttf");
-  
+
   }

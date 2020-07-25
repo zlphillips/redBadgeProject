@@ -1,7 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from './Post'
 import Typed from 'react-typed';
-
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export interface Posts {
@@ -33,8 +34,11 @@ const Home = (props: any) => {
     }
 
 
+
+    
+
 //fetch all posts
-    const fetchAll = () => {
+    const fetchAll = (props: any) => {
         fetch('http://localhost:3002/redBadge/post/all-posts', {
             method: 'GET',
             headers: {
@@ -43,15 +47,15 @@ const Home = (props: any) => {
             }
         })
             .then(data => data.json())
-            .then(data => { setPosts(data)})
+            .then(data => {setPosts(data)})
             .catch(err => console.warn(err))
-
+            
     }
 
 //timeout to load posts
     useEffect(() => {
         const timer = setTimeout(() => {
-         fetchAll()
+         fetchAll(props)
         }, 3000);
         return () => clearTimeout(timer);
       }, []);
@@ -61,6 +65,11 @@ const Home = (props: any) => {
      fontSize: '5vh'
  }
 
+ const borderStyle = {
+     borderStyle: 'solid',
+     borderColor: '#F2CC8F',
+     borderWidth: 'thin'
+ }
     
 
     return (
@@ -74,9 +83,9 @@ const Home = (props: any) => {
                 <br/>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 {posts.map((post: Posts, index: number) => (
-                    <Post post={post} index={index} token={props.token} 
+                    <Post post={post} index={index} token={props.token} fetchAll={fetchAll}
                     // images={images} setImages={setImages}
-                    />
+                     />
                 ))}
                 
             </div>

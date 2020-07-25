@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import Comment from './Comment';
-import EditIcon from '@material-ui/icons/Edit';
-import Fab from '@material-ui/core/Fab';
-import UpdatePost from './EditPost'
-import { Base64 } from 'js-base64';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import './Post.css';
 
 
 
@@ -85,6 +82,23 @@ const theme = createMuiTheme({
         return photoURL
     }
        
+    const borderStyle = {
+        borderStyle: 'solid',
+        borderColor: '#F2CC8F',
+        borderWidth: 'thin'
+    }
+    
+
+    const bigPicture = {
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    }
+
+const zoom = () => {    
+
+newBlob(props.post.media.data)
+
+}
 
 
     return(
@@ -98,7 +112,7 @@ const theme = createMuiTheme({
                         </div>
                 </div>
                       <div className='toastBody'> 
-                        <img src={`${newBlob(props.post.media.data)}`} style={photoStyle}/>
+                        <img src={newBlob(props.post.media.data)} style={photoStyle} onClick={zoom}/>
                         <h3>{props.post.description}</h3>
                         <h3>{props.post.likes}</h3>
                      </div>
@@ -114,6 +128,8 @@ const theme = createMuiTheme({
                         <Comment token={props.token}/>
                         </ModalBody>
                         </Modal>
+                        <br></br>
+                        <div style={borderStyle}/>
                     </div>    
         </div>
     )
