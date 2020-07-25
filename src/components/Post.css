@@ -1,5 +1,21 @@
 .wholeToast{
-    border-style: 'solid';
-    border-radius: '50%';
-    border-color: '#3D405B'
+    width: 50%;
+    /* height: 50%; */
+    display: inline-flex;
+    /* position: relative; */
+    border: 1px solid blue;
+    background-image: url('../assets/postbg1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* text-align: center; */
+}
+
+.toastBody{
+    border: 1px dashed green;
+    /* align-content: center; */
+    /* display: inline-block; */
+}
+
+.table{
+    background-color: rgba(25, 25, 25, .5);
 }
