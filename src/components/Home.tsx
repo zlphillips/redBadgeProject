@@ -3,7 +3,6 @@ import Post from './Post'
 import Typed from 'react-typed';
 
 
-
 export interface Posts {
     media: Blob,
     description: string,
@@ -18,19 +17,10 @@ export interface Posts {
 
 
 
-
-
-
 const Home = (props: any) => {
     const [posts, setPosts] = useState([] as any)
     // const [images, setImages] = useState([] as any)
   
-
-    const toastStyles = {
-        marginRight: 'auto',
-        marginLeft: 'auto'
-
-    }
 
 
 //fetch all posts
@@ -52,7 +42,7 @@ const Home = (props: any) => {
     useEffect(() => {
         const timer = setTimeout(() => {
          fetchAll()
-        }, 3000);
+        }, 1000);
         return () => clearTimeout(timer);
       }, []);
 
@@ -62,7 +52,6 @@ const Home = (props: any) => {
  }
 
     
-
     return (
         <div>
             <h1 className='element' ></h1>
@@ -72,13 +61,16 @@ const Home = (props: any) => {
                     typeSpeed={100}
                 />
                 <br/>
-            <div className="p-3 my-2 rounded" style={toastStyles}>
-                {posts.map((post: Posts, index: number) => (
-                    <Post post={post} index={index} token={props.token} fetchAll={fetchAll}
-                    // images={images} setImages={setImages}
-                    />
-                ))}
-                
+            <div className="post_bg"
+            style={{border:"1px solid red"}}>
+                <div className="p-3 my-2 rounded" 
+                style={{marginRight:"auto", marginLeft:"auto", border:"1px solid orange"}}>
+                    {posts.map((post: Posts, index: number) => (
+                        <Post post={post} index={index} token={props.token} 
+                        // images={images} setImages={setImages}
+                        />
+                    ))}
+                </div> 
             </div>
         </div>
     )
