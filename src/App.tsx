@@ -8,48 +8,48 @@ import {
 } from "react-router-dom";
 import NewPost from './components/CreatePost'
 import Home from './components/Home'
+import Profile from './components/Profile'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Profile from './components/Profile'
+
+
 
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [token, setToken] = useState('')
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [token, setToken] = useState<string>('')
+  const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
+    
+  useEffect(() => {
+    if (localStorage.getItem('token')){
+      let temp = localStorage.getItem('token')
+      if (temp) {setToken(temp); setIsAuthenticated(true)}
+        else {setToken('')}}
+  }, [])
 
-  // const protectedViews = (sessionToken: string) => {
-  //   console.log(sessionToken)
+    // session token can only stay here
+    const protectedViews = (sessionToken: string) => {
+      setToken(sessionToken)
+      localStorage.setItem("token",sessionToken)
+      setIsAuthenticated(true)
+      console.log("lookn' cool bruhh")
+    }
 
-  //   setToken(sessionToken)
-  //   setIsAuthenticated(true)
-  //   localStorage.setItem('token', sessionToken)
-  // }
+  // LOG OUT = cleartoken
+  const clearToken = () => {
+    localStorage.clear();
+    setToken('')
+    setIsAuthenticated(false)
+    console.log("duces")
+  }
 
-// updates token var if chrome saved a token in localStorage
-useEffect(() => {
-  if (localStorage.getItem('token')){
-    let temp = localStorage.getItem('token')
-    if (temp) {setToken(temp); setIsAuthenticated(true)}
-      else {setToken('')}}
-}, [])
-
-// session token can only stay here
-const protectedViews = (sessionToken: string) => {
-  setToken(sessionToken)
-  localStorage.setItem("token",sessionToken)
-  setIsAuthenticated(true)
-  console.log("lookn' cool bruhh")
-}
-
-// LOG OUT = cleartoken
-const clearToken = () => {
-  localStorage.clear();
-  setToken('')
-  setIsAuthenticated(false)
-  console.log("duces")
-}
-
+  const adminProtectedViews = (sessionToken: string) => {
+    setToken(sessionToken)
+    localStorage.setItem("token",sessionToken)
+    setIsAdmin(true)
+    console.log("lookn' cool bruhh")
+  }
 
 
 
