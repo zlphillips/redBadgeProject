@@ -157,7 +157,7 @@ const theme = createMuiTheme({
                 Go get 'em you keyboard warrior!
             </ModalHeader>
             <ModalBody>
-            <Comment token={props.token}/>
+            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
             </ModalBody>
             </Modal>
             {/* DELETE */}
