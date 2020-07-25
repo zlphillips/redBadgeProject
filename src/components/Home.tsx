@@ -74,7 +74,7 @@ const Home = (props: any) => {
                 <br/>
             <div className="p-3 my-2 rounded" style={toastStyles}>
                 {posts.map((post: Posts, index: number) => (
-                    <Post post={post} index={index} token={props.token} 
+                    <Post post={post} index={index} token={props.token} fetchAll={fetchAll}
                     // images={images} setImages={setImages}
                     />
                 ))}

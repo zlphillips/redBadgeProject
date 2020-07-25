@@ -62,20 +62,40 @@ function fetchUser (id: '')  {
         fload: 'right'
     }
 
+    const [likes, setLikes] = useState<number>();
     const [liked, setLiked] = useState<any>();
 
     class LikeButton extends React.Component {
-        constructor() {
-          super('');
+        constructor(props: number) {
+          super(props);
           this.state = {
             liked: false
           };
           this.handleClick = this.handleClick.bind(this);
         } 
 
-        handleClick() {
+        handleClick(id: any) {
+            let like = props.post.likes
+            console.log(id)
+            
+            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
+              method: 'PUT',
+              body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': props.token
+              }
+          }).then((data) => data.json())
+              .then((id) => {
+                setLikes(id.likes)
+                props.fetchAll()
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
             liked? setLiked(false) : setLiked(true)
-        }
+        };
+
         
         render() {
           const label = liked ? 'Unlike' : 'Like'
@@ -132,8 +152,8 @@ const theme = createMuiTheme({
                      </div>
             </div>
                     <div>
-                        <LikeButton/>
-                        <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>
+                        <LikeButton />
+                        <Button onClick ={toggle} style={{margin: '2%'}}>Comment</Button>
                          
                         <Modal isOpen={modal} toggle={toggle} className="header">
                         <ModalHeader toggle={toggle}>
