@@ -62,6 +62,32 @@ function fetchUser (id: '')  {
         fload: 'right'
     }
 
+    const [liked, setLiked] = useState<any>();
+
+    class LikeButton extends React.Component {
+        constructor() {
+          super('');
+          this.state = {
+            liked: false
+          };
+          this.handleClick = this.handleClick.bind(this);
+        } 
+
+        handleClick() {
+            liked? setLiked(false) : setLiked(true)
+        }
+        
+        render() {
+          const label = liked ? 'Unlike' : 'Like'
+          return (
+            <div className="customContainer">
+              <button className="btn btn-primary" onClick={this.handleClick}>
+                {label}</button>
+            </div>
+          );
+        }
+      }
+
 
 
 const theme = createMuiTheme({
@@ -106,6 +132,7 @@ const theme = createMuiTheme({
                      </div>
             </div>
                     <div>
+                        <LikeButton/>
                         <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>
                          
                         <Modal isOpen={modal} toggle={toggle} className="header">
