@@ -2,26 +2,26 @@ import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 
 const Comment = (props: any) => {
-    const[media, setMedia] = useState<any>('');
     const[description, setDescription] = useState<string>('');
     const[likes, setLikes] = useState<number>();
-    const[owner, setOwner] = useState<number>();
+    const[userId, setUserId] = useState<number>();
+    const[postId, setPostId] = useState<number>()
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        fetch(`http://localhost:3002/redBadge/post/new-comment`, {
+        fetch(`http://localhost:3002/redBadge/comment/new-comment`, {
             method: 'POST',
-            body: JSON.stringify({post: {media: media, description: description, likes: likes, owner: owner}}),
+            body: JSON.stringify({comment: {description: description, likes: likes, userId: userId, postId: postId}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token
             })
         }).then ((res) => res.json())
         .then((logData) => {
-            setMedia('');
             setDescription('');
             setLikes(undefined);
-            setOwner(props.user.id);
+            setUserId(props.user.id);
+            setPostId(props.post.id)
             props.fetchAll();
         })
     }
@@ -30,11 +30,6 @@ const Comment = (props: any) => {
         <div className="newPost">
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor="media">Media:</Label>
-                        <Input type= "file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor='description'>Description:</Label>
                         <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
                     </FormGroup>
                     <Button type="submit">Comment</Button>

@@ -7,6 +7,7 @@ import Peace from '../assets/peace.png'
 interface Profile {
   profilePic: Blob,
   bio: string
+  username: string
 }
 
 function Profile(props: any) {

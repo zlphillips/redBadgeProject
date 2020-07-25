@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+// import PostBg from '../assets/postbg.png'
+// import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import Typed from 'react-typed'
 import './Post.css';
-
-
+import { url } from 'inspector';
+import { Tab } from 'react-bootstrap';
 
 
 const Post = (props: any) => {
+
 const [user, setUser] = useState('')
 const [image, setImage] = useState('')
 const [modal, setModal] = useState<any>(false);
@@ -40,23 +44,56 @@ function fetchUser (id: '')  {
      
     }
 
-    const photoStyle = {
-        height: '30vh',
-        overflow: 'hidden',
-    }
-
-    const userStyles = {
-        display: 'flex',
-        
-    }
-    const textStyle = {
-        fontSize:'3vh'
-    }
 
     const editStyles = {
         fload: 'right'
     }
 
+    const [likes, setLikes] = useState<number>();
+    const [liked, setLiked] = useState<any>();
+
+    class LikeButton extends React.Component {
+        constructor(props: number) {
+          super(props);
+          this.state = {
+            liked: false
+          };
+          this.handleClick = this.handleClick.bind(this);
+        } 
+
+        handleClick(id: any) {
+            let like = props.post.likes
+            console.log(id)
+            
+            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
+              method: 'PUT',
+              body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': props.token
+              }
+          }).then((data) => data.json())
+              .then((id) => {
+                setLikes(id.likes)
+                props.fetchAll()
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
+            liked? setLiked(false) : setLiked(true)
+        };
+
+        
+        render() {
+          const label = liked ? 'Unlike' : 'Like'
+          return (
+            <div className="customContainer">
+              <button className="btn btn-primary" onClick={this.handleClick}>
+                {label}</button>
+            </div>
+          );
+        }
+      }
 
 
 const theme = createMuiTheme({
@@ -100,38 +137,56 @@ newBlob(props.post.media.data)
 
 }
 
-
+    const textStyles = {
+        color:'white'
+    }
     return(
-        <div className='wholeToast'>
-            <div>
-                <div style={userStyles}>
-                    <img/>
-                        <h1 style={textStyle}>{user}</h1>
-                        <div>
-                            {/* <p>{`posted ${0} minutes ago`}</p> */}
-                        </div>
-                </div>
-                      <div className='toastBody'> 
-                        <img src={newBlob(props.post.media.data)} style={photoStyle} onClick={zoom}/>
-                        <h3>{props.post.description}</h3>
-                        <h3>{props.post.likes}</h3>
-                     </div>
-            </div>
-                    <div>
-                        <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>
-                         
-                        <Modal isOpen={modal} toggle={toggle} className="header">
-                        <ModalHeader toggle={toggle}>
-                            Go get 'em you keyboard warrior!
-                        </ModalHeader>
-                        <ModalBody>
-                        <Comment token={props.token}/>
-                        </ModalBody>
-                        </Modal>
-                        <br></br>
-                        <div style={borderStyle}/>
-                    </div>    
-        </div>
+        <Table borderless>
+        <thead>
+          <tr>
+          <th style={textStyles}>comments</th>
+            <th style={textStyles}>{user}</th>
+            <th style={textStyles}>Ayy</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td scope="row">
+                <Typed
+                        style={textStyles}
+                        strings={['OMG this is hilarious!! I once had my sisdter bcalksf fdjks ba djdls a ur d fje a a   loredm dsfds disa ', 'Welcome, to 404']}
+                        typeSpeed={100}
+                        // smartBackspace={true}
+                    />
+            </td>
+            <td scope="row">
+                                {/* image */}
+                <img src={`${newBlob(props.post.media.data)}`} 
+                style={{height:"30vh", overflow:"hidden"}}/>
+                <h5 style={textStyles}>{props.post.description}</h5>
+            </td>
+            <td>
+                {/* like count */}
+            <h3>{props.post.likes}</h3>
+            <LikeButton />
+                        {/* comment button */}
+            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+            <Modal isOpen={modal} toggle={toggle} className="header">
+            <ModalHeader toggle={toggle}>
+                Go get 'em you keyboard warrior!
+            </ModalHeader>
+            <ModalBody>
+            <Comment token={props.token}/>
+            </ModalBody>
+            </Modal>
+            <Button className="delete">Delete</Button>
+            {/* DELETE */}
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </Table>
     )
 }
 
