@@ -150,8 +150,8 @@ const theme = createMuiTheme({
                 {/* like count */}
             <h3>{props.post.likes}</h3>
             <LikeButton />
-                        {/* comment button */}
-                        <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+            {/* comment button */}
+            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
             <ModalHeader toggle={toggle}>
                 Go get 'em you keyboard warrior!
