@@ -37,8 +37,9 @@ const Login = (props: AuthProps) => {
             (response) => response.json()
         )
             .then((data => {
+                console.log(data)
                 if (data.sessionToken !== undefined){
-                props.protectedViews(data.sessionToken)}
+                props.protectedViews(data.sessionToken, data.user.admin)}
                 else {
                     // add the display of login pw fail here
                     setPasswordFail(true)

@@ -70,14 +70,11 @@ const Home = (props: any) => {
                     typeSpeed={100}
                 />
                 <br/>
-            <div className="post_bg"
-            style={{border:"1px solid red"}}>
+            <div className="post_bg">
                 <div className="p-3 my-2 rounded" 
-                style={{marginRight:"auto", marginLeft:"auto", border:"1px solid orange"}}>
+                style={{marginRight:"auto", marginLeft:"auto"}}>
                     {posts.map((post: Posts, index: number) => (
-                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll}
-                        // images={images} setImages={setImages}
-                        />
+                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin}/>
                     ))}
                 </div> 
             </div>

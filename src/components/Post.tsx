@@ -6,14 +6,16 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 // import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import Typed from 'react-typed'
 import './Post.css';
-import { url } from 'inspector';
-import { Tab } from 'react-bootstrap';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CommentIcon from '@material-ui/icons/Comment';
+import EditIcon from '@material-ui/icons/Edit';
+
+
 
 
 const Post = (props: any) => {
 
 const [user, setUser] = useState('')
-const [image, setImage] = useState('')
 const [modal, setModal] = useState<any>(false);
 const toggle = () => setModal(!modal);
 
@@ -36,18 +38,6 @@ function fetchUser (id: '')  {
         }
         useEffect(() => fetchUser(props.post.userId), [])
 
-
-    const singleToast = {
-        minWidth: '90vw',
-        minHeight: '10vh',
-        // margin: '2%'
-     
-    }
-
-
-    const editStyles = {
-        fload: 'right'
-    }
 
     const [likes, setLikes] = useState<number>();
     const [liked, setLiked] = useState<any>();
@@ -119,10 +109,8 @@ const theme = createMuiTheme({
         return photoURL
     }
        
-    const borderStyle = {
-        borderStyle: 'solid',
-        borderColor: '#F2CC8F',
-        borderWidth: 'thin'
+    const fixedStyles = {
+       position: 'fixed'
     }
     
 
@@ -138,8 +126,13 @@ newBlob(props.post.media.data)
 }
 
     const textStyles = {
-        color:'white'
+        color:'white',
     }
+    const typedStyles = {
+        color:'white',
+        
+    }
+
     return(
         <Table borderless>
         <thead>
@@ -153,16 +146,16 @@ newBlob(props.post.media.data)
         <tr>
             <td scope="row">
                 <Typed
-                        style={textStyles}
-                        strings={['OMG this is hilarious!! I once had my sisdter bcalksf fdjks ba djdls a ur d fje a a   loredm dsfds disa ', 'Welcome, to 404']}
+                        style={typedStyles}
+                        strings={['user: comment1', 'Welcome, to 404']}
                         typeSpeed={100}
                         // smartBackspace={true}
                     />
             </td>
-            <td scope="row">
+            <td scope="row" >
                                 {/* image */}
                 <img src={`${newBlob(props.post.media.data)}`} 
-                style={{height:"30vh", overflow:"hidden"}}/>
+                style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
             <td>
@@ -170,16 +163,16 @@ newBlob(props.post.media.data)
             <h3>{props.post.likes}</h3>
             <LikeButton />
                         {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+            <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
             <ModalHeader toggle={toggle}>
                 Go get 'em you keyboard warrior!
             </ModalHeader>
             <ModalBody>
-            <Comment token={props.token}/>
+            <Comment token={props.token} fetchAll={props.fetchAll}/>
             </ModalBody>
             </Modal>
-            <Button className="delete">Delete</Button>
+            <Button className="delete"><DeleteIcon/></Button>
             {/* DELETE */}
             </td>
           </tr>
@@ -187,7 +180,7 @@ newBlob(props.post.media.data)
           
         </tbody>
       </Table>
-    )
+    ); 
 }
 
 export default Post;

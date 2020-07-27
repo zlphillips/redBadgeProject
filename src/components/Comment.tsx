@@ -11,7 +11,7 @@ const Comment = (props: any) => {
         e.preventDefault();
         fetch(`http://localhost:3002/redBadge/comment/new-comment`, {
             method: 'POST',
-            body: JSON.stringify({comment: {description: description, likes: likes, userId: userId, postId: postId}}),
+            body: JSON.stringify({comment: {description: description, likes: likes}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token
@@ -20,9 +20,7 @@ const Comment = (props: any) => {
         .then((logData) => {
             setDescription('');
             setLikes(undefined);
-            setUserId(props.user.id);
-            setPostId(props.post.id)
-            props.fetchAll();
+            props.fetchAll(props);
         })
     }
 

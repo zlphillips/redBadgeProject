@@ -8,10 +8,24 @@ import NewPost from '../components/CreatePost'
 import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {Modal, ModalBody, Button, ModalHeader, ModalFooter} from 'reactstrap'
+import Switch from '@material-ui/core/Switch';
 
-
+  
 const NavBar = (props:any) => {
+    const [state, setState] = React.useState({
+        checkedA: true,
+        checkedB: true,
+      });
 
+      const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if(props.admin === true){
+        setState({ ...state, [event.target.name]: event.target.checked });
+    } else {
+        alert('you cant see me')
+        }
+    };
+    
+  
     const imgStyles = {
         height: '4vh',
         color: 'white',
@@ -26,6 +40,7 @@ const NavBar = (props:any) => {
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    
 
     return (
         <div style={{backgroundColor: 'rgba(242, 204, 143, 0.79)'}}>
@@ -50,9 +65,24 @@ const NavBar = (props:any) => {
                 </Modal>
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
+                        
+                        
+        {console.log(props.admin)}
+               
+                    {props.admin === true  ?
+                    <Switch
+                            checked={state.checkedA}
+                            onChange={handleChange}
+                            name="checkedA"
+                            inputProps={{ 'aria-label':  ' primary checkbox' }}
+                        /> : <h1>hi</h1>}
+                        
             </Navbar>
         </div>
     )
 }
 
 export default NavBar
+
+
+  
