@@ -20,7 +20,8 @@ const Comment = (props: any) => {
         .then((logData) => {
             setDescription('');
             setLikes(undefined);
-            props.fetchAll(props);
+            setPostId(props)
+            props.fetchAll();
         })
     }
 

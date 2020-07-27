@@ -169,7 +169,7 @@ newBlob(props.post.media.data)
                 Go get 'em you keyboard warrior!
             </ModalHeader>
             <ModalBody>
-            <Comment token={props.token} fetchAll={props.fetchAll}/>
+            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
             </ModalBody>
             </Modal>
             <Button className="delete"><DeleteIcon/></Button>

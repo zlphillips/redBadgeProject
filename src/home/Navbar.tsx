@@ -65,10 +65,8 @@ const NavBar = (props:any) => {
                 </Modal>
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
                 <Navbar.Brand><Link to ='/Search'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
+                <Navbar.Brand><Link to ='/Admin'></Link></Navbar.Brand>
                         
-                        
-        {console.log(props.admin)}
-               
                     {props.admin === true  ?
                     <Switch
                             checked={state.checkedA}
