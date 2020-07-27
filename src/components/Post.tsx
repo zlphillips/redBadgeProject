@@ -129,26 +129,24 @@ const theme = createMuiTheme({
        
 
     return(
-        <Table borderless>
+        <Table bordered
+        style={{width:"50%"}}>
         <thead>
           <tr>
             {/* <th>#</th> */}
             <th>{user}</th>
-            <th>
-                Ayy
-            </th>
           </tr>
         </thead>
         <tbody>
         <tr>
             <td scope="row">
-                                {/* image */}
+            {/* image */}
             <img src={`${newBlob(props.post.media.data)}`} 
-            style={{height:"30vh", overflow:"hidden"}}/>
+            style={{maxHeight:"30vh", overflow:"hidden"}}/>
             </td>
             <td>
                 {/* like count */}
-            <h3>{props.post.likes}</h3>
+            <h5>{props.post.likes}</h5>
             <LikeButton />
             {/* comment button */}
             <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
@@ -173,7 +171,7 @@ const theme = createMuiTheme({
             <Button className="delete">
                 Delete
             </Button>
-                        </td>
+              </td>
           </tr>
           <tr>
             <th scope="row" className="col3">
