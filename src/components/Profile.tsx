@@ -1,7 +1,7 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
 import Peace from '../assets/peace.png'
-import APIURL from "../"
+// import APIURL from "../"
 
 
 interface Profile {
