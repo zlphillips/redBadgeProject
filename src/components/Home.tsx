@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from './Post'
-import Typed from 'react-typed';
+import Typed from 'react-typed'; 
 
 
 export interface Posts {
