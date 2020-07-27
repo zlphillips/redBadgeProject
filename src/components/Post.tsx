@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
+import {Table, Modal,ModalBody,ModalHeader,Button, Input, Form,FormGroup,FormText } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 // import PostBg from '../assets/postbg.png'
@@ -24,6 +24,7 @@ const [user, setUser] = useState('')
 const [image, setImage] = useState('')
 const [modal, setModal] = useState<any>(false);
 const toggle = () => setModal(!modal);
+const [text, setText] = useState(props.text ? props.text : "")
 
 
 function fetchUser (id: '')  {
@@ -104,22 +105,22 @@ function fetchUser (id: '')  {
       }
 
 
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        light: '#F4F1DE',
-        main: '#E07A5F',
-        dark: '#3D405B',
-        contrastText: '#F2CC8F',
-      },
-      secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
-      },
-    },
-  });
+// const theme = createMuiTheme({
+//     palette: {
+//       primary: {
+//         light: '#F4F1DE',
+//         main: '#E07A5F',
+//         dark: '#3D405B',
+//         contrastText: '#F2CC8F',
+//       },
+//       secondary: {
+//         light: '#ff7961',
+//         main: '#f44336',
+//         dark: '#ba000d',
+//         contrastText: '#000',
+//       },
+//     },
+//   });
   
 
     function newBlob(photo: any) {
@@ -129,58 +130,35 @@ const theme = createMuiTheme({
        
 
     return(
-        <Table bordered
-        style={{width:"50%"}}>
-        <thead>
-          <tr>
-            {/* <th>#</th> */}
-            <th>{user}</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td scope="row">
-            {/* image */}
-            <img src={`${newBlob(props.post.media.data)}`} 
-            style={{maxHeight:"30vh", overflow:"hidden"}}/>
-            </td>
-            <td>
-                {/* like count */}
-            <h5>{props.post.likes}</h5>
-            <LikeButton />
-            {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
-            <Modal isOpen={modal} toggle={toggle} className="header">
-            <ModalHeader toggle={toggle}>
-                Go get 'em you keyboard warrior!
-            </ModalHeader>
-            <ModalBody>
-            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
-            </ModalBody>
-            </Modal>
-            {/* DELETE */}
-            </td>
-          </tr>
-          <tr>
-            <th scope="row" className="col1">
-                             {/* post text */}
+      <div id="postID"
+      style={{maxWidth:"50%", border:"1px solid green"}}> {props.text}
+            <h3>{user}</h3>
+<Button onClick={() => toggle(); props.setErase}
+              <img src={`${newBlob(props.post.media.data)}`}
+              style={{maxHeight:"30vh", overflow:"hidden"}}/>
+              {/* like count */}
+              <h5>{props.post.likes}</h5>
+              {/* like button */}
+              <LikeButton />
+              {/* comment button */}
+              <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+              <Modal isOpen={modal} toggle={toggle} className="header">
+              <ModalHeader toggle={toggle}>
+                  Go get 'em you keyboard warrior!
+              </ModalHeader>
+              <ModalBody>
+              <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
+              </ModalBody>
+              </Modal>
+              {/* DELETE */}
+            {/* post text */}
             <h5>{props.post.description}</h5>
-            
-            </th>
-            <td>
             <Button className="delete">
                 Delete
             </Button>
-              </td>
-          </tr>
-          <tr>
-            <th scope="row" className="col3">
-            Comments Button here
-            </th>
-          </tr>
           
-        </tbody>
-      </Table>
+            Comments Button here
+            </div>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
 import Peace from '../assets/peace.png'
-
+import APIURL from "../"
 
 
 interface Profile {
@@ -13,6 +13,13 @@ interface Profile {
 function Profile(props: any) {
   const [profile, setProfile] = useState<any>([])
   window.onscroll = function () { Function() };
+  
+  const [erase, setErase] = useState(false)
+  const [logID, setlogID] = useState(0)
+  const toggleButton = () => {
+    if (erase===true)
+    {fetch(`${APIURL}/log/${logID}`)}
+  }
 
   const fetchProfile = () => {
     fetch('http://localhost:3002/redBadge/profile/my-profile',{

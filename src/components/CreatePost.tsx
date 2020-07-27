@@ -74,8 +74,10 @@ const NewPost = (props: any) => {
                     {/* <FormGroup className="files">
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup> */}
+                    <FormGroup>
 
-                    <input  type="text"  onChange={(e) => setDescription(e.target.value)}/>
+                    <input  type="textarea" name="description" id="descript"  onChange={(e) => setDescription(e.target.value)}/>
+                    </FormGroup>
                     <FormGroup className="upld">
                         <div className="img-upld">
                     <Button type="submit" className="postbtn" style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>
