@@ -1,4 +1,5 @@
 import React, {Component, useState, useEffect} from 'react'
+import APIURL from '../../helpers/environment';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,8 +33,8 @@ const AdminUser = (props: any ) => {
 
     const fetchAdmin = () => {
 
-        const url = 'http://localhost:3002/redBadge/user/all'
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
+        const url = `${APIURL}/user/all`;
+        fetch(`${APIURL}/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

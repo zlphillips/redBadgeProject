@@ -1,6 +1,7 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
 import Peace from '../assets/peace.png'
+import APIURL from '../helpers/environment';
 
 
 
@@ -15,7 +16,7 @@ function Profile(props: any) {
   window.onscroll = function () { Function() };
 
   const fetchProfile = () => {
-    fetch('http://localhost:3002/redBadge/profile/my-profile',{
+    fetch(`${APIURL}/redBadge/profile/my-profile`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import APIURL from '../helpers/environment';
 
 const Comment = (props: any) => {
     const[description, setDescription] = useState<string>('');
@@ -9,7 +10,7 @@ const Comment = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        fetch(`http://localhost:3002/redBadge/comment/new-comment`, {
+        fetch(`${APIURL}/comment/new-comment`, {
             method: 'POST',
             body: JSON.stringify({comment: {description: description, likes: likes}}),
             headers: new Headers({

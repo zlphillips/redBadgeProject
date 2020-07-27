@@ -3,6 +3,7 @@ import Post from './Post'
 import Typed from 'react-typed';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import APIURL from '../helpers/environment';
 
 export interface Posts {
     media: Blob,
@@ -29,7 +30,7 @@ const Home = (props: any) => {
 
 //fetch all posts
     const fetchAll = (props: any) => {
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
+        fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
