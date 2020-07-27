@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import APIURL from '../helpers/environment';
 // import PostBg from '../assets/postbg.png'
 // import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 
@@ -27,7 +28,7 @@ const toggle = () => setModal(!modal);
 
 
 function fetchUser (id: '')  {
-         fetch(`http://localhost:3002/redBadge/user/${id}`, {
+         fetch(`${APIURL}/redBadge/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ function fetchUser (id: '')  {
             let like = props.post.likes
             console.log(id)
             setLikes(0)
-            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
+            fetch(`${APIURL}/redBadge/post/${props.post.id}`, {
               method: 'PUT',
               body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
               headers: {

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from './Post'
-import Typed from 'react-typed'; 
+import Typed from 'react-typed';
+import APIURL from '../helpers/environment'; 
 
 
 export interface Posts {
@@ -25,7 +26,7 @@ const Home = (props: any) => {
 
 //fetch all posts
     const fetchAll = () => {
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
+        fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
