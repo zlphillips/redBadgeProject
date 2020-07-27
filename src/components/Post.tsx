@@ -55,13 +55,8 @@ function fetchUser (id: '')  {
         handleClick(id: any) {
             let like = props.post.likes
             console.log(id)
-<<<<<<< HEAD
-            
-            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
-=======
             setLikes(0)
             fetch(`${APIURL}/redBadge/post/${props.post.id}`, {
->>>>>>> zach
               method: 'PUT',
               body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
               headers: {
