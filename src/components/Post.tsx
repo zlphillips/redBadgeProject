@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {Table, Modal,ModalBody,ModalHeader,Button, Input, Form,FormGroup,FormText } from 'reactstrap'
+// import APIURL from '../Helpers/environment'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import SvgIcon from '@material-ui/core/SvgIcon'
+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
+import ThreeDRotation from '@material-ui/icons/ThreeDRotation'
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 // import PostBg from '../assets/postbg.png'
-// import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+
 
 import './Post.css';
 import { url } from 'inspector';
@@ -23,8 +28,18 @@ const Post = (props: any) => {
 const [user, setUser] = useState('')
 const [image, setImage] = useState('')
 const [modal, setModal] = useState<any>(false);
+
 const toggle = () => setModal(!modal);
 const [text, setText] = useState(props.text ? props.text : "")
+// const deleteButton = () => {
+//   {fetch(`${APIURL}/user/${props.id}`, {
+//     method: 'DELETE',
+//     headers :{
+//       'Content-Type' : 'application/json',
+//       Authorization: props.sessionToken
+//     }
+//   })}
+// }
 
 
 function fetchUser (id: '')  {
@@ -130,35 +145,59 @@ function fetchUser (id: '')  {
        
 
     return(
-      <div id="postID"
-      style={{maxWidth:"50%", border:"1px solid green"}}> {props.text}
-            <h3>{user}</h3>
-<Button onClick={() => toggle(); props.setErase}
-              <img src={`${newBlob(props.post.media.data)}`}
-              style={{maxHeight:"30vh", overflow:"hidden"}}/>
-              {/* like count */}
-              <h5>{props.post.likes}</h5>
-              {/* like button */}
-              <LikeButton />
-              {/* comment button */}
-              <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
-              <Modal isOpen={modal} toggle={toggle} className="header">
-              <ModalHeader toggle={toggle}>
-                  Go get 'em you keyboard warrior!
-              </ModalHeader>
-              <ModalBody>
-              <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
-              </ModalBody>
-              </Modal>
-              {/* DELETE */}
-            {/* post text */}
-            <h5>{props.post.description}</h5>
-            <Button className="delete">
-                Delete
-            </Button>
-          
-            Comments Button here
-            </div>
+      <Table borderless className="postTable">
+      <thead>
+        <tr>
+          {/* <th>#</th> */}
+          <th>{user}</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td scope="row">
+            {/* image */}
+            <img src={`${newBlob(props.post.media.data)}`} className="mediaImg"
+            style={{maxHeight:"30vh", overflow:"hidden"}}/>
+          </td>
+          <td>
+            {/* like count */}
+            <h5>{props.post.likes}</h5>
+            {/* like button */}
+            <LikeButton />
+            {/* comment button */}
+            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+            <Modal isOpen={modal} toggle={toggle} className="header">
+            <ModalHeader toggle={toggle}>
+                Go get 'em you keyboard warrior!
+            </ModalHeader>
+            <ModalBody>
+            <Input type="textarea" rows={5} token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
+            </ModalBody>
+            </Modal>
+            {/* DELETE */}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" className="description">
+          {/* post text */}
+          <Input type="text" rows={4} columns={5} value={props.post.description}/>
+            {/* {props.post.description}</h6> */}
+          </th>
+          {/* <td>
+          <Button className="delete">
+              Delete
+          </Button>
+            </td> */}
+        </tr>
+        <tr>
+          <th scope="row" className="col3">
+          <Button className="comment">
+          Comments Button here
+          </Button>
+          </th>
+        </tr>
+      </tbody>
+    </Table>
     )
 }
 

@@ -1,5 +1,6 @@
 import React, {useState}from 'react';
-import {Button, Form, FormGroup,Input, Label} from 'reactstrap'
+import {Button, Form, FormGroup,Input, Label, UncontrolledTooltip} from 'reactstrap'
+
 import Add from '../assets/fileimg.png'
 
 // to add an img, import it then call it as: <img src={IMG NAME HERE}>
@@ -68,16 +69,15 @@ const NewPost = (props: any) => {
             {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor="media">Media:</Label>
+
                         <Input type="file" id="gerald" accepts="image/jpeg" name='media'/>
+                        <UncontrolledTooltip placement="bottom-start" id="fileType" target="gerald">Media must be JPG</UncontrolledTooltip>
                     </FormGroup>
                     {/* <FormGroup className="files">
                         <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
                     </FormGroup> */}
-                    <FormGroup>
 
-                    <input  type="textarea" name="description" id="descript"  onChange={(e) => setDescription(e.target.value)}/>
-                    </FormGroup>
+                    <Input type="textarea"  onChange={(e) => setDescription(e.target.value)}/>
                     <FormGroup className="upld">
                         <div className="img-upld">
                     <Button type="submit" className="postbtn" style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>

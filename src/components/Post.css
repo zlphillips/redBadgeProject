@@ -1,6 +1,6 @@
 .postTable{
     max-width: 50%;
-    height: 50%;
+    height: 40%;
     /* height: 50%; */
     display: inline-flex;
     /* position: relative; */
@@ -11,6 +11,15 @@
     /* text-align: center; */
 }
 
+/* .mediaImg:hover{
+    position: fixed;
+    top: -25px;
+    left:-35px;
+    width:50%;
+    height:50%;
+    display: block;
+    z-index:10000;
+} */
 
 .table{
     background-color: rgba(25, 25, 25, .2);
