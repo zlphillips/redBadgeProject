@@ -16,7 +16,7 @@ import AdminView from './components/AdminView'
 
 
 
-function App() {
+function App(props: any) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [token, setToken] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
@@ -54,7 +54,7 @@ function App() {
 
   }
 
-
+console.log(props.user)
  if(isAuthenticated){
     return (
     <div className="App">
@@ -74,7 +74,7 @@ function App() {
             <AdminUser token={token} />
           </Route>
           <Route path='/'>
-            <Home token={token} component={Home} admin={admin}/>
+            <Home token={token} component={Home} admin={admin} user={props.user}/>
           </Route>
         </Switch>
         </Router>

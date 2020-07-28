@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Modal} from 'react-bootstrap'
-import {Table,ModalBody,ModalHeader,Button } from 'reactstrap'
+import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 // import PostBg from '../assets/postbg.png'
@@ -12,7 +11,6 @@ import CommentIcon from '@material-ui/icons/Comment';
 import EditIcon from '@material-ui/icons/Edit';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import MicroModal from 'micromodal';
-import EditPost from './EditPost'
 
 
 const Post = (props: any) => {
@@ -169,27 +167,7 @@ const theme = createMuiTheme({
             <Button className="delete"><Like/></Button>
             
            <Button onClick ={toggle} style={{margin: '2%'}}><EditIcon/></Button>    
-            
-            {/* DELETE */}
-            <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+        
             </td>
           </tr>
           

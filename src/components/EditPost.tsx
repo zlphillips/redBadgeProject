@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 const UpdatePost = (props: any) => {
-    const [editMedia, setEditMedia] = useState<any>();
+    const [editMedia, setEditMedia] = useState<any>(props.postToUpdate.media);
     console.log(props.postToUpdate)
-    const [editDescription, setEditDescription] = useState<string>();
+    const [editDescription, setEditDescription] = useState<string>(props.postToUpdate.description);
 
     const postUpdate = (e: any) => {
         e.preventDefault();
