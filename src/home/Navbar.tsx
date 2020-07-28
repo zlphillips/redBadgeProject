@@ -57,7 +57,7 @@ const NavBar = (props:any) => {
                 </Navbar.Brand>
                 <Modal isOpen={modal} toggle={toggle} className="header">
                 <ModalHeader toggle={toggle}>
-                    New Post
+                    What's up Doc?
                 </ModalHeader>
                 <ModalBody>
                 <NewPost token={props.token}/>

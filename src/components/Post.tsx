@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
+import {Table, Modal,ModalBody,ModalHeader,Button, Input, Form,FormGroup,FormText } from 'reactstrap'
+// import APIURL from '../Helpers/environment'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import APIURL from '../helpers/environment';
@@ -18,7 +19,18 @@ const Post = (props: any) => {
 
 const [user, setUser] = useState('')
 const [modal, setModal] = useState<any>(false);
+
 const toggle = () => setModal(!modal);
+const [text, setText] = useState(props.text ? props.text : "")
+// const deleteButton = () => {
+//   {fetch(`${APIURL}/user/${props.id}`, {
+//     method: 'DELETE',
+//     headers :{
+//       'Content-Type' : 'application/json',
+//       Authorization: props.sessionToken
+//     }
+//   })}
+// }
 
 
 function fetchUser (id: '')  {
@@ -87,22 +99,22 @@ function fetchUser (id: '')  {
       }
 
 
-const theme = createMuiTheme({
-    palette: {
-      primary: {
-        light: '#F4F1DE',
-        main: '#E07A5F',
-        dark: '#3D405B',
-        contrastText: '#F2CC8F',
-      },
-      secondary: {
-        light: '#ff7961',
-        main: '#f44336',
-        dark: '#ba000d',
-        contrastText: '#000',
-      },
-    },
-  });
+// const theme = createMuiTheme({
+//     palette: {
+//       primary: {
+//         light: '#F4F1DE',
+//         main: '#E07A5F',
+//         dark: '#3D405B',
+//         contrastText: '#F2CC8F',
+//       },
+//       secondary: {
+//         light: '#ff7961',
+//         main: '#f44336',
+//         dark: '#ba000d',
+//         contrastText: '#000',
+//       },
+//     },
+//   });
   
 
     function newBlob(photo: any) {
@@ -135,53 +147,72 @@ newBlob(props.post.media.data)
     }
 
     return(
-        <Table borderless>
+        <Table borderlesss>
         <thead>
           <tr>
-          <th style={textStyles}>comments</th>
+          <th style={textStyles} className="col1">Comments</th>
             <th style={textStyles}>{user}</th>
-            <th style={textStyles}>Ayy</th>
           </tr>
         </thead>
         <tbody>
         <tr>
             <td scope="row">
                 <Typed
-                        style={typedStyles}
-                        strings={['user: comment1', 'Welcome, to 404']}
-                        typeSpeed={100}
-                        // smartBackspace={true}
+                    style={typedStyles}
+                    strings={['user: comment1', 'Welcome, to 404']}
+                    typeSpeed={100}
+                    // smartBackspace={true}
                     />
             </td>
             <td scope="row" >
-                                {/* image */}
+               {/* image */}
                 <img src={`${newBlob(props.post.media.data)}`} 
                 style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
-            <td>
-                {/* like count */}
+            {/* <td>
+                like count
             <h3>{props.post.likes}</h3>
-            <LikeButton />
-                        {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
+            <LikeButton /> */}
+            {/* <Button className="delete"><DeleteIcon/></Button> */}
+            {/* DELETE */}
+
+
+            {/* comment button */}
+            {/* <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
             <ModalHeader toggle={toggle}>
                 Go get 'em you keyboard warrior!
             </ModalHeader>
             <ModalBody>
-            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
-            </ModalBody>
-            </Modal>
-            <Button className="delete"><DeleteIcon/></Button>
-            {/* DELETE */}
+            <Input type="textarea" rows={3} token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
+            <Comment token={props.token}/> */}
+            {/* <Button type="submit" className="commentBtn">Clap back</Button> */}
+            {/* </ModalBody>
+            </Modal> */}
+          {/* </td> */}
+        </tr>
+        <tr>
+          <th>
+            <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
+            <Button token={props.token} fetchAll={props.fetchAll} postId={props.post.id}>Post</Button>
+          {/* <th scope="row" className="description"> */}
+          {/* post description */}
+          {/* <Input type="text" rows={4} columns={5} value={props.post.description}/> */}
+           {/* <h6> {props.post.description}</h6> */}
+          </th>
+          <td>
+          {/* <Button className="delete">
+              Delete
+          </Button> */}
+                {/* like count */}
+            <h3>{props.post.likes}</h3>
+            <LikeButton />
             </td>
-          </tr>
-          
-          
-        </tbody>
-      </Table>
-    ); 
+        </tr>
+      </tbody>
+    </Table>
+    )
 }
 
 export default Post;

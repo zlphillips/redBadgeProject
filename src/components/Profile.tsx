@@ -14,6 +14,10 @@ interface Profile {
 function Profile(props: any) {
   const [profile, setProfile] = useState<any>([])
   window.onscroll = function () { Function() };
+  const [erase, setErase] = useState(false)
+
+  
+
 
   const fetchProfile = () => {
     fetch(`${APIURL}/redBadge/profile/my-profile`,{
