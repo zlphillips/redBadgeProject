@@ -12,7 +12,7 @@ const Comment = (props: any) => {
         e.preventDefault();
         fetch(`${APIURL}/redBadge/comment/new-comment`, {
             method: 'POST',
-            body: JSON.stringify({comment: {description: description, likes: likes}}),
+            body: JSON.stringify({comment: {description: description, likes: likes, postId: postId}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': props.token

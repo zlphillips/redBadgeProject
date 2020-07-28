@@ -11,12 +11,21 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import MicroModal from 'micromodal';
 import EditPost from './EditPost'
 
+
+interface Comments {
+  description: string
+}
+
+
+
 const Post = (props: any) => {
 
 const [likes, setLikes] = useState<number>();
 const [liked, setLiked] = useState<any>();
 const [user, setUser] = useState('')
 const [modal, setModal] = useState<any>(false);
+const [comments, setComments] = useState([] as any)
+
 
 const toggle = () => setModal(!modal);
 const [text, setText] = useState(props.text ? props.text : "")
@@ -133,6 +142,25 @@ const theme = createMuiTheme({
         color:'white',
         
     }
+
+
+    const fetchComments = () => {
+      fetch(`${APIURL}/redBadge/comment/postcomments/${props.post.id}`, {
+        method: 'GET', 
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': props.token
+        }
+    }).then((data) => data.json())
+        .then((data) => {
+          setComments(data)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
+
+    useEffect(() => fetchComments(), [])
   
     return(
         <Table borderlesss>
@@ -146,12 +174,14 @@ const theme = createMuiTheme({
         <tbody>
         <tr>
             <td scope="row">
+            {comments.map((comment: Comments , index: number) => (
                 <Typed
                     style={typedStyles}
-                    strings={['Hello There ...', 'Welcome, to 404']}
+                    strings={[comment.description]}
                     typeSpeed={100}
                     // smartBackspace={true}
                     />
+                  ))}
             </td>
             <td scope="row" >
                {/* image */}
@@ -162,8 +192,7 @@ const theme = createMuiTheme({
         </tr>
         <tr>
           <th>
-            <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
-            <Button token={props.token} fetchAll={props.fetchAll} postId={props.post.id}>Post</Button>
+            <Comment token={props.token} fetchAll={fetchComments} postId={props.post.id}/>
           
           </th>
           <td>

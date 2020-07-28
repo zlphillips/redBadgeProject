@@ -102,10 +102,6 @@ const UpdatePost = (props: any) => {
                 <Button type="submit">Update Post</Button>
             </Form>
                 </ModalBody>
-                <ModalFooter>
-                <Button color="primary" onClick={toggle}>Update Post</Button>{' '}
-                <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </ModalFooter>
             </Modal>
             </div>
             
