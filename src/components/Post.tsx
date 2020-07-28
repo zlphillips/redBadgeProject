@@ -147,12 +147,11 @@ newBlob(props.post.media.data)
     }
 
     return(
-        <Table bordered>
+        <Table borderlesss>
         <thead>
           <tr>
           <th style={textStyles} className="col1">Comments</th>
             <th style={textStyles}>{user}</th>
-            <th style={textStyles}>Ayy</th>
           </tr>
         </thead>
         <tbody>
@@ -171,10 +170,14 @@ newBlob(props.post.media.data)
                 style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
-            <td>
-                {/* like count */}
+            {/* <td>
+                like count
             <h3>{props.post.likes}</h3>
-            <LikeButton />
+            <LikeButton /> */}
+            {/* <Button className="delete"><DeleteIcon/></Button> */}
+            {/* DELETE */}
+
+
             {/* comment button */}
             {/* <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
@@ -187,24 +190,25 @@ newBlob(props.post.media.data)
             {/* <Button type="submit" className="commentBtn">Clap back</Button> */}
             {/* </ModalBody>
             </Modal> */}
-            <Button className="delete"><DeleteIcon/></Button>
-            {/* DELETE */}
-          </td>
+          {/* </td> */}
         </tr>
         <tr>
           <th>
             <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
-            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
+            <Button token={props.token} fetchAll={props.fetchAll} postId={props.post.id}>Post</Button>
           {/* <th scope="row" className="description"> */}
           {/* post description */}
           {/* <Input type="text" rows={4} columns={5} value={props.post.description}/> */}
            {/* <h6> {props.post.description}</h6> */}
           </th>
-          {/* <td>
-          <Button className="delete">
+          <td>
+          {/* <Button className="delete">
               Delete
-          </Button>
-            </td> */}
+          </Button> */}
+                {/* like count */}
+            <h3>{props.post.likes}</h3>
+            <LikeButton />
+            </td>
         </tr>
       </tbody>
     </Table>
