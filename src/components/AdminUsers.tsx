@@ -28,37 +28,27 @@ const AdminUser = (props: any ) => {
             .catch(err => console.warn(err))
             
     }
-    
-    useEffect(() => {
-        const timer = setTimeout(() => {
-         fetchAdmin()
-        }, 3000);
-        return () => clearTimeout(timer);
-      }, []);
+ useEffect(() => fetchAdmin())
 
     return (
         <div>
-            <TableContainer component={Paper}>
-                <Table aria-label="simple table">
+            <TableContainer >
+                <Table aria-label="simple table" >
                     <TableHead>
                     <TableRow>
                         <TableCell>User Id</TableCell>
                         <TableCell>First Name</TableCell>
                         <TableCell>Last Name</TableCell>
                         <TableCell>Edit</TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>Delete</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {adminUser.map((users:  any) => (
-                        <TableRow key={users}>
-                        <TableCell component="th" scope="row">
-                            {users.firstName}
-                        </TableCell>
-                        <TableCell align="right">{users.lastName}</TableCell>
-                        <TableCell align="right">{users.username}</TableCell>
-                        {/* <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell> */}
+                        <TableRow >
+                        <TableCell  component="th" scope="row">{users.firstName}</TableCell>
+                        <TableCell>{users.lastName}</TableCell>
+                        <TableCell >{users.username}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>

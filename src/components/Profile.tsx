@@ -26,20 +26,26 @@ function Profile(props: any) {
       .catch(err => console.log(err))
   }
 
+
   useEffect(() => fetchProfile(), [])
+
   const imgStyles = {
     height: '4vh',
     color: 'white',
     fill: 'white',
     outline: 'none',
     border: 'none'
+  
 }
+
+console.log(props.user)
   return (
     
     <div className="mainDiv"
      style={{ margin: "auto", border: "1px solid red", padding: "0 5% 0 5%", display: "inline-block" }}>
       <div className="header-cont" id="myHeader"
         style={{ width: "100%", height: "10%", textAlign: "center", position: "sticky" }}>
+      <h1>{props.user}</h1>
          {profile.map((profile: Profile , index: number) => (
             <h1>{profile.bio}</h1>
             ))}

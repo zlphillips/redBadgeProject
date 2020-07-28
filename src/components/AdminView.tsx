@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const AdminView = (props: any) => {
 
+
+const AdminView = () => {
 
 
     return(
@@ -10,5 +11,6 @@ const AdminView = (props: any) => {
         </div>
     )
 }
+
 
 export default AdminView;

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
+import {Modal} from 'react-bootstrap'
+import {Table,ModalBody,ModalHeader,Button } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 // import PostBg from '../assets/postbg.png'
@@ -9,16 +10,22 @@ import './Post.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CommentIcon from '@material-ui/icons/Comment';
 import EditIcon from '@material-ui/icons/Edit';
-
-
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import MicroModal from 'micromodal';
+import EditPost from './EditPost'
 
 
 const Post = (props: any) => {
 
+const [likes, setLikes] = useState<number>();
+const [liked, setLiked] = useState<any>();
 const [user, setUser] = useState('')
 const [modal, setModal] = useState<any>(false);
 const toggle = () => setModal(!modal);
+const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 function fetchUser (id: '')  {
          fetch(`http://localhost:3002/redBadge/user/${id}`, {
@@ -39,10 +46,8 @@ function fetchUser (id: '')  {
         useEffect(() => fetchUser(props.post.userId), [])
 
 
-    const [likes, setLikes] = useState<number>();
-    const [liked, setLiked] = useState<any>();
 
-    class LikeButton extends React.Component {
+    class Like extends React.Component {
         constructor(props: number) {
           super(props);
           this.state = {
@@ -50,6 +55,8 @@ function fetchUser (id: '')  {
           };
           this.handleClick = this.handleClick.bind(this);
         } 
+
+
 
         handleClick(id: any) {
             let like = props.post.likes
@@ -78,8 +85,8 @@ function fetchUser (id: '')  {
           const label = liked ? 'Unlike' : 'Like'
           return (
             <div className="customContainer">
-              <button className="btn btn-primary" onClick={this.handleClick}>
-                {label}</button>
+              <ThumbUpIcon onClick={this.handleClick}>
+                {label}</ThumbUpIcon>
             </div>
           );
         }
@@ -102,6 +109,8 @@ const theme = createMuiTheme({
       },
     },
   });
+
+
   
 
     function newBlob(photo: any) {
@@ -109,21 +118,7 @@ const theme = createMuiTheme({
         return photoURL
     }
        
-    const fixedStyles = {
-       position: 'fixed'
-    }
     
-
-    const bigPicture = {
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    }
-
-const zoom = () => {    
-
-newBlob(props.post.media.data)
-
-}
 
     const textStyles = {
         color:'white',
@@ -132,7 +127,7 @@ newBlob(props.post.media.data)
         color:'white',
         
     }
-
+    MicroModal.init();
     return(
         <Table borderless>
         <thead>
@@ -148,9 +143,7 @@ newBlob(props.post.media.data)
                 <Typed
                         style={typedStyles}
                         strings={['user: comment1', 'Welcome, to 404']}
-                        typeSpeed={100}
-                        // smartBackspace={true}
-                    />
+                        typeSpeed={100}/>
             </td>
             <td scope="row" >
                                 {/* image */}
@@ -161,7 +154,7 @@ newBlob(props.post.media.data)
             <td>
                 {/* like count */}
             <h3>{props.post.likes}</h3>
-            <LikeButton />
+            
                         {/* comment button */}
             <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
@@ -172,8 +165,31 @@ newBlob(props.post.media.data)
             <Comment token={props.token} fetchAll={props.fetchAll}/>
             </ModalBody>
             </Modal>
-            <Button className="delete"><DeleteIcon/></Button>
+
+            <Button className="delete"><Like/></Button>
+            
+           <Button onClick ={toggle} style={{margin: '2%'}}><EditIcon/></Button>    
+            
             {/* DELETE */}
+            <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
             </td>
           </tr>
           
