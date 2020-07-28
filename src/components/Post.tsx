@@ -194,7 +194,7 @@ newBlob(props.post.media.data)
         <tr>
           <th>
             <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
-            <Button type="submit" token={props.token}>Post</Button>
+            <Comment token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
           {/* <th scope="row" className="description"> */}
           {/* post description */}
           {/* <Input type="text" rows={4} columns={5} value={props.post.description}/> */}

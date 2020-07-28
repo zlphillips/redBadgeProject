@@ -79,6 +79,7 @@ const Home = (props: any) => {
                     ))}
                 </div> 
             </div>
+            
         </div>
     )
 }
