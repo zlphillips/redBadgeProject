@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {Table, Modal,ModalBody,ModalHeader,Button } from 'reactstrap'
+import {Table,Button, Input } from 'reactstrap'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-// import PostBg from '../assets/postbg.png'
-// import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import APIURL from '../helpers/environment';
 import Typed from 'react-typed'
 import './Post.css';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CommentIcon from '@material-ui/icons/Comment';
-import EditIcon from '@material-ui/icons/Edit';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import MicroModal from 'micromodal';
-
+import EditPost from './EditPost'
 
 const Post = (props: any) => {
 
@@ -19,14 +17,24 @@ const [likes, setLikes] = useState<number>();
 const [liked, setLiked] = useState<any>();
 const [user, setUser] = useState('')
 const [modal, setModal] = useState<any>(false);
-const toggle = () => setModal(!modal);
-const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const toggle = () => setModal(!modal);
+const [text, setText] = useState(props.text ? props.text : "")
+
+  const deleteButton = () => {
+    {fetch(`${APIURL}/user/${props.id}`, {
+      method: 'DELETE',
+      headers :{
+        'Content-Type' : 'application/json',
+        Authorization: props.sessionToken
+      }
+  })}
+}
+
+ 
 
 function fetchUser (id: '')  {
-         fetch(`http://localhost:3002/redBadge/user/${id}`, {
+         fetch(`${APIURL}/redBadge/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,9 +66,9 @@ function fetchUser (id: '')  {
 
         handleClick(id: any) {
             let like = props.post.likes
-            console.log(id)
-            
-            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
+            setLikes(0)
+            console.log(props.post.id)
+            fetch(`${APIURL}/redBadge/post/${props.post.id}`, {
               method: 'PUT',
               body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
               headers: {
@@ -70,7 +78,7 @@ function fetchUser (id: '')  {
           }).then((data) => data.json())
               .then((id) => {
                 setLikes(id.likes)
-                props.fetchAll()
+                props.fetchAll(props.token)
               })
               .catch((err) => {
                   console.log(err);
@@ -125,56 +133,48 @@ const theme = createMuiTheme({
         color:'white',
         
     }
-    MicroModal.init();
+  
     return(
-        <Table borderless>
+        <Table borderlesss>
         <thead>
           <tr>
-          <th style={textStyles}>comments</th>
+          <th style={textStyles} className="col1">Comments</th>
             <th style={textStyles}>{user}</th>
-            <th style={textStyles}>Ayy</th>
+            <th><EditPost fetchAll={props.fetchAll} token={props.token} post={props.post} index={props.index}/></th>
           </tr>
         </thead>
         <tbody>
         <tr>
             <td scope="row">
                 <Typed
-                        style={typedStyles}
-                        strings={['user: comment1', 'Welcome, to 404']}
-                        typeSpeed={100}/>
+                    style={typedStyles}
+                    strings={['Hello There ...', 'Welcome, to 404']}
+                    typeSpeed={100}
+                    // smartBackspace={true}
+                    />
             </td>
             <td scope="row" >
-                                {/* image */}
+               {/* image */}
                 <img src={`${newBlob(props.post.media.data)}`} 
                 style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
-            <td>
-                {/* like count */}
+        </tr>
+        <tr>
+          <th>
+            <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
+            <Button token={props.token} fetchAll={props.fetchAll} postId={props.post.id}>Post</Button>
+          
+          </th>
+          <td>
+         
             <h3>{props.post.likes}</h3>
-            
-                        {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
-            <Modal isOpen={modal} toggle={toggle} className="header">
-            <ModalHeader toggle={toggle}>
-                Go get 'em you keyboard warrior!
-            </ModalHeader>
-            <ModalBody>
-            <Comment token={props.token} fetchAll={props.fetchAll}/>
-            </ModalBody>
-            </Modal>
-
-            <Button className="delete"><Like/></Button>
-            
-           <Button onClick ={toggle} style={{margin: '2%'}}><EditIcon/></Button>    
-        
+         <Like/>
             </td>
-          </tr>
-          
-          
-        </tbody>
-      </Table>
-    ); 
+        </tr>
+      </tbody>
+    </Table>
+    )
 }
 
 export default Post;

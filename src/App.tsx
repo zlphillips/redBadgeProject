@@ -54,7 +54,6 @@ function App(props: any) {
 
   }
 
-console.log(props.user)
  if(isAuthenticated){
     return (
     <div className="App">
@@ -74,7 +73,7 @@ console.log(props.user)
             <AdminUser token={token} />
           </Route>
           <Route path='/'>
-            <Home token={token} component={Home} admin={admin} user={props.user}/>
+            <Home token={token} component={Home} admin={admin} />
           </Route>
         </Switch>
         </Router>

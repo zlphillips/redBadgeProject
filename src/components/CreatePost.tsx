@@ -1,10 +1,7 @@
 import React, {useState}from 'react';
-import {Button, Form, FormGroup,Input, Label} from 'reactstrap'
-import Add from '../assets/fileimg.png'
-
-// to add an img, import it then call it as: <img src={IMG NAME HERE}>
+import {Button, Form, FormGroup,Input, Label, UncontrolledTooltip} from 'reactstrap'
+import APIURL from '../helpers/environment';
 import '../css/CreatePost.css'
-import { Base64 } from 'js-base64';
 
 
 interface CorynneElement extends HTMLElement {
@@ -22,6 +19,7 @@ const NewPost = (props: any) => {
         e.preventDefault();
       
         const Gerald = document.getElementById("gerald") as CorynneElement
+        if (Gerald.files[0]){
         const file = Gerald.files[0]
        
 
@@ -36,7 +34,7 @@ const NewPost = (props: any) => {
 
 
         // console.log(reader.readAsBinaryString(media))
-        fetch(`http://localhost:3002/redBadge/post/new-post`, {
+        fetch(`${APIURL}/redBadge/post/new-post`, {
             method: 'POST',
             body: JSON.stringify({ 
                 post: { 
@@ -59,27 +57,44 @@ const NewPost = (props: any) => {
           .catch(err => console.log(err))
     }
     reader.readAsDataURL(file)
+} else {
+    fetch(`${APIURL}/redBadge/post/new-post`, {
+        method: 'POST',
+        body: JSON.stringify({ 
+            post: { 
+                media: null, 
+                description: description, 
+                likes: likes, 
+                owner: owner 
+            } 
+    }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': props.token
+        })
+    }).then((res) => res.json())
+        .then((logData) => {
+            setDescription('');
+            setLikes(undefined);
+            alert('Thank you for posting!')
+        })
+      .catch(err => console.log(err))
+}
 }
 
  
 
     return (
         <div className="newPost">
-            {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor="media">Media:</Label>
                         <Input type="file" id="gerald" accepts="image/jpeg" name='media'/>
+                        <UncontrolledTooltip placement="bottom-start" id="fileType" target="gerald">Media must be JPG</UncontrolledTooltip>
                     </FormGroup>
-                    {/* <FormGroup className="files">
-                        <Input type="file" name='media' value={media} onChange={(e) => setMedia(e.target.value)}/>
-                    </FormGroup> */}
-
-                    <input  type="text"  onChange={(e) => setDescription(e.target.value)}/>
+                    <Input type="textarea"  onChange={(e) => setDescription(e.target.value)}/>
                     <FormGroup className="upld">
                         <div className="img-upld">
                     <Button type="submit" className="postbtn" 
-                    // onClick={} 
                     style={{color:"#F2CC8F", backgroundColor:"none", fontSize:"20px"}}>Post</Button>
                         </div>
                     </FormGroup>

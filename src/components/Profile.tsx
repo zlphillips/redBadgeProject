@@ -1,7 +1,23 @@
 import React, { useEffect, useState, MouseEvent } from 'react';
 import '../css/Profile.css'
-import Peace from '../assets/peace.png'
+import Logout from '../assets/logout.svg'
+import APIURL from '../helpers/environment';
+import Post from './Post'
+import Typed from 'react-typed'
+import EditPosts from './EditPost'
 
+
+interface Posts {
+  media: Blob,
+  description: string,
+  likes: number,
+  userId: number,
+  firstName: string,
+  lastName: string,
+  email: string,
+  username: string,
+  passwordhash: string
+}
 
 
 interface Profile {
@@ -13,9 +29,12 @@ interface Profile {
 function Profile(props: any) {
   const [profile, setProfile] = useState<any>([])
   window.onscroll = function () { Function() };
+  const [erase, setErase] = useState(false)
+  const [posts, setPosts] = useState([] as any)
+  const [profileView, setProfileView] = useState<boolean>(false)
 
   const fetchProfile = () => {
-    fetch('http://localhost:3002/redBadge/profile/my-profile',{
+    fetch(`${APIURL}/redBadge/profile/my-profile`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -28,6 +47,7 @@ function Profile(props: any) {
 
 
   useEffect(() => fetchProfile(), [])
+ 
 
   const imgStyles = {
     height: '4vh',
@@ -38,21 +58,68 @@ function Profile(props: any) {
   
 }
 
-console.log(props.user)
+    const fetchAll = () => {
+      fetch(`${APIURL}/redBadge/post/my-posts`, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': props.token,
+          }
+      })
+          .then(data => data.json())
+          .then(data => {setPosts(data)})
+          .catch(err => console.warn(err))
+          
+    }
+
+    //timeout to load posts
+    useEffect(() => {
+      const timer = setTimeout(() => {
+      fetchAll()
+      }, 1000);
+      return () => clearTimeout(timer);
+    }, []);
+
+
+    const helloStyles = {
+    fontSize: '5vh'
+    }
+
+    const borderStyle = {
+    borderStyle: 'solid',
+    borderColor: '#F2CC8F',
+    borderWidth: 'thin'
+    }
+
+
   return (
     
     <div className="mainDiv"
-     style={{ margin: "auto", border: "1px solid red", padding: "0 5% 0 5%", display: "inline-block" }}>
+     style={{ margin: "auto", padding: "0 5% 0 5%", display: "inline-block" }}>
       <div className="header-cont" id="myHeader"
         style={{ width: "100%", height: "10%", textAlign: "center", position: "sticky" }}>
-      <h1>{props.user}</h1>
+  
          {profile.map((profile: Profile , index: number) => (
             <h1>{profile.bio}</h1>
             ))}
-            <button onClick={props.clearToken}><img src={Peace} style={imgStyles}/></button>
+            <img src={Logout} style={imgStyles} onClick={props.clearToken}/>
+            
+      </div>
+      <h1 className='element' ></h1>
+   
+          <br/>
+      <div className="post_bg">
+          <div className="p-3 my-2 rounded" 
+          style={{marginRight:"auto", marginLeft:"auto"}}>
+              {posts.map((post: Posts, index: number) => (
+                  <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin} />
+              ))}
+          </div> 
       </div>
     </div>
   )
 }
 
 export default Profile
+
+

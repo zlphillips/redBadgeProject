@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 
 // const UpdatePost = (props: any) => {

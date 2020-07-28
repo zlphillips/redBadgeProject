@@ -3,6 +3,7 @@ import Post from './Post'
 import Typed from 'react-typed';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import APIURL from '../helpers/environment';
 
 export interface Posts {
     media: Blob,
@@ -28,8 +29,8 @@ const Home = (props: any) => {
     
 
 //fetch all posts
-    const fetchAll = (props: any) => {
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
+    const fetchAll = () => {
+        fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ const Home = (props: any) => {
 //timeout to load posts
     useEffect(() => {
         const timer = setTimeout(() => {
-         fetchAll(props)
+         fetchAll()
         }, 1000);
         return () => clearTimeout(timer);
       }, []);
@@ -74,10 +75,11 @@ const Home = (props: any) => {
                 <div className="p-3 my-2 rounded" 
                 style={{marginRight:"auto", marginLeft:"auto"}}>
                     {posts.map((post: Posts, index: number) => (
-                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin}/>
+                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin} />
                     ))}
                 </div> 
             </div>
+            
         </div>
     )
 }

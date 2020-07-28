@@ -1,6 +1,7 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup,Input} from 'reactstrap'
 import Add from '../assets/fileimg.png'
+import APIURL from '../helpers/environment';
 
 // to add an img, import it then call it as: <img src={IMG NAME HERE}>
 import '../css/CreateProfile.css'
@@ -15,7 +16,7 @@ const NewProfile = (props: any) => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(props.token)
-        fetch(`http://localhost:3002/redBadge/profile/new-profile`, {
+        fetch(`${APIURL}/redBadge/profile/new-profile`, {
             method: 'POST',
             body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner }}),
             headers: new Headers({
