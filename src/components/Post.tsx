@@ -78,7 +78,7 @@ function fetchUser (id: '')  {
           }).then((data) => data.json())
               .then((id) => {
                 setLikes(id.likes)
-                props.fetchAll()
+                props.fetchAll(props.token)
               })
               .catch((err) => {
                   console.log(err);
@@ -159,15 +159,15 @@ newBlob(props.post.media.data)
             <td scope="row">
                 <Typed
                     style={typedStyles}
-                    strings={['user: comment1', 'Welcome, to 404']}
+                    strings={['', 'Welcome, to 404']}
                     typeSpeed={100}
                     // smartBackspace={true}
                     />
             </td>
             <td scope="row" >
                {/* image */}
-                {props.post.media ? <img src={`${newBlob(props.post.media.data)}`} 
-                style={{height:"30vh", overflow:"hidden"}} /> : null}
+                <img src={`${newBlob(props.post.media.data)}`} 
+                style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
             {/* <td>
