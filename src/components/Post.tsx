@@ -78,7 +78,7 @@ function fetchUser (id: '')  {
           }).then((data) => data.json())
               .then((id) => {
                 setLikes(id.likes)
-                props.fetchAll(props.token)
+                props.fetchAll()
               })
               .catch((err) => {
                   console.log(err);
@@ -166,8 +166,8 @@ newBlob(props.post.media.data)
             </td>
             <td scope="row" >
                {/* image */}
-                <img src={`${newBlob(props.post.media.data)}`} 
-                style={{height:"30vh", overflow:"hidden"}} />
+                {props.post.media ? <img src={`${newBlob(props.post.media.data)}`} 
+                style={{height:"30vh", overflow:"hidden"}} /> : null}
                 <h5 style={textStyles}>{props.post.description}</h5>
             </td>
             {/* <td>

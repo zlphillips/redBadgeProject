@@ -29,12 +29,12 @@ const Home = (props: any) => {
     
 
 //fetch all posts
-    const fetchAll = (token: any) => {
+    const fetchAll = () => {
         fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': token,
+                'Authorization': props.token,
             }
         })
             .then(data => data.json())
@@ -46,7 +46,7 @@ const Home = (props: any) => {
 //timeout to load posts
     useEffect(() => {
         const timer = setTimeout(() => {
-         fetchAll(props)
+         fetchAll()
         }, 1000);
         return () => clearTimeout(timer);
       }, []);

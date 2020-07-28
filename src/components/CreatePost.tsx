@@ -24,6 +24,7 @@ const NewPost = (props: any) => {
         e.preventDefault();
       
         const Gerald = document.getElementById("gerald") as CorynneElement
+        if (Gerald.files[0]){
         const file = Gerald.files[0]
        
 
@@ -38,7 +39,7 @@ const NewPost = (props: any) => {
 
 
         // console.log(reader.readAsBinaryString(media))
-        fetch(`${APIURL}/post/new-post`, {
+        fetch(`${APIURL}/redBadge/post/new-post`, {
             method: 'POST',
             body: JSON.stringify({ 
                 post: { 
@@ -61,6 +62,29 @@ const NewPost = (props: any) => {
           .catch(err => console.log(err))
     }
     reader.readAsDataURL(file)
+} else {
+    fetch(`${APIURL}/redBadge/post/new-post`, {
+        method: 'POST',
+        body: JSON.stringify({ 
+            post: { 
+                media: null, 
+                description: description, 
+                likes: likes, 
+                owner: owner 
+            } 
+    }),
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': props.token
+        })
+    }).then((res) => res.json())
+        .then((logData) => {
+            setDescription('');
+            setLikes(undefined);
+            alert('Thank you for posting!')
+        })
+      .catch(err => console.log(err))
+}
 }
 
  
