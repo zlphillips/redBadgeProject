@@ -8,7 +8,7 @@ const UpdatePost = (props: any) => {
 
     const postUpdate = (e: any) => {
         e.preventDefault();
-        fetch(`${APIURL}/post/${props.postToUpdate.id}`, {
+        fetch(`${APIURL}/redBadge/post/${props.postToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({ post: { media: editMedia, description: editDescription } }),
             headers: new Headers({

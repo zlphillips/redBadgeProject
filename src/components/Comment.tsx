@@ -10,7 +10,7 @@ const Comment = (props: any) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        fetch(`${APIURL}/comment/new-comment`, {
+        fetch(`${APIURL}/redBadge/comment/new-comment`, {
             method: 'POST',
             body: JSON.stringify({comment: {description: description, likes: likes}}),
             headers: new Headers({

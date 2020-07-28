@@ -16,7 +16,7 @@ const NewProfile = (props: any) => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(props.token)
-        fetch(`${APIURL}/profile/new-profile`, {
+        fetch(`${APIURL}/redBadge/profile/new-profile`, {
             method: 'POST',
             body: JSON.stringify({ post: { media: media, description: description, likes: likes, owner: owner }}),
             headers: new Headers({
