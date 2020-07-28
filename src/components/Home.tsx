@@ -1,7 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from './Post'
 import Typed from 'react-typed';
-
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import APIURL from '../helpers/environment';
 
 export interface Posts {
     media: Blob,
@@ -23,9 +25,12 @@ const Home = (props: any) => {
   
 
 
+
+    
+
 //fetch all posts
-    const fetchAll = () => {
-        fetch('http://localhost:3002/redBadge/post/all-posts', {
+    const fetchAll = (props: any) => {
+        fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,15 +38,15 @@ const Home = (props: any) => {
             }
         })
             .then(data => data.json())
-            .then(data => { setPosts(data)})
+            .then(data => {setPosts(data)})
             .catch(err => console.warn(err))
-
+            
     }
 
 //timeout to load posts
     useEffect(() => {
         const timer = setTimeout(() => {
-         fetchAll()
+         fetchAll(props)
         }, 1000);
         return () => clearTimeout(timer);
       }, []);
@@ -51,6 +56,11 @@ const Home = (props: any) => {
      fontSize: '5vh'
  }
 
+ const borderStyle = {
+     borderStyle: 'solid',
+     borderColor: '#F2CC8F',
+     borderWidth: 'thin'
+ }
     
     return (
         <div>
@@ -61,14 +71,11 @@ const Home = (props: any) => {
                     typeSpeed={100}
                 />
                 <br/>
-            <div className="post_bg"
-            style={{border:"1px solid red"}}>
+            <div className="post_bg">
                 <div className="p-3 my-2 rounded" 
-                style={{marginRight:"auto", marginLeft:"auto", border:"1px solid orange"}}>
+                style={{marginRight:"auto", marginLeft:"auto"}}>
                     {posts.map((post: Posts, index: number) => (
-                        <Post post={post} index={index} token={props.token} fetchAll = {fetchAll}
-                        // images={images} setImages={setImages}
-                        />
+                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin}/>
                     ))}
                 </div> 
             </div>

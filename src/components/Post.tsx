@@ -3,30 +3,21 @@ import {Table, Modal,ModalBody,ModalHeader,Button, Input, Form,FormGroup,FormTex
 // import APIURL from '../Helpers/environment'
 import Comment from './Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import SvgIcon from '@material-ui/core/SvgIcon'
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm'
-import ThreeDRotation from '@material-ui/icons/ThreeDRotation'
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import APIURL from '../helpers/environment';
 // import PostBg from '../assets/postbg.png'
-
-
+// import { Toast, ToastBody, ToastHeader, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import Typed from 'react-typed'
 import './Post.css';
-import { url } from 'inspector';
-import { Tab } from 'react-bootstrap';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CommentIcon from '@material-ui/icons/Comment';
+import EditIcon from '@material-ui/icons/Edit';
 
-
-// import EditIcon from '@material-ui/icons/Edit';
-// import Fab from '@material-ui/core/Fab';
-// import UpdatePost from './EditPost'
-// import { Base64 } from 'js-base64';
-// import Typed from 'typed.js';
 
 
 
 const Post = (props: any) => {
 
 const [user, setUser] = useState('')
-const [image, setImage] = useState('')
 const [modal, setModal] = useState<any>(false);
 
 const toggle = () => setModal(!modal);
@@ -43,7 +34,7 @@ const [text, setText] = useState(props.text ? props.text : "")
 
 
 function fetchUser (id: '')  {
-         fetch(`http://localhost:3002/redBadge/user/${id}`, {
+         fetch(`${APIURL}/redBadge/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,18 +52,6 @@ function fetchUser (id: '')  {
         useEffect(() => fetchUser(props.post.userId), [])
 
 
-    const singleToast = {
-        minWidth: '90vw',
-        minHeight: '10vh',
-        // margin: '2%'
-     
-    }
-
-
-    const editStyles = {
-        fload: 'right'
-    }
-
     const [likes, setLikes] = useState<number>();
     const [liked, setLiked] = useState<any>();
 
@@ -89,7 +68,7 @@ function fetchUser (id: '')  {
             let like = props.post.likes
             console.log(id)
             setLikes(0)
-            fetch(`http://localhost:3002/redBadge/post/${props.post.id}`, {
+            fetch(`${APIURL}/redBadge/post/${props.post.id}`, {
               method: 'PUT',
               body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
               headers: {
@@ -143,29 +122,61 @@ function fetchUser (id: '')  {
         return photoURL
     }
        
+    const fixedStyles = {
+       position: 'fixed'
+    }
+    
+
+    const bigPicture = {
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    }
+
+const zoom = () => {    
+
+newBlob(props.post.media.data)
+
+}
+
+    const textStyles = {
+        color:'white',
+    }
+    const typedStyles = {
+        color:'white',
+        
+    }
 
     return(
-      <Table borderless className="postTable">
-      <thead>
+        <Table borderless>
+        <thead>
+          <tr>
+          <th style={textStyles}>comments</th>
+            <th style={textStyles}>{user}</th>
+            <th style={textStyles}>Ayy</th>
+          </tr>
+        </thead>
+        <tbody>
         <tr>
-          {/* <th>#</th> */}
-          <th>{user}</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td scope="row">
-            {/* image */}
-            <img src={`${newBlob(props.post.media.data)}`} className="mediaImg"
-            style={{maxHeight:"30vh", overflow:"hidden"}}/>
-          </td>
-          <td>
-            {/* like count */}
-            <h5>{props.post.likes}</h5>
-            {/* like button */}
+            <td scope="row">
+                <Typed
+                        style={typedStyles}
+                        strings={['user: comment1', 'Welcome, to 404']}
+                        typeSpeed={100}
+                        // smartBackspace={true}
+                    />
+            </td>
+            <td scope="row" >
+                                {/* image */}
+                <img src={`${newBlob(props.post.media.data)}`} 
+                style={{height:"30vh", overflow:"hidden"}} />
+                <h5 style={textStyles}>{props.post.description}</h5>
+            </td>
+            <td>
+                {/* like count */}
+            <h3>{props.post.likes}</h3>
             <LikeButton />
-            {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}>Clapback</Button>                        
+                        {/* comment button */}
+            <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
             <ModalHeader toggle={toggle}>
                 Go get 'em you keyboard warrior!
@@ -174,6 +185,7 @@ function fetchUser (id: '')  {
             <Input type="textarea" rows={5} token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
             </ModalBody>
             </Modal>
+            <Button className="delete"><DeleteIcon/></Button>
             {/* DELETE */}
           </td>
         </tr>
