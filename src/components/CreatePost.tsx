@@ -70,7 +70,6 @@ const NewPost = (props: any) => {
             {/* <h3>Post Something!</h3> */}
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-
                         <Input type="file" id="gerald" accepts="image/jpeg" name='media'/>
                         <UncontrolledTooltip placement="bottom-start" id="fileType" target="gerald">Media must be JPG</UncontrolledTooltip>
                     </FormGroup>

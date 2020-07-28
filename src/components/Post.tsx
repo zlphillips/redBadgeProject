@@ -147,10 +147,10 @@ newBlob(props.post.media.data)
     }
 
     return(
-        <Table borderless>
+        <Table bordered>
         <thead>
           <tr>
-          <th style={textStyles}>comments</th>
+          <th style={textStyles} className="col1">Comments</th>
             <th style={textStyles}>{user}</th>
             <th style={textStyles}>Ayy</th>
           </tr>
@@ -159,14 +159,14 @@ newBlob(props.post.media.data)
         <tr>
             <td scope="row">
                 <Typed
-                        style={typedStyles}
-                        strings={['user: comment1', 'Welcome, to 404']}
-                        typeSpeed={100}
-                        // smartBackspace={true}
+                    style={typedStyles}
+                    strings={['user: comment1', 'Welcome, to 404']}
+                    typeSpeed={100}
+                    // smartBackspace={true}
                     />
             </td>
             <td scope="row" >
-                                {/* image */}
+               {/* image */}
                 <img src={`${newBlob(props.post.media.data)}`} 
                 style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
@@ -175,38 +175,36 @@ newBlob(props.post.media.data)
                 {/* like count */}
             <h3>{props.post.likes}</h3>
             <LikeButton />
-                        {/* comment button */}
-            <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
+            {/* comment button */}
+            {/* <Button onClick ={toggle} style={{margin: '2%'}}><CommentIcon/></Button>                        
             <Modal isOpen={modal} toggle={toggle} className="header">
             <ModalHeader toggle={toggle}>
                 Go get 'em you keyboard warrior!
             </ModalHeader>
             <ModalBody>
-            <Input type="textarea" rows={5} token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
-            </ModalBody>
-            </Modal>
+            <Input type="textarea" rows={3} token={props.token} fetchAll={props.fetchAll} postId={props.post.id}/>
+            <Comment token={props.token}/> */}
+            {/* <Button type="submit" className="commentBtn">Clap back</Button> */}
+            {/* </ModalBody>
+            </Modal> */}
             <Button className="delete"><DeleteIcon/></Button>
             {/* DELETE */}
           </td>
         </tr>
         <tr>
-          <th scope="row" className="description">
-          {/* post text */}
-          <Input type="text" rows={4} columns={5} value={props.post.description}/>
-            {/* {props.post.description}</h6> */}
+          <th>
+            <Input type="textarea" rows={2} token={props.token} fetchAll={props.fetchAll} postId={props.post.id} placeholder="Clap back. . ."/>
+            <Button type="submit" token={props.token}>Post</Button>
+          {/* <th scope="row" className="description"> */}
+          {/* post description */}
+          {/* <Input type="text" rows={4} columns={5} value={props.post.description}/> */}
+           {/* <h6> {props.post.description}</h6> */}
           </th>
           {/* <td>
           <Button className="delete">
               Delete
           </Button>
             </td> */}
-        </tr>
-        <tr>
-          <th scope="row" className="col3">
-          <Button className="comment">
-          Comments Button here
-          </Button>
-          </th>
         </tr>
       </tbody>
     </Table>
