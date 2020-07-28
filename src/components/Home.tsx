@@ -29,12 +29,12 @@ const Home = (props: any) => {
     
 
 //fetch all posts
-    const fetchAll = (props: any) => {
+    const fetchAll = (token: any) => {
         fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': props.token,
+                'Authorization': token,
             }
         })
             .then(data => data.json())

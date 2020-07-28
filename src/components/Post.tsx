@@ -78,7 +78,7 @@ function fetchUser (id: '')  {
           }).then((data) => data.json())
               .then((id) => {
                 setLikes(id.likes)
-                props.fetchAll()
+                props.fetchAll(props.token)
               })
               .catch((err) => {
                   console.log(err);
