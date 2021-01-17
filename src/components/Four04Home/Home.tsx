@@ -1,9 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Post from './Post'
 import Typed from 'react-typed';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import APIURL from '../helpers/environment';
+import APIURL from '../../helpers/environment';
 
 export interface Posts {
     media: Blob,
@@ -21,14 +19,8 @@ export interface Posts {
 
 const Home = (props: any) => {
     const [posts, setPosts] = useState([] as any)
-    // const [images, setImages] = useState([] as any)
-  
+    const [postId, setPostId] = useState<number>()
 
-
-
-    
-
-//fetch all posts
     const fetchAll = () => {
         fetch(`${APIURL}/redBadge/post/all-posts`, {
             method: 'GET',
@@ -38,12 +30,14 @@ const Home = (props: any) => {
             }
         })
             .then(data => data.json())
-            .then(data => {setPosts(data)})
+            .then(data => {
+                setPosts(data)
+            })
             .catch(err => console.warn(err))
             
     }
+    
 
-//timeout to load posts
     useEffect(() => {
         const timer = setTimeout(() => {
          fetchAll()
@@ -61,7 +55,7 @@ const Home = (props: any) => {
      borderColor: '#F2CC8F',
      borderWidth: 'thin'
  }
-    
+
     return (
         <div>
             <h1 className='element' ></h1>
@@ -75,7 +69,7 @@ const Home = (props: any) => {
                 <div className="p-3 my-2 rounded" 
                 style={{marginRight:"auto", marginLeft:"auto"}}>
                     {posts.map((post: Posts, index: number) => (
-                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin} />
+                        <Post post={post} index={index} token={props.token} fetchAll={fetchAll} admin={props.admin} postId={postId}/>
                     ))}
                 </div> 
             </div>

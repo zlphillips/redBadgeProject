@@ -1,7 +1,7 @@
 import React, {useState}from 'react';
 import {Button, Form, FormGroup,Input, Label, UncontrolledTooltip} from 'reactstrap'
-import APIURL from '../helpers/environment';
-import '../css/CreatePost.css'
+import APIURL from '../../helpers/environment';
+
 
 
 interface CorynneElement extends HTMLElement {
@@ -25,15 +25,10 @@ const NewPost = (props: any) => {
 
         let reader = new FileReader();
         reader.onload = async function () {
-            console.log(reader.result)
+ 
             const url = reader.result
             setMedia(url)
-            // console.log(JSON.stringify({media}))
-            
-            
 
-
-        // console.log(reader.readAsBinaryString(media))
         fetch(`${APIURL}/redBadge/post/new-post`, {
             method: 'POST',
             body: JSON.stringify({ 

@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Table,Button, Input } from 'reactstrap'
-import Comment from './Comment';
+import { Table } from 'reactstrap'
+import Comment from '../Comments/Comment';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import APIURL from '../helpers/environment';
-import Typed from 'react-typed'
-import './Post.css';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CommentIcon from '@material-ui/icons/Comment';
+import APIURL from '../../helpers/environment';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import MicroModal from 'micromodal';
 import EditPost from './EditPost'
+
 
 
 interface Comments {
@@ -20,28 +16,12 @@ interface Comments {
 
 const Post = (props: any) => {
 
-const [likes, setLikes] = useState<number>();
+const [likes, setLikes] = useState([] as any);
 const [liked, setLiked] = useState<any>();
 const [user, setUser] = useState('')
 const [modal, setModal] = useState<any>(false);
 const [comments, setComments] = useState([] as any)
-
-
-const toggle = () => setModal(!modal);
-const [text, setText] = useState(props.text ? props.text : "")
-
-  const deleteButton = () => {
-    {fetch(`${APIURL}/user/${props.id}`, {
-      method: 'DELETE',
-      headers :{
-        'Content-Type' : 'application/json',
-        Authorization: props.sessionToken
-      }
-  })}
-}
-
  
-
 function fetchUser (id: '')  {
          fetch(`${APIURL}/redBadge/user/${id}`, {
             method: 'GET',
@@ -58,7 +38,7 @@ function fetchUser (id: '')  {
             });
 
         }
-        useEffect(() => fetchUser(props.post.userId), [])
+   useEffect(() => fetchUser(props.post.userId), [])
 
 
 
@@ -75,29 +55,33 @@ function fetchUser (id: '')  {
 
         handleClick(id: any) {
             let like = props.post.likes
-            setLikes(0)
+            setLikes(like)
             console.log(props.post.id)
             fetch(`${APIURL}/redBadge/post/${props.post.id}`, {
               method: 'PUT',
-              body: JSON.stringify({ post: { likes: liked ? like - 1 : like + 1} }),
+              body: JSON.stringify({ 
+                post: { 
+                  likes: liked ? like - 1 : like + 1
+                } 
+              }),
               headers: {
                   'Content-Type': 'application/json',
                   'Authorization': props.token
               }
           }).then((data) => data.json())
-              .then((id) => {
-                setLikes(id.likes)
-                props.fetchAll(props.token)
+              .then((data) => {
+                setLikes(data)
               })
               .catch((err) => {
                   console.log(err);
               });
-            liked? setLiked(false) : setLiked(true)
+            liked ? setLiked(false) : setLiked(true)
         };
 
         
         render() {
           const label = liked ? 'Unlike' : 'Like'
+          //console.log(likes)
           return (
             <div className="customContainer">
               <ThumbUpIcon onClick={this.handleClick}>
@@ -107,6 +91,7 @@ function fetchUser (id: '')  {
         }
       }
 
+     
 
 const theme = createMuiTheme({
     palette: {
@@ -125,8 +110,6 @@ const theme = createMuiTheme({
     },
   });
 
-
-  
 
     function newBlob(photo: any) {
         const photoURL = String.fromCharCode.apply( null, new Uint8Array(photo) as any)
@@ -154,6 +137,7 @@ const theme = createMuiTheme({
     }).then((data) => data.json())
         .then((data) => {
           setComments(data)
+          
         })
         .catch((err) => {
             console.log(err);
@@ -161,8 +145,9 @@ const theme = createMuiTheme({
     }
 
     useEffect(() => fetchComments(), [])
+
   
-    return(
+  return(
         <Table borderlesss>
         <thead>
           <tr>
@@ -175,16 +160,11 @@ const theme = createMuiTheme({
         <tr>
             <td scope="row">
             {comments.map((comment: Comments , index: number) => (
-                <Typed
-                    style={typedStyles}
-                    strings={[comment.description]}
-                    typeSpeed={100}
-                    // smartBackspace={true}
-                    />
+              <p>{`${comment.description}`}</p>
                   ))}
             </td>
             <td scope="row" >
-               {/* image */}
+  
                 <img src={`${newBlob(props.post.media.data)}`} 
                 style={{height:"30vh", overflow:"hidden"}} />
                 <h5 style={textStyles}>{props.post.description}</h5>
@@ -193,11 +173,8 @@ const theme = createMuiTheme({
         <tr>
           <th>
             <Comment token={props.token} fetchAll={fetchComments} postId={props.post.id}/>
-          
           </th>
           <td>
-         
-            <h3>{props.post.likes}</h3>
          <Like/>
             </td>
         </tr>

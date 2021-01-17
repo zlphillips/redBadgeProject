@@ -6,13 +6,13 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import NewPost from './components/CreatePost'
-import Home from './components/Home'
-import Profile from './components/Profile'
+import NewPost from './components/Four04Home/CreatePost'
+import Home from './components/Four04Home/Home'
+import Profile from './components/Profile/Profile'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AdminUser from './components/AdminUsers'
-import AdminView from './components/AdminView'
+import AdminUser from './components/Admin/AdminUsers'
+import AdminView from './components/Admin/AdminView'
 
 
 
@@ -20,7 +20,6 @@ function App(props: any) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [token, setToken] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
-  const [adminView, setAdminView] = useState<boolean>(false)
     
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -33,9 +32,7 @@ function App(props: any) {
   }, [])
 
 
-    // session token can only stay here
     const protectedViews = (sessionToken: string, Boss: boolean) => {
-
       setToken(sessionToken)
       localStorage.setItem("token",sessionToken)
       setIsAuthenticated(true)
@@ -45,7 +42,6 @@ function App(props: any) {
       } 
     }
 
-  // LOG OUT = cleartoken
   const clearToken = () => {
     localStorage.clear();
     setToken('')
@@ -77,11 +73,14 @@ function App(props: any) {
           </Route>
         </Switch>
         </Router>
+
+        {/* Display Component Section */}
     </div>
     )
   } else {
     return <Auth protectedViews={protectedViews} />
   }
 }
-export default App
+
+export default App;
 

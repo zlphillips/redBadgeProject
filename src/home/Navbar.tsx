@@ -3,7 +3,7 @@ import User from '../assets/user.svg';
 import Add from '../assets/add.svg';
 import Home from '../assets/home.svg'
 import Dashboard from '../assets/data-analysis.svg';
-import NewPost from '../components/CreatePost';
+import NewPost from '../components/Four04Home/CreatePost';
 import AdminUsers from '../assets/group.svg';
 import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -49,6 +49,7 @@ const NavBar = (props:any) => {
                 <ModalHeader toggle={toggle}>
                     What's up Doc?
                 </ModalHeader>
+
                 <ModalBody>
                 <NewPost token={props.token}/>
                 </ModalBody>
@@ -57,14 +58,11 @@ const NavBar = (props:any) => {
                 <Navbar.Brand><Link to ='/Profile'><img src={User} style={imgStyles}/></Link></Navbar.Brand>
                 
                 { props.admin === true ? 
-                <Navbar.Brand><Link to ='/AdminPosts'><img src={Dashboard} style={imgStyles}/></Link></Navbar.Brand>
-                : ''
-                }   
-                { props.admin === true ? 
                 <Navbar.Brand><Link to ='/AdminUsers'><img src={AdminUsers} style={imgStyles}/></Link></Navbar.Brand>
                 : ''
                 }
             </Navbar>
+
         </div>
     )
 }
